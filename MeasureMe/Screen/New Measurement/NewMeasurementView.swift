@@ -103,7 +103,6 @@ struct NewMeasurementView: View {
             Text("Next")
                 .foregroundStyle(.background)
                 .font(.system(.subheadline, weight: .semibold))
-                .padding()
                 .frame(maxWidth: .infinity, maxHeight: 44)
                 .background(Color.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 10))

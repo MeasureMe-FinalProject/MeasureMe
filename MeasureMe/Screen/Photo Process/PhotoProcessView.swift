@@ -45,6 +45,9 @@ struct PhotoProcessView: View {
             }
         }
         .onAppear { viewModel.uploadCapturedImages(capturedImages) }
+        .fullScreenCover(isPresented: $viewModel.isShowUndetectedBodyView) {
+            UndetectedBodyView(isCapturingPhotoComplete: $isCapturingComplete, capturedImages: $capturedImages)
+        }
     }
 }
 

@@ -69,6 +69,7 @@ struct PhotoCaptureView: View {
                 .offset(y: viewModel.isOnPosition ? 0 : -300)
             }
         }
+        .statusBar(hidden: true)
         .overlay(alignment: .topTrailing) {
             Button {
                 viewModel.stopGyro()
@@ -82,7 +83,6 @@ struct PhotoCaptureView: View {
             }
             .padding()
         }
-        .statusBar(hidden: true)
         .onAppear {
             viewModel.isCapturingPhotoComplete ? viewModel.stopGyro() : viewModel.startGyro()
         }
