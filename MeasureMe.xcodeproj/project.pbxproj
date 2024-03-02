@@ -21,6 +21,11 @@
 		3A54D92B2B93611C00B22696 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D92A2B93611C00B22696 /* Result.swift */; };
 		3AC21F8C2B93660E008E87FF /* NewMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F8B2B93660E008E87FF /* NewMeasurementView.swift */; };
 		3AC21F8E2B936617008E87FF /* NewMeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F8D2B936617008E87FF /* NewMeasurementViewModel.swift */; };
+		3AC21F912B936870008E87FF /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F902B936870008E87FF /* PhotoCaptureView.swift */; };
+		3AC21F932B936875008E87FF /* PhotoCaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F922B936875008E87FF /* PhotoCaptureViewModel.swift */; };
+		3AC21F9A2B9368A7008E87FF /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F972B9368A6008E87FF /* CameraView.swift */; };
+		3AC21F9B2B9368A7008E87FF /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F982B9368A6008E87FF /* Camera.swift */; };
+		3AC21F9C2B9368A7008E87FF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F992B9368A7008E87FF /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +44,11 @@
 		3A54D92A2B93611C00B22696 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		3AC21F8B2B93660E008E87FF /* NewMeasurementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMeasurementView.swift; sourceTree = "<group>"; };
 		3AC21F8D2B936617008E87FF /* NewMeasurementViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMeasurementViewModel.swift; sourceTree = "<group>"; };
+		3AC21F902B936870008E87FF /* PhotoCaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
+		3AC21F922B936875008E87FF /* PhotoCaptureViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureViewModel.swift; sourceTree = "<group>"; };
+		3AC21F972B9368A6008E87FF /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		3AC21F982B9368A6008E87FF /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		3AC21F992B9368A7008E87FF /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +81,7 @@
 		3A54D9002B935DC800B22696 /* MeasureMe */ = {
 			isa = PBXGroup;
 			children = (
+				3AC21F942B936885008E87FF /* Helper */,
 				3A54D9012B935DC800B22696 /* MeasureMeApp.swift */,
 				3A54D9182B935EF500B22696 /* Model */,
 				3A54D9162B935EE200B22696 /* Screen */,
@@ -96,7 +107,8 @@
 				3A54D91D2B93606D00B22696 /* MainView.swift */,
 				3A54D9172B935EE900B22696 /* OnBoarding */,
 				3A54D91F2B93608B00B22696 /* Home */,
-				3AC21F8A2B9365D3008E87FF /* NewMeasurement */,
+				3AC21F8A2B9365D3008E87FF /* New Measurement */,
+				3AC21F8F2B93684A008E87FF /* Photo Capture */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -144,13 +156,48 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		3AC21F8A2B9365D3008E87FF /* NewMeasurement */ = {
+		3AC21F8A2B9365D3008E87FF /* New Measurement */ = {
 			isa = PBXGroup;
 			children = (
 				3AC21F8D2B936617008E87FF /* NewMeasurementViewModel.swift */,
 				3AC21F8B2B93660E008E87FF /* NewMeasurementView.swift */,
 			);
-			path = NewMeasurement;
+			path = "New Measurement";
+			sourceTree = "<group>";
+		};
+		3AC21F8F2B93684A008E87FF /* Photo Capture */ = {
+			isa = PBXGroup;
+			children = (
+				3AC21F922B936875008E87FF /* PhotoCaptureViewModel.swift */,
+				3AC21F902B936870008E87FF /* PhotoCaptureView.swift */,
+			);
+			path = "Photo Capture";
+			sourceTree = "<group>";
+		};
+		3AC21F942B936885008E87FF /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				3AC21F952B93688B008E87FF /* UIKit */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		3AC21F952B93688B008E87FF /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				3AC21F962B93689E008E87FF /* CameraView */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		3AC21F962B93689E008E87FF /* CameraView */ = {
+			isa = PBXGroup;
+			children = (
+				3AC21F982B9368A6008E87FF /* Camera.swift */,
+				3AC21F992B9368A7008E87FF /* CameraViewController.swift */,
+				3AC21F972B9368A6008E87FF /* CameraView.swift */,
+			);
+			path = CameraView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,13 +270,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AC21F9B2B9368A7008E87FF /* Camera.swift in Sources */,
+				3AC21F912B936870008E87FF /* PhotoCaptureView.swift in Sources */,
 				3A54D91B2B935F0200B22696 /* OnBoardingView.swift in Sources */,
+				3AC21F9C2B9368A7008E87FF /* CameraViewController.swift in Sources */,
 				3A54D9292B9360FA00B22696 /* ProfileView.swift in Sources */,
+				3AC21F9A2B9368A7008E87FF /* CameraView.swift in Sources */,
 				3A54D9272B9360F400B22696 /* MyMeasureView.swift in Sources */,
 				3AC21F8C2B93660E008E87FF /* NewMeasurementView.swift in Sources */,
 				3AC21F8E2B936617008E87FF /* NewMeasurementViewModel.swift in Sources */,
 				3A54D91C2B935F0200B22696 /* OnBoardingViewModel.swift in Sources */,
 				3A54D9232B9360B000B22696 /* HomeViewModel.swift in Sources */,
+				3AC21F932B936875008E87FF /* PhotoCaptureViewModel.swift in Sources */,
 				3A54D9142B935E1400B22696 /* OnBoarding.swift in Sources */,
 				3A54D92B2B93611C00B22696 /* Result.swift in Sources */,
 				3A54D9212B9360AA00B22696 /* HomeView.swift in Sources */,
@@ -371,6 +423,7 @@
 				DEVELOPMENT_TEAM = QJ4D5LRK3T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app need your camera permission to capturing the photos. To protect user privacy, your face will be blurred after the image being captured.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -400,6 +453,7 @@
 				DEVELOPMENT_TEAM = QJ4D5LRK3T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app need your camera permission to capturing the photos. To protect user privacy, your face will be blurred after the image being captured.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -34,6 +34,7 @@ final class NewMeasurementViewModel: ObservableObject {
     @Published var selectedGender: GenderType?
     @Published var height: Int = 166
     @Published var isShowPrivacyMeassage: Bool = false
+    @Published var isShowPhotoCaptureView: Bool = false
     
     var paddingHeightImageVector: CGFloat {
         if height <= 0 {

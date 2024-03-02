@@ -27,6 +27,9 @@ struct NewMeasurementView: View {
                 showPrivacyMessagePopup()
             }
         }
+        .fullScreenCover(isPresented: $viewModel.isShowPhotoCaptureView) {
+            PhotoCaptureView(isShow: $viewModel.isShowPhotoCaptureView)
+        }
     }
     
     @ViewBuilder private func showPrivacyMessagePopup() -> some View {
@@ -64,6 +67,7 @@ struct NewMeasurementView: View {
                                     .padding(.bottom)
                                 
                                 Button {
+                                    viewModel.isShowPhotoCaptureView.toggle()
                                     DispatchQueue.main.async {
                                         viewModel.isShowPrivacyMeassage.toggle()
                                     }
