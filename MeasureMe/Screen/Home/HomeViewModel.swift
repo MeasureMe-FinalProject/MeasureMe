@@ -43,6 +43,7 @@ enum ClothingType: CaseIterable {
 
 final class HomeViewModel: ObservableObject {
     @Published var fullName: String = "Diki"
+    @Published var isShowNewMeasurementView: Bool = false
     
     let dummyRecentResults: [Result] = [
         Result(name: "Body Measurement", icon: "📐", date: .now),
