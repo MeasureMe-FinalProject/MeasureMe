@@ -33,6 +33,10 @@ struct HomeView: View {
             .navigationTitle("Home")
             .toolbar(.hidden)
             .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(isPresented: $viewModel.isShowNewMeasurementView) {
+                NewMeasurementView()
+                    .navigationTitle("Personal Settings")
+            }
         }
     }
     
@@ -86,7 +90,7 @@ struct HomeView: View {
                         .padding(.bottom, 5)
                     
                     Button {
-                       
+                        viewModel.isShowNewMeasurementView.toggle()
                     } label: {
                         Text("Start Measurement")
                             .foregroundStyle(.background)
