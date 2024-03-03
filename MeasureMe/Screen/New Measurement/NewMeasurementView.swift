@@ -51,7 +51,6 @@ struct NewMeasurementView: View {
                                     .font(.system(.headline, weight: .semibold))
                                     .foregroundStyle(.foreground)
                             }
-                            .offset(y: -12.5)
                             .padding()
                             
                             VStack {
@@ -59,12 +58,15 @@ struct NewMeasurementView: View {
                                     .font(.system(.headline))
                                     .foregroundStyle(.primary)
                                     .padding(.bottom, 5)
+                                    .padding(.top)
                                 
                                 Text("Your face will be blurred after the photos are captured 🔒")
                                     .font(.system(.subheadline))
                                     .foregroundStyle(.secondary)
                                     .multilineTextAlignment(.center)
                                     .padding(.bottom)
+                                
+                                Spacer()
                                 
                                 Button {
                                     viewModel.isShowPhotoCaptureView.toggle()
@@ -82,7 +84,7 @@ struct NewMeasurementView: View {
                                 }
                                 
                             }
-                            .padding(.all, 20)
+                            .padding(.all)
                         }
                     }
                 

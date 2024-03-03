@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UndetectedBodyView: View {
     
-    @Binding var isCapturingPhotoComplete: Bool
+    @Binding var isCapturingComplete: Bool
     @Binding var capturedImages: [UIImage]
     
     var body: some View {
@@ -48,7 +48,7 @@ struct UndetectedBodyView: View {
     
     @ViewBuilder private func createNextButton() -> some View {
         Button {
-            isCapturingPhotoComplete.toggle()
+            isCapturingComplete.toggle()
             capturedImages = []
         } label: {
             Text("Retake Photo")
@@ -63,5 +63,5 @@ struct UndetectedBodyView: View {
 }
 
 #Preview {
-    UndetectedBodyView(isCapturingPhotoComplete: .constant(false), capturedImages: .constant([.dummyFront, .dummySide]))
+    UndetectedBodyView(isCapturingComplete: .constant(false), capturedImages: .constant([.frontPreview1, .sidePreview1]))
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class PhotoProcessViewModel: ObservableObject {
-    @Published var bodyLandmarkJSONResponse: BodyLandmarkResponse?
+    @Published var bodyLandmarkResponse: BodyLandmarkResponse?
     @Published var isShowAdjustBodyLandmarkView: Bool = false
     @Published var isShowUndetectedBodyView: Bool = false
     
@@ -20,7 +20,7 @@ final class PhotoProcessViewModel: ObservableObject {
             switch httpURLResponse.statusCode {
             case 200:
                 DispatchQueue.main.async {[self] in
-                    bodyLandmarkJSONResponse = response
+                    bodyLandmarkResponse = response
                     withAnimation {
                         isShowAdjustBodyLandmarkView = true
                     }
