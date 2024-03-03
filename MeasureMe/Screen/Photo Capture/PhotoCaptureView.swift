@@ -93,6 +93,9 @@ struct PhotoCaptureView: View {
             print(viewModel.capturedImages.count)
         }
         .animation(.interpolatingSpring, value: viewModel.isOnPosition)
+        .fullScreenCover(isPresented: $viewModel.isCapturingPhotoComplete) {
+            PhotoProcessView(isCapturingComplete: $viewModel.isCapturingPhotoComplete, capturedImages: $viewModel.capturedImages)
+        }
     }
 }
 

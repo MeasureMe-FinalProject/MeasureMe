@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0713A42B938AD4005D6535 /* HelpAdjustBodyLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0713A32B938AD4005D6535 /* HelpAdjustBodyLandmark.swift */; };
+		3A0713A82B938BB2005D6535 /* AdjustBodyLandmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0713A72B938BB2005D6535 /* AdjustBodyLandmarkView.swift */; };
+		3A0713AA2B938C16005D6535 /* AdjustBodyLandmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0713A92B938C16005D6535 /* AdjustBodyLandmarkViewModel.swift */; };
+		3A0713AC2B938D1C005D6535 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0713AB2B938D1C005D6535 /* View+Ext.swift */; };
+		3A0713AF2B9399C6005D6535 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0713AE2B9399C6005D6535 /* Extensions.swift */; };
+		3A0713B42B939B73005D6535 /* DummyBodyLandmarkResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 3A0713B32B939B73005D6535 /* DummyBodyLandmarkResponse.json */; };
 		3A54D9022B935DC800B22696 /* MeasureMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D9012B935DC800B22696 /* MeasureMeApp.swift */; };
 		3A54D9062B935DCA00B22696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A54D9052B935DCA00B22696 /* Assets.xcassets */; };
 		3A54D9092B935DCA00B22696 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A54D9082B935DCA00B22696 /* Preview Assets.xcassets */; };
@@ -36,6 +42,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A0713A32B938AD4005D6535 /* HelpAdjustBodyLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAdjustBodyLandmark.swift; sourceTree = "<group>"; };
+		3A0713A72B938BB2005D6535 /* AdjustBodyLandmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustBodyLandmarkView.swift; sourceTree = "<group>"; };
+		3A0713A92B938C16005D6535 /* AdjustBodyLandmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustBodyLandmarkViewModel.swift; sourceTree = "<group>"; };
+		3A0713AB2B938D1C005D6535 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		3A0713AE2B9399C6005D6535 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3A0713B32B939B73005D6535 /* DummyBodyLandmarkResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DummyBodyLandmarkResponse.json; sourceTree = "<group>"; };
+		3A0EFE582B94137A009DC4BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3A54D8FE2B935DC800B22696 /* MeasureMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeasureMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A54D9012B935DC800B22696 /* MeasureMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureMeApp.swift; sourceTree = "<group>"; };
 		3A54D9052B935DCA00B22696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +89,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A07139E2B938A11005D6535 /* Adjust Body Landmark */ = {
+			isa = PBXGroup;
+			children = (
+				3A0713A92B938C16005D6535 /* AdjustBodyLandmarkViewModel.swift */,
+				3A0713A72B938BB2005D6535 /* AdjustBodyLandmarkView.swift */,
+			);
+			path = "Adjust Body Landmark";
+			sourceTree = "<group>";
+		};
+		3A0713AD2B9399B3005D6535 /* Adjust Body Landmark */ = {
+			isa = PBXGroup;
+			children = (
+				3A0713AE2B9399C6005D6535 /* Extensions.swift */,
+				3A0713B32B939B73005D6535 /* DummyBodyLandmarkResponse.json */,
+			);
+			path = "Adjust Body Landmark";
+			sourceTree = "<group>";
+		};
 		3A54D8F52B935DC800B22696 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +126,7 @@
 		3A54D9002B935DC800B22696 /* MeasureMe */ = {
 			isa = PBXGroup;
 			children = (
+				3A0EFE582B94137A009DC4BB /* Info.plist */,
 				3A54D9012B935DC800B22696 /* MeasureMeApp.swift */,
 				3AC21F942B936885008E87FF /* Helper */,
 				3A54D9182B935EF500B22696 /* Model */,
@@ -110,6 +142,7 @@
 		3A54D9072B935DCA00B22696 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				3A0713AD2B9399B3005D6535 /* Adjust Body Landmark */,
 				3A54D9082B935DCA00B22696 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -125,6 +158,7 @@
 				3AC21F8F2B93684A008E87FF /* Photo Capture */,
 				3AC21F9E2B937BC1008E87FF /* Photo Process */,
 				3AC21FAE2B93817E008E87FF /* Undetected Body */,
+				3A07139E2B938A11005D6535 /* Adjust Body Landmark */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -144,6 +178,7 @@
 				3A54D9112B935E1400B22696 /* OnBoarding.swift */,
 				3A54D92A2B93611C00B22696 /* Result.swift */,
 				3AC21FAB2B937C8B008E87FF /* BodyLandmark.swift */,
+				3A0713A32B938AD4005D6535 /* HelpAdjustBodyLandmark.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -241,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				3AC21FA92B937C73008E87FF /* Data+Ext.swift */,
+				3A0713AB2B938D1C005D6535 /* View+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -311,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A0713B42B939B73005D6535 /* DummyBodyLandmarkResponse.json in Resources */,
 				3A54D9092B935DCA00B22696 /* Preview Assets.xcassets in Resources */,
 				3A54D9062B935DCA00B22696 /* Assets.xcassets in Resources */,
 			);
@@ -323,6 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A0713AC2B938D1C005D6535 /* View+Ext.swift in Sources */,
 				3AC21F9B2B9368A7008E87FF /* Camera.swift in Sources */,
 				3AC21F912B936870008E87FF /* PhotoCaptureView.swift in Sources */,
 				3A54D91B2B935F0200B22696 /* OnBoardingView.swift in Sources */,
@@ -333,6 +371,8 @@
 				3A54D9272B9360F400B22696 /* MyMeasureView.swift in Sources */,
 				3AC21F8C2B93660E008E87FF /* NewMeasurementView.swift in Sources */,
 				3AC21FA22B937BE3008E87FF /* PhotoProcessViewModel.swift in Sources */,
+				3A0713A82B938BB2005D6535 /* AdjustBodyLandmarkView.swift in Sources */,
+				3A0713A42B938AD4005D6535 /* HelpAdjustBodyLandmark.swift in Sources */,
 				3AC21F8E2B936617008E87FF /* NewMeasurementViewModel.swift in Sources */,
 				3AC21FAC2B937C8B008E87FF /* BodyLandmark.swift in Sources */,
 				3AC21FAA2B937C73008E87FF /* Data+Ext.swift in Sources */,
@@ -342,8 +382,10 @@
 				3AC21F932B936875008E87FF /* PhotoCaptureViewModel.swift in Sources */,
 				3AC21FB22B9381BB008E87FF /* UndetectedBodyView.swift in Sources */,
 				3A54D9142B935E1400B22696 /* OnBoarding.swift in Sources */,
+				3A0713AA2B938C16005D6535 /* AdjustBodyLandmarkViewModel.swift in Sources */,
 				3A54D92B2B93611C00B22696 /* Result.swift in Sources */,
 				3A54D9212B9360AA00B22696 /* HomeView.swift in Sources */,
+				3A0713AF2B9399C6005D6535 /* Extensions.swift in Sources */,
 				3A54D91E2B93606D00B22696 /* MainView.swift in Sources */,
 				3A54D9022B935DC800B22696 /* MeasureMeApp.swift in Sources */,
 				3AC21FA72B937C35008E87FF /* MultipartRequest.swift in Sources */,
@@ -483,6 +525,7 @@
 				DEVELOPMENT_TEAM = QJ4D5LRK3T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MeasureMe/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app need your camera permission to capturing the photos. To protect user privacy, your face will be blurred after the image being captured.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -513,6 +556,7 @@
 				DEVELOPMENT_TEAM = QJ4D5LRK3T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MeasureMe/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app need your camera permission to capturing the photos. To protect user privacy, your face will be blurred after the image being captured.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

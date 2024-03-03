@@ -1,0 +1,104 @@
+{
+  "front": {
+    "shoulder_left_coords": {
+      "x": 173,
+      "y": 207
+    },
+    "shoulder_right_coords": {
+      "x": 308,
+      "y": 208
+    },
+    "sleeve_top_coords": {
+      "x": 189,
+      "y": 209
+    },
+    "elbow_coords": {
+      "x": 165,
+      "y": 278
+    },
+    "sleeve_bot_coords": {
+      "x": 146,
+      "y": 320
+    },
+    "waist_start_coords": {
+      "x": 243,
+      "y": 286
+    },
+    "waist_end_coords": {
+      "x": 189,
+      "y": 285
+    },
+    "bust_left_coords": {
+      "x": 294,
+      "y": 233
+    },
+    "bust_right_coords": {
+      "x": 189,
+      "y": 229
+    },
+    "hip_left_coords": {
+      "x": 303,
+      "y": 382
+    },
+    "hip_right_coords": {
+      "x": 185,
+      "y": 383
+    },
+    "pants_top_coords": {
+      "x": 214,
+      "y": 363
+    },
+    "knee_coords": {
+      "x": 202,
+      "y": 485
+    },
+    "pants_bot_coords": {
+      "x": 197,
+      "y": 597
+    },
+    "top_coords": {
+      "x": 244,
+      "y": 98
+    },
+    "bot_coords": {
+      "x": 253,
+      "y": 617
+    }
+  },
+  "side": {
+    "bust_left_coords": {
+      "x": 236,
+      "y": 188
+    },
+    "bust_right_coords": {
+      "x": 295,
+      "y": 201
+    },
+    "waist_start_coords": {
+      "x": 254,
+      "y": 260
+    },
+    "waist_end_coords": {
+      "x": 216,
+      "y": 255
+    },
+    "hip_left_coords": {
+      "x": 299,
+      "y": 360
+    },
+    "hip_right_coords": {
+      "x": 211,
+      "y": 376
+    },
+    "top_coords": {
+      "x": 219,
+      "y": 88
+    },
+    "bot_coords": {
+      "x": 272,
+      "y": 594
+    }
+  },
+  "front_path": "1708159305.852007-frontNoCompresss.png",
+  "side_path": "1708159305.852011-sideNoCompress.png"
+}
