@@ -199,7 +199,7 @@ struct AdjustBodyLandmarkView: View {
 }
 
 #Preview {
-    AdjustBodyLandmarkView(viewModel: AdjustBodyLandmarkViewModel(bodyLandmarkResponse: BodyLandmarkResponse.dummyBodyLandmarkResponse, capturedImages: [.frontPreview2, .sidePreview1]))
+    AdjustBodyLandmarkView(viewModel: AdjustBodyLandmarkViewModel(bodyLandmarkResponse: BodyLandmarkResponse.dummyBodyLandmarkResponse, capturedImages: [.frontPreview1, .sidePreview1]))
 }
 
 struct DraggableLandmark: View {
