@@ -9,6 +9,7 @@ import SwiftUI
 
 final class OnBoardingViewModel: ObservableObject {
     @Published var currentPage: Int = 0
+    @Published var isShowLogin: Bool = false
     var isFirstPage: Bool { currentPage == 0 }
     
     let onBoardingPages: [OnBoardingPage] = [
@@ -30,7 +31,11 @@ final class OnBoardingViewModel: ObservableObject {
     
     func moveToNextPage() {
         withAnimation {
-            currentPage += 1
+            if currentPage >= 2 {
+                isShowLogin = true
+            } else {
+                currentPage += 1
+            }
         }
     }
     
