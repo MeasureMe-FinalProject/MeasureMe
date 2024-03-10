@@ -25,6 +25,10 @@
 		3A54D9272B9360F400B22696 /* MyMeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D9262B9360F400B22696 /* MyMeasureView.swift */; };
 		3A54D9292B9360FA00B22696 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D9282B9360FA00B22696 /* ProfileView.swift */; };
 		3A54D92B2B93611C00B22696 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D92A2B93611C00B22696 /* Result.swift */; };
+		3A827CBD2B9AF5AC0090836D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A827CBC2B9AF5AC0090836D /* LoginView.swift */; };
+		3A827CC02B9B06140090836D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A827CBF2B9B06140090836D /* RegisterView.swift */; };
+		3A827CC32B9B0AFE0090836D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A827CC22B9B0AFE0090836D /* LoginViewModel.swift */; };
+		3A827CC62B9B0D4C0090836D /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A827CC52B9B0D4C0090836D /* RegisterViewModel.swift */; };
 		3AC21F8C2B93660E008E87FF /* NewMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F8B2B93660E008E87FF /* NewMeasurementView.swift */; };
 		3AC21F8E2B936617008E87FF /* NewMeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F8D2B936617008E87FF /* NewMeasurementViewModel.swift */; };
 		3AC21F912B936870008E87FF /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F902B936870008E87FF /* PhotoCaptureView.swift */; };
@@ -62,6 +66,10 @@
 		3A54D9262B9360F400B22696 /* MyMeasureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMeasureView.swift; sourceTree = "<group>"; };
 		3A54D9282B9360FA00B22696 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3A54D92A2B93611C00B22696 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		3A827CBC2B9AF5AC0090836D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		3A827CBF2B9B06140090836D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		3A827CC22B9B0AFE0090836D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		3A827CC52B9B0D4C0090836D /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		3AC21F8B2B93660E008E87FF /* NewMeasurementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMeasurementView.swift; sourceTree = "<group>"; };
 		3AC21F8D2B936617008E87FF /* NewMeasurementViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMeasurementViewModel.swift; sourceTree = "<group>"; };
 		3AC21F902B936870008E87FF /* PhotoCaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
@@ -152,6 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				3A54D91D2B93606D00B22696 /* MainView.swift */,
+				3A827CC42B9B0D330090836D /* Register */,
+				3A827CBE2B9AF5BC0090836D /* Login */,
 				3A54D9172B935EE900B22696 /* OnBoarding */,
 				3A54D91F2B93608B00B22696 /* Home */,
 				3AC21F8A2B9365D3008E87FF /* New Measurement */,
@@ -206,6 +216,24 @@
 				3A54D9282B9360FA00B22696 /* ProfileView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		3A827CBE2B9AF5BC0090836D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3A827CC22B9B0AFE0090836D /* LoginViewModel.swift */,
+				3A827CBC2B9AF5AC0090836D /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		3A827CC42B9B0D330090836D /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				3A827CC52B9B0D4C0090836D /* RegisterViewModel.swift */,
+				3A827CBF2B9B06140090836D /* RegisterView.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 		3AC21F8A2B9365D3008E87FF /* New Measurement */ = {
@@ -362,7 +390,9 @@
 			files = (
 				3A0713AC2B938D1C005D6535 /* View+Ext.swift in Sources */,
 				3AC21F9B2B9368A7008E87FF /* Camera.swift in Sources */,
+				3A827CC02B9B06140090836D /* RegisterView.swift in Sources */,
 				3AC21F912B936870008E87FF /* PhotoCaptureView.swift in Sources */,
+				3A827CC62B9B0D4C0090836D /* RegisterViewModel.swift in Sources */,
 				3A54D91B2B935F0200B22696 /* OnBoardingView.swift in Sources */,
 				3AC21F9C2B9368A7008E87FF /* CameraViewController.swift in Sources */,
 				3A54D9292B9360FA00B22696 /* ProfileView.swift in Sources */,
@@ -378,6 +408,8 @@
 				3AC21FAA2B937C73008E87FF /* Data+Ext.swift in Sources */,
 				3A54D91C2B935F0200B22696 /* OnBoardingViewModel.swift in Sources */,
 				3AC21FA62B937C35008E87FF /* NetworkManager.swift in Sources */,
+				3A827CBD2B9AF5AC0090836D /* LoginView.swift in Sources */,
+				3A827CC32B9B0AFE0090836D /* LoginViewModel.swift in Sources */,
 				3A54D9232B9360B000B22696 /* HomeViewModel.swift in Sources */,
 				3AC21F932B936875008E87FF /* PhotoCaptureViewModel.swift in Sources */,
 				3AC21FB22B9381BB008E87FF /* UndetectedBodyView.swift in Sources */,
