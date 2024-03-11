@@ -25,6 +25,14 @@
 		3A54D9272B9360F400B22696 /* MyMeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D9262B9360F400B22696 /* MyMeasureView.swift */; };
 		3A54D9292B9360FA00B22696 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D9282B9360FA00B22696 /* ProfileView.swift */; };
 		3A54D92B2B93611C00B22696 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D92A2B93611C00B22696 /* Result.swift */; };
+		3A6BD2F72B9D611400400BA4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2F62B9D611400400BA4 /* User.swift */; };
+		3A6BD2F92B9D612400400BA4 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2F82B9D612400400BA4 /* Register.swift */; };
+		3A6BD2FB2B9DDB1300400BA4 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2FA2B9DDB1300400BA4 /* Alert.swift */; };
+		3A6BD2FD2B9DF16000400BA4 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2FC2B9DF16000400BA4 /* String+Ext.swift */; };
+		3A827CBD2B9AF5AC0090836D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A827CBC2B9AF5AC0090836D /* LoginView.swift */; };
+		3A827CC02B9B06140090836D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A827CBF2B9B06140090836D /* RegisterView.swift */; };
+		3A827CC32B9B0AFE0090836D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A827CC22B9B0AFE0090836D /* LoginViewModel.swift */; };
+		3A827CC62B9B0D4C0090836D /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A827CC52B9B0D4C0090836D /* RegisterViewModel.swift */; };
 		3AC21F8C2B93660E008E87FF /* NewMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F8B2B93660E008E87FF /* NewMeasurementView.swift */; };
 		3AC21F8E2B936617008E87FF /* NewMeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F8D2B936617008E87FF /* NewMeasurementViewModel.swift */; };
 		3AC21F912B936870008E87FF /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21F902B936870008E87FF /* PhotoCaptureView.swift */; };
@@ -62,6 +70,14 @@
 		3A54D9262B9360F400B22696 /* MyMeasureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMeasureView.swift; sourceTree = "<group>"; };
 		3A54D9282B9360FA00B22696 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3A54D92A2B93611C00B22696 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		3A6BD2F62B9D611400400BA4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3A6BD2F82B9D612400400BA4 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
+		3A6BD2FA2B9DDB1300400BA4 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		3A6BD2FC2B9DF16000400BA4 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		3A827CBC2B9AF5AC0090836D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		3A827CBF2B9B06140090836D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		3A827CC22B9B0AFE0090836D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		3A827CC52B9B0D4C0090836D /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		3AC21F8B2B93660E008E87FF /* NewMeasurementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMeasurementView.swift; sourceTree = "<group>"; };
 		3AC21F8D2B936617008E87FF /* NewMeasurementViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMeasurementViewModel.swift; sourceTree = "<group>"; };
 		3AC21F902B936870008E87FF /* PhotoCaptureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
@@ -153,6 +169,8 @@
 			children = (
 				3A54D91D2B93606D00B22696 /* MainView.swift */,
 				3A54D9172B935EE900B22696 /* OnBoarding */,
+				3A827CC42B9B0D330090836D /* Register */,
+				3A827CBE2B9AF5BC0090836D /* Login */,
 				3A54D91F2B93608B00B22696 /* Home */,
 				3AC21F8A2B9365D3008E87FF /* New Measurement */,
 				3AC21F8F2B93684A008E87FF /* Photo Capture */,
@@ -166,8 +184,8 @@
 		3A54D9172B935EE900B22696 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
-				3A54D9192B935F0200B22696 /* OnBoardingView.swift */,
 				3A54D91A2B935F0200B22696 /* OnBoardingViewModel.swift */,
+				3A54D9192B935F0200B22696 /* OnBoardingView.swift */,
 			);
 			path = OnBoarding;
 			sourceTree = "<group>";
@@ -175,10 +193,13 @@
 		3A54D9182B935EF500B22696 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3A54D9112B935E1400B22696 /* OnBoarding.swift */,
 				3A54D92A2B93611C00B22696 /* Result.swift */,
+				3A54D9112B935E1400B22696 /* OnBoarding.swift */,
 				3AC21FAB2B937C8B008E87FF /* BodyLandmark.swift */,
 				3A0713A32B938AD4005D6535 /* HelpAdjustBodyLandmark.swift */,
+				3A6BD2F62B9D611400400BA4 /* User.swift */,
+				3A6BD2F82B9D612400400BA4 /* Register.swift */,
+				3A6BD2FA2B9DDB1300400BA4 /* Alert.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -208,6 +229,31 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		3A6BD3002B9E9F6600400BA4 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		3A827CBE2B9AF5BC0090836D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3A827CC22B9B0AFE0090836D /* LoginViewModel.swift */,
+				3A827CBC2B9AF5AC0090836D /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		3A827CC42B9B0D330090836D /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				3A827CC52B9B0D4C0090836D /* RegisterViewModel.swift */,
+				3A827CBF2B9B06140090836D /* RegisterView.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		3AC21F8A2B9365D3008E87FF /* New Measurement */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +275,7 @@
 		3AC21F942B936885008E87FF /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				3A6BD3002B9E9F6600400BA4 /* Alert */,
 				3AC21FA82B937C62008E87FF /* Extensions */,
 				3AC21FA32B937C27008E87FF /* Network Manager */,
 				3AC21F952B93688B008E87FF /* UIKit */,
@@ -277,6 +324,7 @@
 			children = (
 				3AC21FA92B937C73008E87FF /* Data+Ext.swift */,
 				3A0713AB2B938D1C005D6535 /* View+Ext.swift */,
+				3A6BD2FC2B9DF16000400BA4 /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -361,8 +409,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A0713AC2B938D1C005D6535 /* View+Ext.swift in Sources */,
+				3A6BD2F72B9D611400400BA4 /* User.swift in Sources */,
 				3AC21F9B2B9368A7008E87FF /* Camera.swift in Sources */,
+				3A827CC02B9B06140090836D /* RegisterView.swift in Sources */,
+				3A6BD2F92B9D612400400BA4 /* Register.swift in Sources */,
 				3AC21F912B936870008E87FF /* PhotoCaptureView.swift in Sources */,
+				3A827CC62B9B0D4C0090836D /* RegisterViewModel.swift in Sources */,
 				3A54D91B2B935F0200B22696 /* OnBoardingView.swift in Sources */,
 				3AC21F9C2B9368A7008E87FF /* CameraViewController.swift in Sources */,
 				3A54D9292B9360FA00B22696 /* ProfileView.swift in Sources */,
@@ -374,10 +426,14 @@
 				3A0713A82B938BB2005D6535 /* AdjustBodyLandmarkView.swift in Sources */,
 				3A0713A42B938AD4005D6535 /* HelpAdjustBodyLandmark.swift in Sources */,
 				3AC21F8E2B936617008E87FF /* NewMeasurementViewModel.swift in Sources */,
+				3A6BD2FB2B9DDB1300400BA4 /* Alert.swift in Sources */,
 				3AC21FAC2B937C8B008E87FF /* BodyLandmark.swift in Sources */,
 				3AC21FAA2B937C73008E87FF /* Data+Ext.swift in Sources */,
 				3A54D91C2B935F0200B22696 /* OnBoardingViewModel.swift in Sources */,
+				3A6BD2FD2B9DF16000400BA4 /* String+Ext.swift in Sources */,
 				3AC21FA62B937C35008E87FF /* NetworkManager.swift in Sources */,
+				3A827CBD2B9AF5AC0090836D /* LoginView.swift in Sources */,
+				3A827CC32B9B0AFE0090836D /* LoginViewModel.swift in Sources */,
 				3A54D9232B9360B000B22696 /* HomeViewModel.swift in Sources */,
 				3AC21F932B936875008E87FF /* PhotoCaptureViewModel.swift in Sources */,
 				3AC21FB22B9381BB008E87FF /* UndetectedBodyView.swift in Sources */,

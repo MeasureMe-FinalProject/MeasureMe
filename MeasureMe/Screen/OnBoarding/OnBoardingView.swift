@@ -29,6 +29,9 @@ struct OnBoardingView: View {
             }
         }
         .padding()
+        .fullScreenCover(isPresented: $viewModel.isShowLogin) {
+            LoginView()
+        }
     }
     
     @ViewBuilder private func createCustomIndexDisplay() -> some View {
