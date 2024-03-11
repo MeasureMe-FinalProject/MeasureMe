@@ -10,18 +10,21 @@ import SwiftUI
 struct NewMeasurementView: View {
     
     @StateObject var viewModel: NewMeasurementViewModel = NewMeasurementViewModel()
+    @Binding var isShow: Bool
     
     var body: some View {
-        VStack {
-            createGenderChoices()
+        ZStack(alignment: .top) {
+            createNavigationBar()
             
-            createBodyHeightSlider()
-            
-            createNextButton()
+            VStack {
+                createGenderChoices()
+                
+                createBodyHeightSlider()
+                
+                createNextButton()
+            }
         }
         .blur(radius: viewModel.isShowPrivacyMeassage ? 3 : 0)
-        .padding()
-        .padding(.horizontal)
         .overlay {
             if viewModel.isShowPrivacyMeassage {
                 showPrivacyMessagePopup()
@@ -109,45 +112,54 @@ struct NewMeasurementView: View {
                 .background(Color.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
+        .padding(.horizontal)
+        .padding(.horizontal)
     }
     
     @ViewBuilder private func createBodyHeightSlider() -> some View {
-        Text("Height")
-            .font(.system(.title2, weight: .semibold))
-            .frame(maxWidth: .infinity, alignment: .leading)
-        
-        RoundedRectangle(cornerRadius: 14)
-            .stroke(lineWidth: 1)
-            .fill(.primary.opacity(0.2))
-            .background {
-                HStack {
-                    VStack {
-                        Group {
-                            Text("\(Int(viewModel.height)) ")
-                                .font(.system(.title2, weight: .bold))
-                            +
-                            Text("cm")
-                                .font(.system(.title3, weight: .medium))
+        VStack {
+            Text("Height")
+                .font(.system(.title2, weight: .semibold))
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            RoundedRectangle(cornerRadius: 14)
+                .stroke(lineWidth: 1)
+                .fill(.primary.opacity(0.2))
+                .background {
+                    HStack {
+                        VStack {
+                            Group {
+                                Text("\(Int(viewModel.height)) ")
+                                    .font(.system(.title2, weight: .bold))
+                                +
+                                Text("cm")
+                                    .font(.system(.title3, weight: .medium))
+                            }
+                            .padding(.bottom, viewModel.paddingHeightImageVector)
+                            
+                            Image("height-vector")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
                         }
-                        .padding(.bottom, viewModel.paddingHeightImageVector)
                         
-                        Image("height-vector")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
+                        HeightSlider(height: $viewModel.height)
                     }
-                                        
-                    HeightSlider(height: $viewModel.height)
+                    .padding(.all)
                 }
-                .padding(.all)
-            }
-            .clipped()
-            .padding(.bottom)
+                .clipped()
+                .padding(.bottom)
+        }
+        .padding(.horizontal)
+        .padding(.horizontal)
     }
     
     @ViewBuilder private func createGenderChoices() -> some View {
         Text("Gender")
             .font(.system(.title2, weight: .semibold))
             .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal)
+            .padding(.horizontal)
+            .padding(.top, 50)
         
         HStack {
             ForEach(GenderType.allCases, id: \.self) { gender in
@@ -155,10 +167,49 @@ struct NewMeasurementView: View {
             }
         }
     }
+    
+    @ViewBuilder private func createDismissButton() -> some View {
+        Button {
+            withAnimation {
+                isShow.toggle()
+            }
+        } label: {
+            Image(systemName: "xmark")
+                .font(.system(.headline, weight: .semibold))
+                .foregroundStyle(.foreground)
+        }
+        .frame(maxWidth: .infinity, alignment: .trailing)
+        .padding(.trailing)
+        .padding(.bottom)
+    }
+    
+    @ViewBuilder private func createNavigationBar() -> some View {
+        Rectangle()
+            .foregroundStyle(.background)
+            .shadow(color: .black.opacity(0.075), radius: 3, y: 4)
+            .frame(height: 35)
+            .overlay(alignment: .top) {
+                Text("Personal Settings")
+                    .font(.system(.body, weight: .semibold))
+                    .frame(maxWidth: .infinity)
+                    .overlay(alignment: .trailing) {
+                        Button {
+                            withAnimation {
+                                isShow.toggle()
+                            }
+                        } label: {
+                            Image(systemName: "xmark")
+                                .font(.system(.headline, weight: .semibold))
+                                .foregroundStyle(.foreground)
+                        }
+                        .padding(.trailing)
+                    }
+            }
+    }
 }
 
 #Preview {
-    NewMeasurementView()
+    NewMeasurementView(isShow: .constant(true))
 }
 
 struct GenderCard: View {

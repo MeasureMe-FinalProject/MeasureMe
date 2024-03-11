@@ -12,31 +12,25 @@ struct HomeView: View {
     @StateObject var viewModel: HomeViewModel = HomeViewModel()
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                Image(.headerLogo)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 45)
+        VStack {
+            Image(.headerLogo)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 45)
+            
+            ScrollView {
+                createNavBarButtons()
                 
-                ScrollView {
-                    createNavBarButtons()
-                    
-                    createStartMeasurementButton()
-                    
-                    createSizeRecommendationOptions()
-                    
-                    createRecentMeasurementResults()
-                }
-                .scrollIndicators(.hidden)
+                createStartMeasurementButton()
+                
+                createSizeRecommendationOptions()
+                
+                createRecentMeasurementResults()
             }
-            .navigationTitle("Home")
-            .toolbar(.hidden)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationDestination(isPresented: $viewModel.isShowNewMeasurementView) {
-                NewMeasurementView()
-                    .navigationTitle("Personal Settings")
-            }
+            .scrollIndicators(.hidden)
+        }
+        .fullScreenCover(isPresented: $viewModel.isShowNewMeasurementView)  {
+            NewMeasurementView(isShow: $viewModel.isShowNewMeasurementView)
         }
     }
     
