@@ -34,8 +34,17 @@ struct LoginView: View {
             createSignUpButton()
         }
         .padding()
-        .fullScreenCover(isPresented: $viewModel.isSignUp) {
-            RegisterView()
+        .fullScreenCover(isPresented: $viewModel.isShowRegisterView) {
+            RegisterView(isShow: $viewModel.isShowRegisterView)
+        }
+        .alert("Invalid Form", isPresented: $viewModel.isShowAlertError, presenting: viewModel.alertItem) { alertItem in
+            Button("OK") {
+                viewModel.alertItem = nil
+                viewModel.isShowAlertError.toggle()
+            }
+        } message: { alertItem in Text("\(alertItem.message)") }
+        .fullScreenCover(isPresented: $viewModel.isLoginSuccess) {
+            MainView()
         }
     }
     
@@ -46,7 +55,9 @@ struct LoginView: View {
                 .foregroundStyle(.secondary)
 
             Button {
-                viewModel.isSignUp.toggle()
+                viewModel.isShowRegisterView.toggle()
+                viewModel.email = ""
+                viewModel.password = ""
             } label: {
                 Text(" Sign up")
                     .font(.system(.footnote))
@@ -57,7 +68,7 @@ struct LoginView: View {
     
     @ViewBuilder private func createSignInButton() -> some View {
         Button {
-            
+            viewModel.signInButtonTapped()
         } label: {
             Text("Sign in")
                 .font(.system(.body, weight: .semibold))
@@ -84,48 +95,31 @@ struct LoginView: View {
     }
     
     @ViewBuilder private func createPasswordTextField() -> some View {
-        VStack(alignment: .leading) {
-            Text("Password")
-                .font(.system(.caption, weight: .semibold))
-                .foregroundStyle(isPasswordFieldFocused ? .blue : .secondary)
-            
-            SecureField("Password", text: $viewModel.password)
-                .font(.system(.subheadline, weight: .regular))
-                .textFieldStyle(.plain)
-                .focused($isPasswordFieldFocused)
-                .padding()
-                .background {
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(lineWidth: 1)
-                        .fill(isPasswordFieldFocused ? .blue : .secondary)
-                        .shadow(color: isPasswordFieldFocused ? .blue.opacity(0.4) : .white, radius: 5)
-                }
+        CustomTextField(title: "Password", icon: "lock",
+                        placeholder: "yourpassword",
+                        value: $viewModel.password,
+                        isSecureTextField: $viewModel.isHidePassword,
+                        isFieldFocused: $isPasswordFieldFocused)
+        .textInputAutocapitalization(.never)
+        .overlay(alignment: .trailing) {
+            Button {
+                viewModel.isHidePassword.toggle()
+            } label: {
+                Image(systemName: viewModel.isHidePassword ? "eye" : "eye.slash")
+                    .imageScale(.large)
+            }
+            .padding(.top, 5)
+            .padding(.trailing, 30)
         }
-        .padding([.horizontal, .bottom])
     }
     
     @ViewBuilder private func createEmailTextField() -> some View {
-        VStack(alignment: .leading) {
-            Text("Email")
-                .font(.system(.caption, weight: .semibold))
-                .foregroundStyle(isEmailFieldFocused ? .blue : .secondary)
-            
-            TextField("example@youremail", text: $viewModel.email)
-                .font(.system(.subheadline, weight: .regular))
-                .textFieldStyle(.plain)
-                .focused($isEmailFieldFocused)
-                .padding()
-                .background {
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(lineWidth: 1)
-                        .fill(isEmailFieldFocused ? .blue : .secondary)
-                        .shadow(color: isEmailFieldFocused ? .blue.opacity(0.4) : .white, radius: 5)
-
-                }
-                .textInputAutocapitalization(.never)
-                .keyboardType(.emailAddress)
-        }
-        .padding()
+        CustomTextField(title: "Email", icon: "envelope",
+                        placeholder: "example@youremail.com",
+                        value: $viewModel.email,
+                        isFieldFocused: $isEmailFieldFocused)
+        .keyboardType(.emailAddress)
+        .textInputAutocapitalization(.never)
     }
     
     @ViewBuilder private func createTitle() -> some View {

@@ -10,10 +10,11 @@ import SwiftUI
 struct RegisterView: View {
     
     @StateObject var viewModel: RegisterViewModel = RegisterViewModel()
+    @Binding var isShow: Bool
     @FocusState var isNameFieldFocused: Bool
     @FocusState var isEmailFieldFocused: Bool
+    @FocusState var isPhoneNumberFieldFocused: Bool
     @FocusState var isPasswordFieldFocused: Bool
-    
 
     var body: some View {
         VStack {
@@ -27,6 +28,8 @@ struct RegisterView: View {
             
             createEmailTextField()
             
+            createPhoneNumberTextField()
+            
             createPasswordTextField()
             
             Spacer()
@@ -36,8 +39,22 @@ struct RegisterView: View {
             createSignInButton()
         }
         .padding()
-        .fullScreenCover(isPresented: $viewModel.isSignIn) {
-            LoginView()
+        .alert("Invalid Form", isPresented: $viewModel.isShowAlertError, presenting: viewModel.alertItem) { alertItem in
+            Button("OK") {
+                viewModel.alertItem = nil
+                viewModel.isShowAlertError.toggle()
+            }
+        } message: { alertItem in
+            Text("\(alertItem.message)")
+        }
+        .alert("Success", isPresented: $viewModel.isRegisterSuccess, presenting: viewModel.alertItem) { alertItem in
+            Button("OK") {
+                isShow.toggle()
+                viewModel.alertItem = nil
+                viewModel.isRegisterSuccess.toggle()
+            }
+        } message: { alertItem in
+            Text("\(alertItem.message)")
         }
     }
     
@@ -48,7 +65,7 @@ struct RegisterView: View {
                 .foregroundStyle(.secondary)
             
             Button {
-                viewModel.isSignIn.toggle()
+                isShow.toggle()
             } label: {
                 Text(" Sign in")
                     .font(.system(.footnote))
@@ -59,7 +76,7 @@ struct RegisterView: View {
     
     @ViewBuilder private func createSignUpButton() -> some View {
         Button {
-            
+            viewModel.signUpButtonTapped()
         } label: {
             Text("Sign up")
                 .font(.system(.body, weight: .semibold))
@@ -75,72 +92,48 @@ struct RegisterView: View {
     }
     
     @ViewBuilder private func createPasswordTextField() -> some View {
-        VStack(alignment: .leading) {
-            Text("Password")
-                .font(.system(.caption, weight: .semibold))
-                .foregroundStyle(isPasswordFieldFocused ? .blue : .secondary)
-            
-            SecureField("Password", text: $viewModel.password)
-                .font(.system(.subheadline, weight: .regular))
-                .textFieldStyle(.plain)
-                .focused($isPasswordFieldFocused)
-                .padding()
-                .background {
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(lineWidth: 1)
-                        .fill(isPasswordFieldFocused ? .blue : .secondary)
-                        .shadow(color: isPasswordFieldFocused ? .blue.opacity(0.4) : .white, radius: 5)
-                }
+        CustomTextField(title: "Password", icon: "lock",
+                        placeholder: "yourpassword",
+                        value: $viewModel.password,
+                        isSecureTextField: $viewModel.isHidePassword,
+                        isFieldFocused: $isPasswordFieldFocused)
+        .textInputAutocapitalization(.never)
+        .overlay(alignment: .trailing) {
+            Button {
+                viewModel.isHidePassword.toggle()
+            } label: {
+                Image(systemName: viewModel.isHidePassword ? "eye" : "eye.slash")
+                    .imageScale(.large)
+            }
+            .padding(.top, 5)
+            .padding(.trailing, 30)
         }
-        .padding([.horizontal, .bottom])
+    }
+    
+    @ViewBuilder private func createPhoneNumberTextField() -> some View {
+        CustomTextField(title: "Phone Number", icon: "phone",
+                        placeholder: "08123456789",
+                        value: $viewModel.phoneNumber,
+                        isFieldFocused: $isPhoneNumberFieldFocused)
+        .keyboardType(.phonePad)
     }
     
     @ViewBuilder private func createEmailTextField() -> some View {
-        VStack(alignment: .leading) {
-            Text("Email")
-                .font(.system(.caption, weight: .semibold))
-                .foregroundStyle(isEmailFieldFocused ? .blue : .secondary)
-            
-            TextField("example@youremail", text: $viewModel.email)
-                .font(.system(.subheadline, weight: .regular))
-                .textFieldStyle(.plain)
-                .focused($isEmailFieldFocused)
-                .padding()
-                .background {
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(lineWidth: 1)
-                        .fill(isEmailFieldFocused ? .blue : .secondary)
-                        .shadow(color: isEmailFieldFocused ? .blue.opacity(0.4) : .white, radius: 5)
-
-                }
-                .textInputAutocapitalization(.never)
-                .keyboardType(.emailAddress)
-        }
-        .padding([.horizontal, .bottom])
+        CustomTextField(title: "Email", icon: "envelope",
+                        placeholder: "example@youremail.com",
+                        value: $viewModel.email,
+                        isFieldFocused: $isEmailFieldFocused)
+        .keyboardType(.emailAddress)
+        .textInputAutocapitalization(.never)
     }
     
     @ViewBuilder private func createNameTextField() -> some View {
-        VStack(alignment: .leading) {
-            Text("Name")
-                .font(.system(.caption, weight: .semibold))
-                .foregroundStyle(isEmailFieldFocused ? .blue : .secondary)
-            
-            TextField("Full Name", text: $viewModel.fullName)
-                .font(.system(.subheadline, weight: .regular))
-                .textFieldStyle(.plain)
-                .focused($isNameFieldFocused)
-                .padding()
-                .background {
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(lineWidth: 1)
-                        .fill(isNameFieldFocused ? .blue : .secondary)
-                        .shadow(color: isNameFieldFocused ? .blue.opacity(0.4) : .white, radius: 5)
-
-                }
-                .textInputAutocapitalization(.words)
-                .autocorrectionDisabled()
-        }
-        .padding()
+        CustomTextField(title: "Name", icon: "person",
+                        placeholder: "Full Name",
+                        value: $viewModel.name,
+                        isFieldFocused: $isNameFieldFocused)
+        .textInputAutocapitalization(.words)
+        .padding(.top)
     }
     
     @ViewBuilder private func createTitle() -> some View {
@@ -166,5 +159,68 @@ struct RegisterView: View {
 }
 
 #Preview {
-    RegisterView()
+    RegisterView(isShow: .constant(true))
+}
+
+struct CustomTextField: View {
+    
+    let title: String
+    let icon: String
+    let placeholder: String
+    @Binding var value: String
+    @Binding var isSecureTextField: Bool
+    var isFieldFocused: FocusState<Bool>.Binding
+    
+    init(title: String, icon: String, placeholder: String, value: Binding<String>, isSecureTextField: Binding<Bool> = .constant(false), isFieldFocused: FocusState<Bool>.Binding) {
+        self.title = title
+        self.icon = icon
+        self.placeholder = placeholder
+        self._value = value
+        self._isSecureTextField = isSecureTextField
+        self.isFieldFocused = isFieldFocused
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack(spacing: 5) {
+                Image(systemName: icon)
+                
+                Text(title)
+            }
+            .font(.system(.caption, weight: .semibold))
+            .foregroundStyle(isFieldFocused.wrappedValue ? .blue : .secondary)
+            
+            if isSecureTextField {
+                SecureField(placeholder, text: $value)
+                    .font(.system(.subheadline, weight: .regular))
+                    .textFieldStyle(.plain)
+                    .focused(isFieldFocused)
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineWidth: 1)
+                            .fill(isFieldFocused.wrappedValue ? .blue : .secondary)
+                            .shadow(color: isFieldFocused.wrappedValue ? .blue.opacity(0.4) : .white, radius: 5)
+                    }
+                    .autocorrectionDisabled()
+            } else {
+                TextField(placeholder, text: $value)
+                    .font(.system(.subheadline, weight: .regular))
+                    .textFieldStyle(.plain)
+                    .focused(isFieldFocused)
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineWidth: 1)
+                            .fill(isFieldFocused.wrappedValue ? .blue : .secondary)
+                            .shadow(color: isFieldFocused.wrappedValue ? .blue.opacity(0.4) : .white, radius: 5)
+                        
+                    }
+                    .autocorrectionDisabled()
+            }
+            
+            
+        }
+        .padding([.horizontal, .bottom])
+    }
 }
