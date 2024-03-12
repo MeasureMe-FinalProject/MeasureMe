@@ -13,7 +13,7 @@ struct NewMeasurementView: View {
     @Binding var isShow: Bool
     
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack {
             createNavigationBar()
             
             VStack {
@@ -159,7 +159,7 @@ struct NewMeasurementView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal)
             .padding(.horizontal)
-            .padding(.top, 50)
+            .padding(.top, 65)
         
         HStack {
             ForEach(GenderType.allCases, id: \.self) { gender in
@@ -187,11 +187,12 @@ struct NewMeasurementView: View {
         Rectangle()
             .foregroundStyle(.background)
             .shadow(color: .black.opacity(0.075), radius: 3, y: 4)
-            .frame(height: 35)
-            .overlay(alignment: .top) {
-                Text("Personal Settings")
+            .frame(height: 100)
+            .overlay(alignment: .bottom) {
+                Text("History")
                     .font(.system(.body, weight: .semibold))
                     .frame(maxWidth: .infinity)
+                    .padding(.bottom)
                     .overlay(alignment: .trailing) {
                         Button {
                             withAnimation {
@@ -202,9 +203,12 @@ struct NewMeasurementView: View {
                                 .font(.system(.headline, weight: .semibold))
                                 .foregroundStyle(.foreground)
                         }
-                        .padding(.trailing)
+                        .padding(.trailing, 30)
+                        .padding(.bottom)
                     }
             }
+            .ignoresSafeArea()
+            .frame(maxHeight: .infinity, alignment: .top)
     }
 }
 

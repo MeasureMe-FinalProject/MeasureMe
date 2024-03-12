@@ -13,7 +13,7 @@ struct MainView: View {
     
     enum Tab {
         case Home
-        case MyMeasure
+        case History
         case Profile
     }
     
@@ -23,9 +23,9 @@ struct MainView: View {
                 .tag(Tab.Home)
                 .tabItem { Label("Home", systemImage: "house.fill") }
 
-            MyMeasureView()
-                .tag(Tab.MyMeasure)
-                .tabItem { Label("My Measure", image: .pencilRulerIcon) }
+            HistoryView()
+                .tag(Tab.History)
+                .tabItem { Label("History", image: .pencilRulerIcon) }
             
             ProfileView()
                 .tag(Tab.Profile)
