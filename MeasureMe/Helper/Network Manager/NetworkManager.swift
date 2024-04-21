@@ -12,7 +12,7 @@ class NetworkManager {
     
     private init() {}
     
-    private let aiBaseURL = "http://192.168.1.24:8000"
+    private let aiBaseURL = "http://localhost:8000"
     private let authenticationBaseURL = "https://measureme.mutijayasejahtera.com"
     private let cacheImage = NSCache<NSString, UIImage>()
     
@@ -21,6 +21,7 @@ class NetworkManager {
         case signUp
         case processImage
         case getImage
+        case measureResult
         
         var url: String {
             switch self {
@@ -32,20 +33,8 @@ class NetworkManager {
                 "/process_images"
             case .getImage:
                 "/get_images/?file_path="
-            }
-        }
-    }
-    
-    enum AuthenticationEndPoint {
-        case signIn
-        case signUp
-        
-        var url: String {
-            switch self {
-            case .signIn:
-                "/register_user.php"
-            case .signUp:
-                "/login_user.php"
+            case .measureResult:
+                "/measure_result"
             }
         }
     }
@@ -144,10 +133,62 @@ class NetworkManager {
         }
         task.resume()
     }
+    
+    func uploadAdjustedBodylandmark(front: Front, side: Side, height: Int, gender: String, clothingType: String, completed: @escaping (MeasurementResultResponse?) -> Void) {
+        
+        
+        
+        let adjustedBodyLandmark: AdjustedBodyLandmarkResponse = AdjustedBodyLandmarkResponse(actualHeight: height, 
+                                                                                              gender: gender,
+                                                                                              clothingType: clothingType,
+                                                                                              adjustedKeypoints: AdjustedBodyLandmarkResponse.AdjustedKeypoints(front: front, side: side))
+        
+        let data = try? JSONEncoder().encode(adjustedBodyLandmark)
+
+        let measureResultString = aiBaseURL + EndPoint.measureResult.url
+        print(String(data: data!, encoding: .utf8)!)
+        guard let measureResultURL = URL(string: measureResultString) else { return }
+        var request = URLRequest(url: measureResultURL)
+        request.httpMethod = "POST"
+        request.setValue( "application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = data
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error  {
+                print(error.localizedDescription)
+            }
+            
+            guard let data else {
+                print("No response data, server is unavailable right now. Please try again later")
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                print("Unknown response")
+                return
+            }
+            
+            print("Status Code of uploadedAdjustedBodyLandmark: \(httpResponse.statusCode)")
+
+            do {
+                let decoder = JSONDecoder()
+                let measurementResultResponse = try decoder.decode(MeasurementResultResponse.self, from: data)
+                completed(measurementResultResponse)
+                print(measurementResultResponse)
+                return
+            } catch {
+                print("Error decoding: \(error.localizedDescription)")
+                completed(nil)
+                return
+            }
+            
+        }
+        task.resume()
+    }
 
     
     func upload(_ frontImage: UIImage, and sideImage: UIImage, completed: @escaping (BodyLandmarkResponse?, HTTPURLResponse) -> Void) {
-        guard let processImageURLRequest = createUploadRequest(for: frontImage, sideImage: sideImage) else {
+        guard let processImageURLRequest = createUploadImagesURLRequest(for: frontImage, sideImage: sideImage) else {
             return
         }
         
@@ -212,7 +253,7 @@ class NetworkManager {
         task.resume()
     }
     
-    private func createUploadRequest(for frontImage: UIImage, sideImage: UIImage) -> URLRequest? {
+    private func createUploadImagesURLRequest(for frontImage: UIImage, sideImage: UIImage) -> URLRequest? {
         var multipart = MultipartRequest()
         
         multipart.addFileData(key: "front_image",
@@ -226,9 +267,7 @@ class NetworkManager {
                               fileData: sideImage.jpegData(compressionQuality: 0.8)!)
         
         let processImageString = aiBaseURL + EndPoint.processImage.url
-        guard let processImageURL = URL(string: processImageString) else {
-            return nil
-        }
+        guard let processImageURL = URL(string: processImageString) else { return nil }
         var processImageURLRequest = URLRequest(url: processImageURL)
         processImageURLRequest.httpMethod = "POST"
         processImageURLRequest.setValue(multipart.httpContentTypeHeaderValue, forHTTPHeaderField: "Content-Type")

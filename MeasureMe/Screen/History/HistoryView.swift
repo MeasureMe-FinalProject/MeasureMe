@@ -35,7 +35,7 @@ struct HistoryView: View {
                                 createRemoveButton(result: result)
                             }
                             
-                            MeasurementResult(result: result)
+                            MeasurementResultList(result: result)
                         }
                         
                     }

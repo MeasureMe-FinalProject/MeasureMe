@@ -136,7 +136,7 @@ struct HomeView: View {
                 .font(.system(.title3, weight: .semibold))
             
             ForEach(viewModel.dummyRecentResults) { result in
-                MeasurementResult(result: result)
+                MeasurementResultList(result: result)
             }
         }
         .frame(maxWidth: .infinity)
@@ -167,7 +167,7 @@ struct HomeView: View {
     HomeView()
 }
 
-struct MeasurementResult: View {
+struct MeasurementResultList: View {
     let result: Result
     
     private let dateFormatter: DateFormatter = {

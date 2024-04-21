@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum ClothingType: CaseIterable {
+enum ClothingType: CaseIterable, Codable {
     case tShirt
     case LongPants
     case jacket

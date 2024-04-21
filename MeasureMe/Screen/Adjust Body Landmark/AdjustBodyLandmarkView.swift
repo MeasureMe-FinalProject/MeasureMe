@@ -14,31 +14,61 @@ struct AdjustBodyLandmarkView: View {
     
     var body: some View {
         VStack {
-            Image(.headerLogo)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 45)
-                .padding([.horizontal, .bottom])
+            HStack {
+                ForEach(AdjustBodyLandmarkViewModel.ImageType.allCases, id: \.self) { imageType in
+                    Button {
+                        withAnimation {
+                            viewModel.changeImageState(imageType: imageType)
+                        }
+                    } label: {
+                        VStack {
+                            Image(systemName: imageType.icon)
+                                .resizable()
+                                .renderingMode(.template)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 22, height: 22)
+                                .padding(.horizontal)
+                            
+                            Text(imageType.name)
+                                .font(.footnote)
+                                .fontWeight(.medium)
+                        }
+                        .animation(.easeIn, value: viewModel.currentImage)
+                        .foregroundStyle(imageType.name == viewModel.currentImage.name ? .blue : .secondary)
+                    }
+                    
+                    if imageType == .frontImage {
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(height: 2)
+                    }
+                }
+            }
+            .padding(.horizontal, 75)
             
             ZStack {
                 Color.primary.opacity(0.8)
                 
-                #warning("You may create an object that holds the captured images and the coordinates")
                 Image(uiImage: viewModel.image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
                     .getCurrentCGRect(from: viewModel.image, in: $viewModel.containerImage)
                     .overlay {
                         ZStack {
-                            createLineBetweenLandmarks()
-                            createDraggableLandmarks()
+                            switch viewModel.currentImage {
+                            case .frontImage:
+                                createLineBetweenLandmarks(of: viewModel.frontBodyLandmarks)
+                                createDraggableLandmarks(of: viewModel.frontBodyLandmarks)
+                            case .sideImage:
+                                createLineBetweenLandmarks(of: viewModel.sideBodyLandmarks)
+                                createDraggableLandmarks(of: viewModel.sideBodyLandmarks)
+                            }
                         }
                     }
                     .scaleEffect(viewModel.currentZoom + viewModel.totalZoom)
                     .offset(viewModel.totalOffset)
                     .gesture(viewModel.gestures)
-                
+                    .animation(.easeIn, value: viewModel.image)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -62,12 +92,12 @@ struct AdjustBodyLandmarkView: View {
                 Button {
                     viewModel.confirmButtonTapped()
                 } label: {
-                    createButton(icon: "checkmark.square.fill",
-                                 title: "Confirm")
+                    createButton(icon: viewModel.currentImage == .sideImage ? "checkmark.square.fill" : "arrow.forward.square.fill",
+                                 title: viewModel.currentImage == .sideImage ? "Confirm" : "Next")
                 }
             }
             .foregroundStyle(Color.primary.opacity(0.8))
-            .padding([.horizontal, .top])
+            .padding([.horizontal])
         }
         .blur(radius: viewModel.isShowHelpPopup ? 3 : 0)
         .overlay {
@@ -76,21 +106,25 @@ struct AdjustBodyLandmarkView: View {
             }
         }
         .onAppear {
-            viewModel.loadBlurredFaceImage(of: .frontImage, fromURLString: viewModel.bodyLandmarkResponse.frontPath)
+            viewModel.loadBlurredFaceImage(fromURLString: viewModel.bodyLandmarkResponse.frontPath)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                viewModel.convertBodyLandmarkCoordinates()
+            }
         }
     }
     
-    @ViewBuilder private func createDraggableLandmarks() -> some View {
-        ForEach(viewModel.bodyLandmarks) { bodyLandmark in
+    @ViewBuilder private func createDraggableLandmarks(of bodyLandmarks: [BodyLandmark]) -> some View {
+        ForEach(bodyLandmarks) { bodyLandmark in
             DraggableLandmark(bodyLandmark: bodyLandmark, onChanged: viewModel.handleOnChanged)
                 .position(bodyLandmark.coordinate)
         }
     }
     
-    @ViewBuilder private func createLineBetweenLandmarks() -> some View {
+    @ViewBuilder private func createLineBetweenLandmarks(of bodyLandmarks: [BodyLandmark]) -> some View {
         ForEach(viewModel.landmarkLines, id: \.0) { line in
-            if let startLandmark = viewModel.bodyLandmarks.first(where: { $0.landmark == line.start}),
-               let endLandmark = viewModel.bodyLandmarks.first(where: { $0.landmark == line.end }) {
+            if let startLandmark = bodyLandmarks.first(where: { $0.landmark == line.start}),
+               let endLandmark = bodyLandmarks.first(where: { $0.landmark == line.end }) {
                 Path { path in
                     path.move(to: startLandmark.coordinate)
                     path.addLine(to: endLandmark.coordinate)

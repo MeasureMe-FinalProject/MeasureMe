@@ -27,7 +27,7 @@ class CameraViewController: UIViewController {
         super.viewWillDisappear(true)
         stopPhotoCaptureSession()
     }
-    
+        
     func takePhoto() {
         let photoSettings = AVCapturePhotoSettings()
         camera.photoOutput.capturePhoto(with: photoSettings, delegate: self)

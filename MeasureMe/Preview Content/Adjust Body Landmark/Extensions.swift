@@ -30,4 +30,5 @@ extension Bundle {
 
 extension BodyLandmarkResponse {
     static let dummyBodyLandmarkResponse: BodyLandmarkResponse = Bundle.main.decode(file: "DummyBodyLandmarkResponse.json")
+    static let dummyAdjustedBodyLandmarkResponse: AdjustedBodyLandmarkResponse = Bundle.main.decode(file: "DummyAdjustedBodyLandmark.json")
 }
