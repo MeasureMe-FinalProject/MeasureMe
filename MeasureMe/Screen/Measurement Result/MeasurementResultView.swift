@@ -28,6 +28,7 @@ struct MeasurementResultView: View {
                 
                 MeasurementResultDetailView(measurementDetail: viewModel.measurementDetail)                
             }
+            .frame(height: 1500)
             .background(.white)
             .padding(.horizontal)
             .padding(.bottom, 30)

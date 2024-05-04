@@ -41,9 +41,7 @@ struct HomeView: View {
                             VStack {
                                 createStartMeasurementButton()
                                 createRecentMeasurementResults()
-                                
                             }
-                            
                         }
                         .frame(height: 450)
                         .offset(y: -65)
@@ -145,15 +143,17 @@ struct HomeView: View {
         .padding(.horizontal, 30)
         
         ScrollView(.horizontal) {
-            HStack(spacing: 10) {
+            HStack(spacing: 12.5) {
                 Spacer().frame(width: 20)
                 ForEach(ClothingType.allCases, id: \.self) { clothing in
-                    createClothingType(of: clothing)
-                        .onTapGesture {
-                            sharedProfileData.clothingType = clothing
-                            viewModel.isShowNewMeasurementView = true
-                        }
+                    Button {
+                        sharedProfileData.clothingType = clothing
+                        viewModel.isShowNewMeasurementView = true
+                    } label: {
+                        createClothingType(of: clothing)
+                    }
                 }
+                Spacer().frame(width: 20)
             }
         }
         .scrollClipDisabled()
@@ -190,8 +190,10 @@ struct HomeView: View {
                         .font(.system(.caption, weight: .semibold))
                 }
             }
+            .shadow(color: .primary.opacity(0.25), radius: 5)
             .frame(width: 95, height: 165)
             .padding(.all, 2)
+            .tint(.black)
     }
 }
 
