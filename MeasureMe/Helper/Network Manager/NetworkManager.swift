@@ -12,7 +12,7 @@ class NetworkManager {
     
     private init() {}
     
-    private let aiBaseURL = "http://localhost:8000"
+    private let aiBaseURL = "http://192.168.1.103:8000"
     private let authenticationBaseURL = "https://measureme.mutijayasejahtera.com"
     private let cacheImage = NSCache<NSString, UIImage>()
     
@@ -68,12 +68,17 @@ class NetworkManager {
             
             print("Status Code: \(httpResponse.statusCode)")
             
+            print(data)
+            
             do {
                 let decoder = JSONDecoder()
                 let loginResponse = try decoder.decode(User.self, from: data)
+                print("Login response: \(loginResponse)")
+
                 completed(loginResponse)
                 return
             } catch {
+                print("Error decoding: \(error.localizedDescription)")
                 completed(nil)
                 return
             }
@@ -82,13 +87,14 @@ class NetworkManager {
         task.resume()
     }
     
-    func makeSignUpRequest(name: String, email: String, mobile: String, password: String, completed: @escaping (RegisterResponse?) -> Void) {
-        
+    func makeSignUpRequest(name: String, email: String, password: String, completed: @escaping (RegisterResponse?) -> Void) {
         var requestBodyComponents = URLComponents()
+    
         requestBodyComponents.queryItems = [URLQueryItem(name: "name", value: name),
-                               URLQueryItem(name: "email", value: email),
-                               URLQueryItem(name: "mobile", value: mobile),
-                               URLQueryItem(name: "password", value: password)]
+                                            URLQueryItem(name: "email", value: email),
+                                            URLQueryItem(name: "password", value: password)
+        ]
+        
         
         let urlString = authenticationBaseURL + EndPoint.signUp.url
         guard let url = URL(string: urlString) else { return completed(nil) }
@@ -136,9 +142,7 @@ class NetworkManager {
     
     func uploadAdjustedBodylandmark(front: Front, side: Side, height: Int, gender: String, clothingType: String, completed: @escaping (MeasurementResultResponse?) -> Void) {
         
-        
-        
-        let adjustedBodyLandmark: AdjustedBodyLandmarkResponse = AdjustedBodyLandmarkResponse(actualHeight: height, 
+        let adjustedBodyLandmark: AdjustedBodyLandmarkResponse = AdjustedBodyLandmarkResponse(actualHeight: height,
                                                                                               gender: gender,
                                                                                               clothingType: clothingType,
                                                                                               adjustedKeypoints: AdjustedBodyLandmarkResponse.AdjustedKeypoints(front: front, side: side))
@@ -186,7 +190,7 @@ class NetworkManager {
         task.resume()
     }
 
-    
+
     func upload(_ frontImage: UIImage, and sideImage: UIImage, completed: @escaping (BodyLandmarkResponse?, HTTPURLResponse) -> Void) {
         guard let processImageURLRequest = createUploadImagesURLRequest(for: frontImage, sideImage: sideImage) else {
             return

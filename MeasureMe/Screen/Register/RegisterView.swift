@@ -13,7 +13,6 @@ struct RegisterView: View {
     @Binding var isShow: Bool
     @FocusState var isNameFieldFocused: Bool
     @FocusState var isEmailFieldFocused: Bool
-    @FocusState var isPhoneNumberFieldFocused: Bool
     @FocusState var isPasswordFieldFocused: Bool
 
     var body: some View {
@@ -27,9 +26,7 @@ struct RegisterView: View {
             createNameTextField()
             
             createEmailTextField()
-            
-            createPhoneNumberTextField()
-            
+                        
             createPasswordTextField()
             
             Spacer()
@@ -37,6 +34,9 @@ struct RegisterView: View {
             createSignUpButton()
             
             createSignInButton()
+        }
+        .onChange(of: viewModel.isRegisterSuccess) {
+            isShow = viewModel.isRegisterSuccess
         }
         .padding()
         .alert("Invalid Form", isPresented: $viewModel.isShowAlertError, presenting: viewModel.alertItem) { alertItem in
@@ -108,14 +108,6 @@ struct RegisterView: View {
             .padding(.top, 5)
             .padding(.trailing, 30)
         }
-    }
-    
-    @ViewBuilder private func createPhoneNumberTextField() -> some View {
-        CustomTextField(title: "Phone Number", icon: "phone",
-                        placeholder: "08123456789",
-                        value: $viewModel.phoneNumber,
-                        isFieldFocused: $isPhoneNumberFieldFocused)
-        .keyboardType(.phonePad)
     }
     
     @ViewBuilder private func createEmailTextField() -> some View {

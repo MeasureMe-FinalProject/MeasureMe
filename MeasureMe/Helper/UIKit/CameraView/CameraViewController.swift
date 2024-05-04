@@ -35,7 +35,7 @@ class CameraViewController: UIViewController {
     
     private func startPhotoCaptureSession() {
         previewLayer = AVCaptureVideoPreviewLayer(session: camera.captureSession)
-        camera.checkCameraStatus()
+        camera.checkCameraPermission()
 
         guard let previewLayer else { return }
         previewLayer.frame = view.layer.bounds

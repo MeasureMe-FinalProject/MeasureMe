@@ -9,14 +9,28 @@ import SwiftUI
 
 final class MeasurementResultViewModel: ObservableObject {
     
-    @Published var selectedDetail: MeasurementDetail?
-    @Published var isShowMeasurementDetail: Bool = false
     @Published var settingsDetent = PresentationDetent.medium
+    @Published var measurementResultImage: Image?
+    @Published var isShowMeasurementDetailView: Bool = false
     
-    let measurementDetails: [MeasurementDetail]
-    
-    init(measurementDetails: [MeasurementDetail]) {
-        self.measurementDetails = measurementDetails
+    let measurementDetail: MeasurementDetail
+    let sizeRecommendation: String
+
+    init(measurementResultResponse: MeasurementResultResponse) {
+        let waist = measurementResultResponse.measurementResult.waistCircumference
+        let bust = measurementResultResponse.measurementResult.bustCircumference
+        let arm = measurementResultResponse.measurementResult.sleeveLength
+        let shoulder = measurementResultResponse.measurementResult.shoulderWidth
+        let hip = measurementResultResponse.measurementResult.hipCircumference
+        let inseam = measurementResultResponse.measurementResult.pantsLength
+        let sizeRecommendation = measurementResultResponse.sizeRecommendation
+
+        self.measurementDetail = MeasurementDetail(name: "All Body Part",
+                                                  icon: "general-body-icon",
+                                                  image: "general-body",
+                                                  bodyParts: BodyPart.generateAllBodyParts(waist: waist, bust: bust, arm: arm, shoulder: shoulder, hip: hip, inseam: inseam))
+                
+        self.sizeRecommendation = sizeRecommendation
     }
     
     private let date: Date = Date()
@@ -31,5 +45,4 @@ final class MeasurementResultViewModel: ObservableObject {
     var formattedDate: String {
         dateFormatter.string(from: date)
     }
-    
 }

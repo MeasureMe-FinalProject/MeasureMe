@@ -63,5 +63,5 @@ struct UndetectedBodyView: View {
 }
 
 #Preview {
-    UndetectedBodyView(isCapturingComplete: .constant(false), capturedImages: .constant([.frontPreview1, .sidePreview1]))
+    UndetectedBodyView(isCapturingComplete: .constant(false), capturedImages: .constant([UIImage(resource: .frontPreview1), UIImage(resource: .sidePreview1)]))
 }

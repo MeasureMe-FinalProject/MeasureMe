@@ -38,6 +38,19 @@ enum ClothingType: CaseIterable, Codable {
             "🩳"
         }
     }
+    
+    var codeName: String {
+        switch self {
+        case .tShirt:
+            "T_SHIRT"
+        case .LongPants:
+            "LONG_PANTS"
+        case .jacket:
+            "JACKET"
+        case .shortPants:
+            "SHORT_PANTS"
+        }
+    }
 }
 
 

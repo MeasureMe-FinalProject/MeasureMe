@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct MeasurementResultResponse: Codable {
+struct MeasurementResultResponse: Codable, Identifiable {
+    let id = UUID()
+    
     let measurementResult: MeasurementResult
     let sizeRecommendation: String
     
@@ -45,4 +47,15 @@ struct SizeRecommendation: Codable {
     enum CodingKeys: String, CodingKey {
         case sizeRecommendation = "size_recommendation"
     }
+}
+
+extension MeasurementResultResponse {
+    static let dummyMeasurementResultResponse: MeasurementResultResponse = MeasurementResultResponse(measurementResult: MeasurementResult(height: 170,
+                                                                                                                                          bustCircumference: 45,
+                                                                                                                                          waistCircumference: 25,
+                                                                                                                                          hipCircumference: 35,
+                                                                                                                                          shoulderWidth: 50,
+                                                                                                                                          sleeveLength: 40,
+                                                                                                                                          pantsLength: 70),
+                                                                                                     sizeRecommendation: "S")
 }

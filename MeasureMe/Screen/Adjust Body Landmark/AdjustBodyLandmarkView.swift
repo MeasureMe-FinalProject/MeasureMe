@@ -15,11 +15,11 @@ struct AdjustBodyLandmarkView: View {
     var body: some View {
         VStack {
             HStack {
-                ForEach(AdjustBodyLandmarkViewModel.ImageType.allCases, id: \.self) { imageType in
+                ForEach(ImageType.allCases, id: \.self) { imageType in
                     Button {
-                        withAnimation {
+//                        withAnimation {
                             viewModel.changeImageState(imageType: imageType)
-                        }
+//                        }
                     } label: {
                         VStack {
                             Image(systemName: imageType.icon)
@@ -33,7 +33,6 @@ struct AdjustBodyLandmarkView: View {
                                 .font(.footnote)
                                 .fontWeight(.medium)
                         }
-                        .animation(.easeIn, value: viewModel.currentImage)
                         .foregroundStyle(imageType.name == viewModel.currentImage.name ? .blue : .secondary)
                     }
                     
@@ -43,6 +42,7 @@ struct AdjustBodyLandmarkView: View {
                     }
                 }
             }
+            .zIndex(1)
             .padding(.horizontal, 75)
             
             ZStack {
@@ -71,7 +71,7 @@ struct AdjustBodyLandmarkView: View {
                     .animation(.easeIn, value: viewModel.image)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .clipShape(RoundedRectangle(cornerRadius: 12))
             .padding(.horizontal)
             
             HStack(alignment: .bottom) {
@@ -108,8 +108,14 @@ struct AdjustBodyLandmarkView: View {
         .onAppear {
             viewModel.loadBlurredFaceImage(fromURLString: viewModel.bodyLandmarkResponse.frontPath)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 viewModel.convertBodyLandmarkCoordinates()
+            }
+        }
+        .fullScreenCover(isPresented: $viewModel.isShowBodyLandmarkProcessView) {
+            if let front = viewModel.frontBodyLandmarksObject,
+               let side = viewModel.sideBodyLandmarksObject {
+                BodyLandmarkProcessView(viewModel: BodyLandmarkProcessViewModel(front: front, side: side))
             }
         }
     }
@@ -233,7 +239,7 @@ struct AdjustBodyLandmarkView: View {
 }
 
 #Preview {
-    AdjustBodyLandmarkView(viewModel: AdjustBodyLandmarkViewModel(bodyLandmarkResponse: BodyLandmarkResponse.dummyBodyLandmarkResponse, capturedImages: [.frontPreview1, .sidePreview1]))
+    AdjustBodyLandmarkView(viewModel: AdjustBodyLandmarkViewModel(bodyLandmarkResponse: BodyLandmarkResponse.dummyBodyLandmarkResponse, capturedImages: [UIImage(resource: .frontPreview1), UIImage(resource: .sidePreview1)]))
 }
 
 struct DraggableLandmark: View {
@@ -249,6 +255,7 @@ struct DraggableLandmark: View {
             .onChanged { newValue in
                 dragAmount = newValue.translation
                 onChanged?(dragAmount, bodyLandmark)
+                print(dragAmount)
             }
             .onEnded { _ in
                 withAnimation {

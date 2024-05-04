@@ -98,28 +98,9 @@ final class AdjustBodyLandmarkViewModel: ObservableObject {
             )
     }
     
-    enum ImageType: CaseIterable {
-        case frontImage
-        case sideImage
-        
-        var name: String {
-            switch self {
-            case .frontImage:
-                "Front"
-            case .sideImage:
-                "Side"
-            }
-        }
-        
-        var icon: String {
-            switch self {
-            case .frontImage:
-                "figure.arms.open"
-            case .sideImage:
-                "figure.walk"
-            }
-        }
-    }
+    @Published var isShowBodyLandmarkProcessView: Bool = false
+    @Published var frontBodyLandmarksObject: Front?
+    @Published var sideBodyLandmarksObject: Side?
     
     // MARK: - Initialization
     
@@ -138,20 +119,18 @@ final class AdjustBodyLandmarkViewModel: ObservableObject {
             guard let image else { return }
             DispatchQueue.main.async { [weak self] in
                 self?.image = image
-//                self?.convertBodyLandmarkCoordinates()
             }
         }
     }
     
     func convertBodyLandmarkCoordinates() {        
         frontBodyLandmarks = bodyLandmarkResponse.front.allBodyLandmarks.map { bodyLandmark in
-            let convertedCoordinates = convertCoordinate(bodyLandmark.coordinate, of: image, to: containerImage)
+            let convertedCoordinates = convertToContainerCoordinate(bodyLandmark.coordinate, of: image, to: containerImage)
             return BodyLandmark(landmark: bodyLandmark.landmark, coordinate: convertedCoordinates)
         }
         sideBodyLandmarks = bodyLandmarkResponse.side.allBodyLandmarks.map { bodyLandmark in
-            let convertedCoordinates = convertCoordinate(bodyLandmark.coordinate, of: image, to: containerImage)
+            let convertedCoordinates = convertToContainerCoordinate(bodyLandmark.coordinate, of: image, to: containerImage)
             return BodyLandmark(landmark: bodyLandmark.landmark, coordinate: convertedCoordinates)
-            
         }
     }
     
@@ -204,24 +183,25 @@ final class AdjustBodyLandmarkViewModel: ObservableObject {
             currentImage = .sideImage
             loadBlurredFaceImage(fromURLString: bodyLandmarkResponse.sidePath)
         case .sideImage:
-//            uploadAdjustedBodylandmarks()
             let frontBodyLandmarks = bodyLandmarkResponse.front.allBodyLandmarks.map { bodyLandmark in
-                let convertedCoordinates = convertCoordinate(bodyLandmark.coordinate, of: containerImage, to: image)
+                let convertedCoordinates = convertToImageCoordinate(bodyLandmark.coordinate, of: containerImage, to: image)
                 return BodyLandmark(landmark: bodyLandmark.landmark, coordinate: convertedCoordinates)
             }
             let sideBodyLandmarks = bodyLandmarkResponse.side.allBodyLandmarks.map { bodyLandmark in
-                let convertedCoordinates = convertCoordinate(bodyLandmark.coordinate, of: containerImage, to: image)
+                let convertedCoordinates = convertToImageCoordinate(bodyLandmark.coordinate, of: containerImage, to: image)
                 return BodyLandmark(landmark: bodyLandmark.landmark, coordinate: convertedCoordinates)
-                
             }
 
             guard let front = createFrontObject(from: frontBodyLandmarks) else { return print("front nil")}
             guard let side = createSideObject(from: sideBodyLandmarks) else { return print("side nil")}
-                    
-            NetworkManager.shared.uploadAdjustedBodylandmark(front: front, side: side, height: 170, gender: "MALE", clothingType: "T_SHIRT") { response in
-                guard response != nil else { return }
-                print("uploaded")
+            
+            frontBodyLandmarksObject = front
+            sideBodyLandmarksObject = side
+            
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                self.isShowBodyLandmarkProcessView = true
             }
+
         }
     }
     
@@ -239,7 +219,7 @@ final class AdjustBodyLandmarkViewModel: ObservableObject {
 
 // MARK: - Private functions
 extension AdjustBodyLandmarkViewModel {
-    private func convertCoordinate(_ coordinate: CGPoint, of sourceImage: UIImage, to containerImage: CGRect) -> CGPoint {
+    private func convertToContainerCoordinate(_ coordinate: CGPoint, of sourceImage: UIImage, to containerImage: CGRect) -> CGPoint {
         let imageRect = contentClippingRect(for: sourceImage, in: containerImage)
         let scale = scale(for: sourceImage, in: containerImage)
         
@@ -251,7 +231,7 @@ extension AdjustBodyLandmarkViewModel {
         return screenCoordinate
     }
     
-    private func convertCoordinate(_ coordinate: CGPoint, of containerImage: CGRect, to sourceImage: UIImage) -> CGPoint {
+    private func convertToImageCoordinate(_ coordinate: CGPoint, of containerImage: CGRect, to sourceImage: UIImage) -> CGPoint {
         let imageRect = contentClippingRect(for: sourceImage, in: containerImage)
         let scale = scale(for: sourceImage, in: containerImage)
         
@@ -277,10 +257,6 @@ extension AdjustBodyLandmarkViewModel {
     
     // Function to convert BodyLandmarks array to Front instance
     private func createFrontObject(from bodyLandmarks: [BodyLandmark]) -> Front? {
-//        guard bodyLandmarks.count == 16 else {
-//            return nil
-//        }
-        
         var coordinates: [Coordinate] = []
         for landmark in bodyLandmarks {
             coordinates.append(Coordinate(x: Double(landmark.coordinate.x), y: Double(landmark.coordinate.y)))
@@ -307,10 +283,6 @@ extension AdjustBodyLandmarkViewModel {
     }
     
     private func createSideObject(from bodyLandmarks: [BodyLandmark]) -> Side? {
-//        guard bodyLandmarks.count == 16 else {
-//            return nil
-//        }
-        
         var coordinates: [Coordinate] = []
         for landmark in bodyLandmarks {
             coordinates.append(landmark.coordinate.createCoordinateObject())
@@ -325,11 +297,10 @@ extension AdjustBodyLandmarkViewModel {
                     top: coordinates[6],
                     bot: coordinates[7])
     }
-
     
-    private func uploadAdjustedBodylandmarks() {
-        
-    }
+//    private func uploadAdjustedBodylandmarks() {
+//
+//    }
 }
 
 extension CGPoint {

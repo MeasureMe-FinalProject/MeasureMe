@@ -10,9 +10,27 @@
 import SwiftUI
 import CoreMotion
 
-enum ImageType {
+enum ImageType: CaseIterable {
     case frontImage
     case sideImage
+    
+    var name: String {
+        switch self {
+        case .frontImage:
+            "Front"
+        case .sideImage:
+            "Side"
+        }
+    }
+    
+    var icon: String {
+        switch self {
+        case .frontImage:
+            "figure.arms.open"
+        case .sideImage:
+            "figure.walk"
+        }
+    }
     
     var bodyPoseImage: String {
         switch self {
@@ -114,9 +132,7 @@ final class PhotoCaptureViewModel: ObservableObject {
     
     private func startCaptureCountdown() {
         if captureTimeRemaining > 0 {
-//            withAnimation(.bouncy) {
                 captureTimeRemaining -= 1
-//            }
         } else if captureTimeRemaining == 0 {
             startCapturePhoto()
         }

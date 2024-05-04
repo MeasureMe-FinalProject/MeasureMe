@@ -28,6 +28,15 @@ enum GenderType: CaseIterable, Codable {
             "female-gender-vector"
         }
     }
+    
+    var codeName: String {
+        switch self {
+        case .male:
+            "MALE"
+        case .female:
+            "FEMALE"
+        }
+    }
 }
 
 final class NewMeasurementViewModel: ObservableObject {

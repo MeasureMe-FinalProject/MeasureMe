@@ -43,9 +43,8 @@ final class RegisterViewModel: ObservableObject {
         guard isValidForm else { return }
         
         NetworkManager.shared.makeSignUpRequest(name: name,
-                                            email: email,
-                                            mobile: phoneNumber,
-                                            password: password) { response in
+                                                email: email,
+                                                password: password) { response in
             guard let response else {
                 DispatchQueue.main.async {
                     self.alertItem = AuthenticationAlert.registeredEmail

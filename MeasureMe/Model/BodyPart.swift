@@ -7,27 +7,30 @@
 
 import SwiftUI
 
-struct BodyPart: Identifiable {
+struct BodyPart: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let color: Color
-    let length: String
+    let length: Double
 }
 
 extension BodyPart {
-    static let upperBodyParts: [BodyPart] =  [
-        BodyPart(name: "Waist", color: .yellow, length: "50 cm"),
-        BodyPart(name: "Bust", color: .green, length: "23 cm"),
-        BodyPart(name: "Arm", color: .red, length: "44 cm"),
-        BodyPart(name: "Shoulder", color: .blue, length: "36 cm")
+    static let allBodyParts: [BodyPart] = [
+        BodyPart(name: "Shoulder", color: .red, length: 36),
+        BodyPart(name: "Bust", color: .yellow, length: 50),
+        BodyPart(name: "Waist", color: .green, length: 23),
+        BodyPart(name: "Hip", color: .blue, length: 43),
+        BodyPart(name: "Inseam", color: .indigo, length: 44),
     ]
     
-    static let lowerBodyParts: [BodyPart] =  [
-        BodyPart(name: "Hip", color: .yellow, length: "60 cm"),
-        BodyPart(name: "Inseam", color: .blue, length: "64 cm"),
-    ]
-    
-    static let generalBodypart: [BodyPart] = [
-        BodyPart(name: "Height", color: .yellow, length: "165 cm"),
-    ]
+    static func generateAllBodyParts(waist: Double, bust: Double, arm: Double, shoulder: Double, hip: Double, inseam: Double) -> [BodyPart] {
+        [
+            BodyPart(name: "Shoulder", color: .red, length: shoulder),
+            BodyPart(name: "Arm", color: .yellow, length: arm),
+            BodyPart(name: "Bust", color: .green, length: bust),
+            BodyPart(name: "Waist", color: .blue, length: waist),
+            BodyPart(name: "Hip", color: .purple, length: hip),
+            BodyPart(name: "Inseam", color: .brown, length: inseam),
+        ]
+    }
 }
