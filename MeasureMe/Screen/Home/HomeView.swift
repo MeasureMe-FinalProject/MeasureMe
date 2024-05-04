@@ -13,27 +13,48 @@ struct HomeView: View {
     @EnvironmentObject var sharedProfileData: SharedProfileData
     
     var body: some View {
-        NavigationStack {
+        ZStack {
+            Color.white
+                .ignoresSafeArea()
+            
             VStack {
                 Image(.headerLogo)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 45)
+                    .padding(.vertical, 5)
+                    .padding(.bottom, 10)
                 
                 ScrollView {
-                    createNavBarButtons()
+                    VStack {
+                        createNavBarButtons()
+                        
+                        createSizeRecommendationOptions()
+                    }
+                    .padding(.top, 12)
+                    .padding(.bottom, 60)
+                    .background(RoundedRectangle(cornerRadius: 32).fill(.blue))
                     
-                    createStartMeasurementButton()
-                    
-                    createSizeRecommendationOptions()
-                    
-                    createRecentMeasurementResults()
+                    RoundedRectangle(cornerRadius: 24)
+                        .fill(.white)
+                        .overlay(alignment: .top) {
+                            VStack {
+                                createStartMeasurementButton()
+                                createRecentMeasurementResults()
+                                
+                            }
+                            
+                        }
+                        .frame(height: 450)
+                        .offset(y: -65)
                 }
+                .scrollBounceBehavior(.automatic)
+                .scrollClipDisabled()
                 .scrollIndicators(.hidden)
             }
             .fullScreenCover(isPresented: $viewModel.isShowNewMeasurementView)  {
                 NewMeasurementView(isShow: $viewModel.isShowNewMeasurementView)
-        }
+            }
         }
     }
     
@@ -44,7 +65,7 @@ struct HomeView: View {
                 .aspectRatio(contentMode: .fit)
                 .background {
                     RoundedRectangle(cornerRadius: 70)
-                        .fill(.secondary)
+                        .fill(.black)
                 }
                 .frame(width: 40, height: 40)
             
@@ -58,30 +79,32 @@ struct HomeView: View {
             
             Spacer()
             
-            Button {
-                
-            } label: {
-                Image(systemName: "bell.badge")
-                    .symbolRenderingMode(.multicolor)
-                    .imageScale(.large)
-            }
-            
+//            Button {
+//                
+//            } label: {
+//                Image(systemName: "bell.badge")
+//                    .symbolRenderingMode(.multicolor)
+//                    .imageScale(.large)
+//            }
+//            
         }
+        .foregroundStyle(.white)
         .padding(.horizontal, 30)
         .padding(.vertical)
     }
     
     @ViewBuilder private func createStartMeasurementButton()-> some View {
-        RoundedRectangle(cornerRadius: 10)
-            .stroke(lineWidth: 1.5)
+        RoundedRectangle(cornerRadius: 12)
+            .stroke(lineWidth: 0.75)
             .fill(.blue)
-            .shadow(color: .blue, radius: 10)
+            .background(RoundedRectangle(cornerRadius: 12).fill(.white))
+            .shadow(color: .blue.opacity(0.2), radius: 10)
             .overlay {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Measurement 📐")
+                    Text("AR Ruler 📐")
                         .font(.system(.headline, weight: .medium))
                     
-                    Text("Let's find your body measurement!")
+                    Text("Let's measure your items quickly!")
                         .font(.system(.caption2))
                         .foregroundStyle(.secondary)
                         .padding(.bottom, 5)
@@ -89,7 +112,7 @@ struct HomeView: View {
                     Button {
                         viewModel.isShowNewMeasurementView.toggle()
                     } label: {
-                        Text("Start Measurement")
+                        Text("Start Measure")
                             .foregroundStyle(.background)
                             .font(.system(.subheadline, weight: .semibold))
                             .padding()
@@ -104,11 +127,12 @@ struct HomeView: View {
             .frame(height: 120)
             .padding(.horizontal, 30)
             .padding(.bottom)
+            .padding(.top, 32)
     }
     
     @ViewBuilder private func createSizeRecommendationOptions() -> some View {
         VStack(alignment: .leading) {
-            Text("Size Recommendation")
+            Text("Size Recommendation ✨")
                 .font(.system(.title3, weight: .semibold))
             
             Text("Get your clothes size recommendation")
@@ -116,21 +140,23 @@ struct HomeView: View {
                 .foregroundStyle(.secondary)
                 .padding(.bottom, 5)
         }
+        .foregroundStyle(.white)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 30)
         
         ScrollView(.horizontal) {
-            HStack(spacing: 7.5) {
+            HStack(spacing: 10) {
                 Spacer().frame(width: 20)
                 ForEach(ClothingType.allCases, id: \.self) { clothing in
                     createClothingType(of: clothing)
                         .onTapGesture {
                             sharedProfileData.clothingType = clothing
+                            viewModel.isShowNewMeasurementView = true
                         }
                 }
-                Spacer().frame(width: 20)
             }
         }
+        .scrollClipDisabled()
         .scrollIndicators(.hidden)
         .frame(maxWidth: .infinity)
         .padding(.bottom)
@@ -150,21 +176,21 @@ struct HomeView: View {
     }
     
     @ViewBuilder private func createClothingType(of clothing: ClothingType) -> some View {
-        RoundedRectangle(cornerRadius: 10)
+        RoundedRectangle(cornerRadius: 12)
             .stroke(lineWidth: 2)
             .fill(.primary.opacity(0.1))
-            .shadow(color: .primary.opacity(0.1), radius: 4)
+            .background(RoundedRectangle(cornerRadius: 12).fill(.white))
+            .shadow(color: .primary.opacity(0.25), radius: 10)
             .overlay {
                 VStack(spacing: 10){
                     Text(clothing.icon)
                         .font(.system(size: 70))
-                        .shadow(color: .primary.opacity(0.25), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                     
                     Text(clothing.name)
                         .font(.system(.caption, weight: .semibold))
                 }
             }
-            .frame(width: 95, height: 170)
+            .frame(width: 95, height: 165)
             .padding(.all, 2)
     }
 }

@@ -24,7 +24,7 @@ struct NewMeasurementView: View {
                 createNextButton()
             }
         }
-        .blur(radius: viewModel.isShowPrivacyMeassage ? 3 : 0)
+//        .blur(radius: viewModel.isShowPrivacyMeassage ? 3 : 0)
         .overlay {
             if viewModel.isShowPrivacyMeassage {
                 showPrivacyMessagePopup()
@@ -38,7 +38,7 @@ struct NewMeasurementView: View {
     
     @ViewBuilder private func showPrivacyMessagePopup() -> some View {
         ZStack {
-            Color.black.opacity(0.3)
+            Color.black.opacity(0.5)
                 .ignoresSafeArea()
             
             ZStack {
