@@ -42,16 +42,26 @@ final class LoginViewModel: ObservableObject {
     func signInButtonTapped() {
         guard isValidForm else { return }
         NetworkManager.shared.makeSignInRequest(email: email, password: password) { response  in
+            print(String(describing: response))
             guard let response else {
                 DispatchQueue.main.async {
                     self.alertItem = AuthenticationAlert.invalidUser
                     self.isShowAlertError = true
+                    print("error kocak")
+                    
+//                    print(response?.email)
                 }
                 return
             }
+            
             DispatchQueue.main.async {
+                let encoder = JSONEncoder()
+                let data = try? encoder.encode(response)
+                UserDefaults.standard.setValue(data, forKey: "user")
                 self.isLoginSuccess = true
                 self.userInformation = response
+                print("wah bisa")
+
             }
         }
     }

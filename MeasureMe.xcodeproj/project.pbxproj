@@ -13,6 +13,12 @@
 		3A0713AC2B938D1C005D6535 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0713AB2B938D1C005D6535 /* View+Ext.swift */; };
 		3A0713AF2B9399C6005D6535 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0713AE2B9399C6005D6535 /* Extensions.swift */; };
 		3A0713B42B939B73005D6535 /* DummyBodyLandmarkResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 3A0713B32B939B73005D6535 /* DummyBodyLandmarkResponse.json */; };
+		3A11ECCA2BC3C71A004140F7 /* MeasurementResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A11ECC92BC3C71A004140F7 /* MeasurementResultView.swift */; };
+		3A11ECCC2BC3E944004140F7 /* MeasurementResultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A11ECCB2BC3E944004140F7 /* MeasurementResultDetailView.swift */; };
+		3A11ECCE2BC3FCC0004140F7 /* MeasurementResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A11ECCD2BC3FCC0004140F7 /* MeasurementResultViewModel.swift */; };
+		3A11ECD12BC3FDE7004140F7 /* MeasurementDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A11ECD02BC3FDE7004140F7 /* MeasurementDetail.swift */; };
+		3A11ECD32BC3FE12004140F7 /* BodyPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A11ECD22BC3FE12004140F7 /* BodyPart.swift */; };
+		3A3929482BE518EC0038746C /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3929472BE518EC0038746C /* SwiftUIView.swift */; };
 		3A54D9022B935DC800B22696 /* MeasureMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D9012B935DC800B22696 /* MeasureMeApp.swift */; };
 		3A54D9062B935DCA00B22696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A54D9052B935DCA00B22696 /* Assets.xcassets */; };
 		3A54D9092B935DCA00B22696 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A54D9082B935DCA00B22696 /* Preview Assets.xcassets */; };
@@ -29,6 +35,12 @@
 		3A6BD2F92B9D612400400BA4 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2F82B9D612400400BA4 /* Register.swift */; };
 		3A6BD2FB2B9DDB1300400BA4 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2FA2B9DDB1300400BA4 /* Alert.swift */; };
 		3A6BD2FD2B9DF16000400BA4 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2FC2B9DF16000400BA4 /* String+Ext.swift */; };
+		3A795F112BD0DEB5007A630A /* MeasurementResultDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A795F102BD0DEB5007A630A /* MeasurementResultDetailViewModel.swift */; };
+		3A795F132BD275BC007A630A /* AdjustBodyLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A795F122BD275BC007A630A /* AdjustBodyLandmark.swift */; };
+		3A795F152BD27A67007A630A /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A795F142BD27A67007A630A /* MeasurementResult.swift */; };
+		3A795F182BD65C52007A630A /* SharedProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A795F172BD65C52007A630A /* SharedProfileData.swift */; };
+		3A7D0F732BD8672700D1E488 /* BodyLandmarkProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D0F722BD8672700D1E488 /* BodyLandmarkProcessView.swift */; };
+		3A7D0F762BD8677900D1E488 /* ProcessStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D0F752BD8677900D1E488 /* ProcessStateView.swift */; };
 		3A827CBD2B9AF5AC0090836D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A827CBC2B9AF5AC0090836D /* LoginView.swift */; };
 		3A827CC02B9B06140090836D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A827CBF2B9B06140090836D /* RegisterView.swift */; };
 		3A827CC32B9B0AFE0090836D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A827CC22B9B0AFE0090836D /* LoginViewModel.swift */; };
@@ -49,6 +61,7 @@
 		3AC21FAA2B937C73008E87FF /* Data+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21FA92B937C73008E87FF /* Data+Ext.swift */; };
 		3AC21FAC2B937C8B008E87FF /* BodyLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21FAB2B937C8B008E87FF /* BodyLandmark.swift */; };
 		3AC21FB22B9381BB008E87FF /* UndetectedBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21FB12B9381BB008E87FF /* UndetectedBodyView.swift */; };
+		3AE41D312BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE41D302BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +72,12 @@
 		3A0713AE2B9399C6005D6535 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3A0713B32B939B73005D6535 /* DummyBodyLandmarkResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DummyBodyLandmarkResponse.json; sourceTree = "<group>"; };
 		3A0EFE582B94137A009DC4BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3A11ECC92BC3C71A004140F7 /* MeasurementResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResultView.swift; sourceTree = "<group>"; };
+		3A11ECCB2BC3E944004140F7 /* MeasurementResultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResultDetailView.swift; sourceTree = "<group>"; };
+		3A11ECCD2BC3FCC0004140F7 /* MeasurementResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResultViewModel.swift; sourceTree = "<group>"; };
+		3A11ECD02BC3FDE7004140F7 /* MeasurementDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementDetail.swift; sourceTree = "<group>"; };
+		3A11ECD22BC3FE12004140F7 /* BodyPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPart.swift; sourceTree = "<group>"; };
+		3A3929472BE518EC0038746C /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		3A54D8FE2B935DC800B22696 /* MeasureMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeasureMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A54D9012B935DC800B22696 /* MeasureMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureMeApp.swift; sourceTree = "<group>"; };
 		3A54D9052B935DCA00B22696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +95,13 @@
 		3A6BD2F82B9D612400400BA4 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		3A6BD2FA2B9DDB1300400BA4 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		3A6BD2FC2B9DF16000400BA4 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		3A795F102BD0DEB5007A630A /* MeasurementResultDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResultDetailViewModel.swift; sourceTree = "<group>"; };
+		3A795F122BD275BC007A630A /* AdjustBodyLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustBodyLandmark.swift; sourceTree = "<group>"; };
+		3A795F142BD27A67007A630A /* MeasurementResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResult.swift; sourceTree = "<group>"; };
+		3A795F162BD287FD007A630A /* DummyAdjustedBodyLandmark.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DummyAdjustedBodyLandmark.json; sourceTree = "<group>"; };
+		3A795F172BD65C52007A630A /* SharedProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedProfileData.swift; sourceTree = "<group>"; };
+		3A7D0F722BD8672700D1E488 /* BodyLandmarkProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyLandmarkProcessView.swift; sourceTree = "<group>"; };
+		3A7D0F752BD8677900D1E488 /* ProcessStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessStateView.swift; sourceTree = "<group>"; };
 		3A827CBC2B9AF5AC0090836D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3A827CBF2B9B06140090836D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		3A827CC22B9B0AFE0090836D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -96,6 +122,7 @@
 		3AC21FA92B937C73008E87FF /* Data+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Ext.swift"; sourceTree = "<group>"; };
 		3AC21FAB2B937C8B008E87FF /* BodyLandmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyLandmark.swift; sourceTree = "<group>"; };
 		3AC21FB12B9381BB008E87FF /* UndetectedBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndetectedBodyView.swift; sourceTree = "<group>"; };
+		3AE41D302BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyLandmarkProcessViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +150,18 @@
 			children = (
 				3A0713AE2B9399C6005D6535 /* Extensions.swift */,
 				3A0713B32B939B73005D6535 /* DummyBodyLandmarkResponse.json */,
+				3A795F162BD287FD007A630A /* DummyAdjustedBodyLandmark.json */,
 			);
 			path = "Adjust Body Landmark";
+			sourceTree = "<group>";
+		};
+		3A11ECC82BC3C6F1004140F7 /* Measurement Result */ = {
+			isa = PBXGroup;
+			children = (
+				3A11ECC92BC3C71A004140F7 /* MeasurementResultView.swift */,
+				3A11ECCD2BC3FCC0004140F7 /* MeasurementResultViewModel.swift */,
+			);
+			path = "Measurement Result";
 			sourceTree = "<group>";
 		};
 		3A54D8F52B935DC800B22696 = {
@@ -170,6 +207,7 @@
 		3A54D9162B935EE200B22696 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				3A7D0F742BD8676900D1E488 /* Views */,
 				3A54D91D2B93606D00B22696 /* MainView.swift */,
 				3A54D9172B935EE900B22696 /* OnBoarding */,
 				3A827CC42B9B0D330090836D /* Register */,
@@ -180,7 +218,11 @@
 				3AC21F9E2B937BC1008E87FF /* Photo Process */,
 				3AC21FAE2B93817E008E87FF /* Undetected Body */,
 				3A07139E2B938A11005D6535 /* Adjust Body Landmark */,
+				3A7D0F712BD865C300D1E488 /* Adjusted Body Landmark Process */,
+				3A11ECC82BC3C6F1004140F7 /* Measurement Result */,
+				3AE41D322BD9CC9B00D7751E /* Measurement Result Detail */,
 				3A54D9242B9360D600B22696 /* History */,
+				3A3929472BE518EC0038746C /* SwiftUIView.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -204,6 +246,10 @@
 				3A6BD2F62B9D611400400BA4 /* User.swift */,
 				3A6BD2F82B9D612400400BA4 /* Register.swift */,
 				3A6BD2FA2B9DDB1300400BA4 /* Alert.swift */,
+				3A11ECD02BC3FDE7004140F7 /* MeasurementDetail.swift */,
+				3A11ECD22BC3FE12004140F7 /* BodyPart.swift */,
+				3A795F122BD275BC007A630A /* AdjustBodyLandmark.swift */,
+				3A795F142BD27A67007A630A /* MeasurementResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -234,11 +280,21 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		3A6BD3002B9E9F6600400BA4 /* Alert */ = {
+		3A7D0F712BD865C300D1E488 /* Adjusted Body Landmark Process */ = {
 			isa = PBXGroup;
 			children = (
+				3A7D0F722BD8672700D1E488 /* BodyLandmarkProcessView.swift */,
+				3AE41D302BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift */,
 			);
-			path = Alert;
+			path = "Adjusted Body Landmark Process";
+			sourceTree = "<group>";
+		};
+		3A7D0F742BD8676900D1E488 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3A7D0F752BD8677900D1E488 /* ProcessStateView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		3A827CBE2B9AF5BC0090836D /* Login */ = {
@@ -280,10 +336,10 @@
 		3AC21F942B936885008E87FF /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				3A6BD3002B9E9F6600400BA4 /* Alert */,
 				3AC21FA82B937C62008E87FF /* Extensions */,
 				3AC21FA32B937C27008E87FF /* Network Manager */,
 				3AC21F952B93688B008E87FF /* UIKit */,
+				3A795F172BD65C52007A630A /* SharedProfileData.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -341,6 +397,15 @@
 				3AC21FB12B9381BB008E87FF /* UndetectedBodyView.swift */,
 			);
 			path = "Undetected Body";
+			sourceTree = "<group>";
+		};
+		3AE41D322BD9CC9B00D7751E /* Measurement Result Detail */ = {
+			isa = PBXGroup;
+			children = (
+				3A11ECCB2BC3E944004140F7 /* MeasurementResultDetailView.swift */,
+				3A795F102BD0DEB5007A630A /* MeasurementResultDetailViewModel.swift */,
+			);
+			path = "Measurement Result Detail";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,23 +482,33 @@
 				3A0713AC2B938D1C005D6535 /* View+Ext.swift in Sources */,
 				3A6BD2F72B9D611400400BA4 /* User.swift in Sources */,
 				3AC21F9B2B9368A7008E87FF /* Camera.swift in Sources */,
+				3A11ECCC2BC3E944004140F7 /* MeasurementResultDetailView.swift in Sources */,
 				3A827CC02B9B06140090836D /* RegisterView.swift in Sources */,
 				3A85432C2BA02F7B007D6449 /* Sequence+Ext.swift in Sources */,
 				3A6BD2F92B9D612400400BA4 /* Register.swift in Sources */,
 				3A85432A2B9F20BA007D6449 /* HistoryViewModel.swift in Sources */,
 				3AC21F912B936870008E87FF /* PhotoCaptureView.swift in Sources */,
+				3A795F152BD27A67007A630A /* MeasurementResult.swift in Sources */,
 				3A827CC62B9B0D4C0090836D /* RegisterViewModel.swift in Sources */,
 				3A54D91B2B935F0200B22696 /* OnBoardingView.swift in Sources */,
 				3AC21F9C2B9368A7008E87FF /* CameraViewController.swift in Sources */,
 				3A54D9292B9360FA00B22696 /* ProfileView.swift in Sources */,
 				3AC21FA02B937BD6008E87FF /* PhotoProcessView.swift in Sources */,
+				3A11ECD32BC3FE12004140F7 /* BodyPart.swift in Sources */,
 				3AC21F9A2B9368A7008E87FF /* CameraView.swift in Sources */,
 				3A54D9272B9360F400B22696 /* HistoryView.swift in Sources */,
 				3AC21F8C2B93660E008E87FF /* NewMeasurementView.swift in Sources */,
 				3AC21FA22B937BE3008E87FF /* PhotoProcessViewModel.swift in Sources */,
+				3A795F182BD65C52007A630A /* SharedProfileData.swift in Sources */,
 				3A0713A82B938BB2005D6535 /* AdjustBodyLandmarkView.swift in Sources */,
 				3A0713A42B938AD4005D6535 /* HelpAdjustBodyLandmark.swift in Sources */,
+				3A7D0F762BD8677900D1E488 /* ProcessStateView.swift in Sources */,
+				3AE41D312BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift in Sources */,
+				3A795F112BD0DEB5007A630A /* MeasurementResultDetailViewModel.swift in Sources */,
+				3A3929482BE518EC0038746C /* SwiftUIView.swift in Sources */,
 				3AC21F8E2B936617008E87FF /* NewMeasurementViewModel.swift in Sources */,
+				3A11ECD12BC3FDE7004140F7 /* MeasurementDetail.swift in Sources */,
+				3A795F132BD275BC007A630A /* AdjustBodyLandmark.swift in Sources */,
 				3A6BD2FB2B9DDB1300400BA4 /* Alert.swift in Sources */,
 				3AC21FAC2B937C8B008E87FF /* BodyLandmark.swift in Sources */,
 				3AC21FAA2B937C73008E87FF /* Data+Ext.swift in Sources */,
@@ -447,11 +522,14 @@
 				3AC21FB22B9381BB008E87FF /* UndetectedBodyView.swift in Sources */,
 				3A54D9142B935E1400B22696 /* OnBoarding.swift in Sources */,
 				3A0713AA2B938C16005D6535 /* AdjustBodyLandmarkViewModel.swift in Sources */,
+				3A11ECCE2BC3FCC0004140F7 /* MeasurementResultViewModel.swift in Sources */,
 				3A54D92B2B93611C00B22696 /* Result.swift in Sources */,
 				3A54D9212B9360AA00B22696 /* HomeView.swift in Sources */,
 				3A0713AF2B9399C6005D6535 /* Extensions.swift in Sources */,
 				3A54D91E2B93606D00B22696 /* MainView.swift in Sources */,
 				3A54D9022B935DC800B22696 /* MeasureMeApp.swift in Sources */,
+				3A7D0F732BD8672700D1E488 /* BodyLandmarkProcessView.swift in Sources */,
+				3A11ECCA2BC3C71A004140F7 /* MeasurementResultView.swift in Sources */,
 				3AC21FA72B937C35008E87FF /* MultipartRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -590,17 +668,20 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeasureMe/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MeasureMe;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app need your camera permission to capturing the photos. To protect user privacy, your face will be blurred after the image being captured.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dikidwid.MeasureMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -621,17 +702,20 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeasureMe/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MeasureMe;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app need your camera permission to capturing the photos. To protect user privacy, your face will be blurred after the image being captured.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dikidwid.MeasureMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
     
     @State private var selectedTab: Tab = .Home
+    @ObservedObject var sharedProfileData: SharedProfileData
     
     enum Tab {
         case Home
@@ -22,7 +23,7 @@ struct MainView: View {
             HomeView()
                 .tag(Tab.Home)
                 .tabItem { Label("Home", systemImage: "house.fill") }
-
+            
             HistoryView()
                 .tag(Tab.History)
                 .tabItem { Label("History", image: .pencilRulerIcon) }
@@ -31,9 +32,11 @@ struct MainView: View {
                 .tag(Tab.Profile)
                 .tabItem { Label("Profile", systemImage: "person.crop.circle.fill") }
         }
+        .environmentObject(sharedProfileData)
+        
     }
 }
 
 #Preview {
-    MainView()
+    MainView(sharedProfileData: SharedProfileData(user: .dummyUser))
 }

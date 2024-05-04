@@ -17,16 +17,16 @@ struct BodyLandmark: Identifiable {
 enum BodyLandmarkType {
     case top
     case bot
-    case shoulderLeft
-    case shoulderRight
+    case shoulderStart
+    case shoulderEnd
     case sleeveTop
     case sleeveBot
     case waistStart
     case waistEnd
-    case bustLeft
-    case bustRight
-    case hipLeft
-    case hipRight
+    case bustStart
+    case bustEnd
+    case hipStart
+    case hipEnd
     case pantsTop
     case pantsBot
     case elbow
@@ -59,37 +59,37 @@ struct BodyLandmarkResponse: Decodable {
     }
 }
 
-struct Front: Decodable {
-    let top             : Coordinate
-    let bot             : Coordinate
-    let shoulderLeft    : Coordinate
-    let shoulderRight   : Coordinate
+struct Front: Codable {
+    let shoulderStart    : Coordinate
+    let shoulderEnd   : Coordinate
     let sleeveTop       : Coordinate
+    let elbow           : Coordinate
     let sleeveBot       : Coordinate
     let waistStart      : Coordinate
     let waistEnd        : Coordinate
-    let bustLeft        : Coordinate
-    let bustRight       : Coordinate
-    let hipLeft         : Coordinate
-    let hipRight        : Coordinate
+    let bustStart        : Coordinate
+    let bustEnd       : Coordinate
+    let hipStart         : Coordinate
+    let hipEnd        : Coordinate
     let pantsTop        : Coordinate
-    let pantsBot        : Coordinate
-    let elbow           : Coordinate
     let knee            : Coordinate
+    let pantsBot        : Coordinate
+    let top             : Coordinate
+    let bot             : Coordinate
     
     enum CodingKeys: String, CodingKey {
         case top            = "top_coords"
         case bot            = "bot_coords"
-        case shoulderLeft   = "shoulder_left_coords"
-        case shoulderRight  = "shoulder_right_coords"
+        case shoulderStart   = "shoulder_start_coords"
+        case shoulderEnd  = "shoulder_end_coords"
         case sleeveTop      = "sleeve_top_coords"
         case sleeveBot      = "sleeve_bot_coords"
         case waistStart     = "waist_start_coords"
         case waistEnd       = "waist_end_coords"
-        case bustLeft       = "bust_left_coords"
-        case bustRight      = "bust_right_coords"
-        case hipLeft        = "hip_left_coords"
-        case hipRight       = "hip_right_coords"
+        case bustStart       = "bust_start_coords"
+        case bustEnd      = "bust_end_coords"
+        case hipStart        = "hip_start_coords"
+        case hipEnd       = "hip_end_coords"
         case pantsTop       = "pants_top_coords"
         case pantsBot       = "pants_bot_coords"
         case elbow          = "elbow_coords"
@@ -101,48 +101,46 @@ struct Front: Decodable {
 extension Front {
     var allBodyLandmarks: [BodyLandmark] {
         [
-            BodyLandmark(landmark: .top, coordinate: top.cgPoint),
-            BodyLandmark(landmark: .bot, coordinate: bot.cgPoint),
-            BodyLandmark(landmark: .shoulderLeft, coordinate: shoulderLeft.cgPoint),
-            BodyLandmark(landmark: .shoulderRight, coordinate: shoulderRight.cgPoint),
+            BodyLandmark(landmark: .shoulderStart, coordinate: shoulderStart.cgPoint),
+            BodyLandmark(landmark: .shoulderEnd, coordinate: shoulderEnd.cgPoint),
             BodyLandmark(landmark: .sleeveTop, coordinate: sleeveTop.cgPoint),
+            BodyLandmark(landmark: .elbow, coordinate: elbow.cgPoint),
             BodyLandmark(landmark: .sleeveBot, coordinate: sleeveBot.cgPoint),
             BodyLandmark(landmark: .waistStart, coordinate: waistStart.cgPoint),
             BodyLandmark(landmark: .waistEnd, coordinate: waistEnd.cgPoint),
-            BodyLandmark(landmark: .bustLeft, coordinate: bustLeft.cgPoint),
-            BodyLandmark(landmark: .bustRight, coordinate: bustRight.cgPoint),
-            BodyLandmark(landmark: .hipLeft, coordinate: hipLeft.cgPoint),
-            BodyLandmark(landmark: .hipRight, coordinate: hipRight.cgPoint),
+            BodyLandmark(landmark: .bustStart, coordinate: bustStart.cgPoint),
+            BodyLandmark(landmark: .bustEnd, coordinate: bustEnd.cgPoint),
+            BodyLandmark(landmark: .hipStart, coordinate: hipStart.cgPoint),
+            BodyLandmark(landmark: .hipEnd, coordinate: hipEnd.cgPoint),
             BodyLandmark(landmark: .pantsTop, coordinate: pantsTop.cgPoint),
-            BodyLandmark(landmark: .pantsBot, coordinate: pantsBot.cgPoint),
-            BodyLandmark(landmark: .elbow, coordinate: elbow.cgPoint),
             BodyLandmark(landmark: .knee, coordinate: knee.cgPoint),
+            BodyLandmark(landmark: .pantsBot, coordinate: pantsBot.cgPoint),
+            BodyLandmark(landmark: .top, coordinate: top.cgPoint),
+            BodyLandmark(landmark: .bot, coordinate: bot.cgPoint),
         ]
     }
 }
 
-struct Side: Decodable {
-    let top        : Coordinate
-    let bot        : Coordinate
-    let bustLeft   : Coordinate
-    let bustRight  : Coordinate
+struct Side: Codable {
+    let bustStart   : Coordinate
+    let bustEnd  : Coordinate
     let waistStart : Coordinate
     let waistEnd   : Coordinate
-    let hipLeft    : Coordinate
-    let hipRight   : Coordinate
+    let hipStart    : Coordinate
+    let hipEnd   : Coordinate
+    let top        : Coordinate
+    let bot        : Coordinate
 
     enum CodingKeys: String, CodingKey {
-        case top          = "top_coords"
-        case bot          = "bot_coords"
-        case bustLeft     = "bust_left_coords"
-        case bustRight    = "bust_right_coords"
-        case waistStart   = "waist_start_coords"
-        case waistEnd     = "waist_end_coords"
-        case hipLeft      = "hip_left_coords"
-        case hipRight     = "hip_right_coords"
+        case top        = "top_coords"
+        case bot        = "bot_coords"
+        case bustStart  = "bust_start_coords"
+        case bustEnd    = "bust_end_coords"
+        case waistStart = "waist_start_coords"
+        case waistEnd   = "waist_end_coords"
+        case hipStart   = "hip_start_coords"
+        case hipEnd     = "hip_end_coords"
     }
-    
-    
 }
 
 // For retrieving all side body landmarks
@@ -151,17 +149,17 @@ extension Side {
         return  [
             BodyLandmark(landmark: .top, coordinate: top.cgPoint),
             BodyLandmark(landmark: .bot, coordinate: bot.cgPoint),
-            BodyLandmark(landmark: .bustLeft, coordinate: bustLeft.cgPoint),
-            BodyLandmark(landmark: .bustRight, coordinate: bustRight.cgPoint),
+            BodyLandmark(landmark: .bustStart, coordinate: bustStart.cgPoint),
+            BodyLandmark(landmark: .bustEnd, coordinate: bustEnd.cgPoint),
             BodyLandmark(landmark: .waistStart, coordinate: waistStart.cgPoint),
             BodyLandmark(landmark: .waistEnd, coordinate: waistEnd.cgPoint),
-            BodyLandmark(landmark: .hipLeft, coordinate: hipLeft.cgPoint),
-            BodyLandmark(landmark: .hipRight, coordinate: hipRight.cgPoint)
+            BodyLandmark(landmark: .hipStart, coordinate: hipStart.cgPoint),
+            BodyLandmark(landmark: .hipEnd, coordinate: hipEnd.cgPoint)
         ]
     }
 }
 
-struct Coordinate: Decodable {
+struct Coordinate: Codable {
     let x: Double
     let y: Double
 }

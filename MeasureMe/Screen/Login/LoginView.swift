@@ -14,37 +14,41 @@ struct LoginView: View {
     @FocusState var isPasswordFieldFocused: Bool
 
     var body: some View {
-        VStack {
-            createHeaderLogo()
-            
-            Spacer()
-            
-            createTitle()
-            
-            createEmailTextField()
-            
-            createPasswordTextField()
-            
-            createForgotPasswordButton()
-            
-            Spacer()
-            
-            createSignInButton()
-            
-            createSignUpButton()
-        }
-        .padding()
-        .fullScreenCover(isPresented: $viewModel.isShowRegisterView) {
-            RegisterView(isShow: $viewModel.isShowRegisterView)
-        }
-        .alert("Invalid Form", isPresented: $viewModel.isShowAlertError, presenting: viewModel.alertItem) { alertItem in
-            Button("OK") {
-                viewModel.alertItem = nil
-                viewModel.isShowAlertError.toggle()
+        NavigationStack {
+            VStack {
+                createHeaderLogo()
+                
+                Spacer()
+                
+                createTitle()
+                
+                createEmailTextField()
+                
+                createPasswordTextField()
+                
+                createForgotPasswordButton()
+                
+                Spacer()
+                
+                createSignInButton()
+                
+                createSignUpButton()
             }
-        } message: { alertItem in Text("\(alertItem.message)") }
-        .fullScreenCover(isPresented: $viewModel.isLoginSuccess) {
-            MainView()
+            .padding()
+            .fullScreenCover(isPresented: $viewModel.isShowRegisterView) {
+                RegisterView(isShow: $viewModel.isShowRegisterView)
+            }
+            .alert("Invalid Form", isPresented: $viewModel.isShowAlertError, presenting: viewModel.alertItem) { alertItem in
+                Button("OK") {
+                    viewModel.alertItem = nil
+                    viewModel.isShowAlertError.toggle()
+                }
+            } message: { alertItem in Text("\(alertItem.message)") }
+                .fullScreenCover(isPresented: $viewModel.isLoginSuccess) {
+                    if let user = viewModel.userInformation {
+                        MainView(sharedProfileData: SharedProfileData(user: user))
+                    }
+                }
         }
     }
     

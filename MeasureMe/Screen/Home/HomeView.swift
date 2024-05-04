@@ -10,33 +10,36 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject var viewModel: HomeViewModel = HomeViewModel()
+    @EnvironmentObject var sharedProfileData: SharedProfileData
     
     var body: some View {
-        VStack {
-            Image(.headerLogo)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 45)
-            
-            ScrollView {
-                createNavBarButtons()
+        NavigationStack {
+            VStack {
+                Image(.headerLogo)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 45)
                 
-                createStartMeasurementButton()
-                
-                createSizeRecommendationOptions()
-                
-                createRecentMeasurementResults()
+                ScrollView {
+                    createNavBarButtons()
+                    
+                    createStartMeasurementButton()
+                    
+                    createSizeRecommendationOptions()
+                    
+                    createRecentMeasurementResults()
+                }
+                .scrollIndicators(.hidden)
             }
-            .scrollIndicators(.hidden)
+            .fullScreenCover(isPresented: $viewModel.isShowNewMeasurementView)  {
+                NewMeasurementView(isShow: $viewModel.isShowNewMeasurementView)
         }
-        .fullScreenCover(isPresented: $viewModel.isShowNewMeasurementView)  {
-            NewMeasurementView(isShow: $viewModel.isShowNewMeasurementView)
         }
     }
     
     @ViewBuilder private func createNavBarButtons() -> some View {
         HStack(alignment: .center, spacing: 15) {
-            Image(.profile)
+            Image("profile-image")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .background {
@@ -48,7 +51,7 @@ struct HomeView: View {
             Group {
                 Text("Hello, ")
                 +
-                Text("\(viewModel.fullName)!")
+                Text("\(sharedProfileData.user.name)!")
                     .fontWeight(.semibold)
             }
             .font(.system(.body))
@@ -121,6 +124,9 @@ struct HomeView: View {
                 Spacer().frame(width: 20)
                 ForEach(ClothingType.allCases, id: \.self) { clothing in
                     createClothingType(of: clothing)
+                        .onTapGesture {
+                            sharedProfileData.clothingType = clothing
+                        }
                 }
                 Spacer().frame(width: 20)
             }
@@ -136,7 +142,7 @@ struct HomeView: View {
                 .font(.system(.title3, weight: .semibold))
             
             ForEach(viewModel.dummyRecentResults) { result in
-                MeasurementResult(result: result)
+                MeasurementResultList(result: result)
             }
         }
         .frame(maxWidth: .infinity)
@@ -165,9 +171,10 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .environmentObject(SharedProfileData(clothingType: .LongPants, user: User.dummyUser))
 }
 
-struct MeasurementResult: View {
+struct MeasurementResultList: View {
     let result: Result
     
     private let dateFormatter: DateFormatter = {

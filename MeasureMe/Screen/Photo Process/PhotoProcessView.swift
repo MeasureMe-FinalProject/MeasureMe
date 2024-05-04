@@ -18,34 +18,7 @@ struct PhotoProcessView: View {
             if viewModel.isShowUndetectedBodyView {
                 UndetectedBodyView(isCapturingComplete: $isCapturingComplete, capturedImages: $capturedImages)
             } else {
-                VStack {
-                    Image(.headerLogo)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 45)
-                    
-                    Spacer()
-                    
-                    Image(.photoProcessVector)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.all, 40)
-                    
-                    Text("We're Preparing Your Result")
-                        .font(.system(.title3, weight: .semibold))
-                        .padding(.bottom, 5)
-                    
-                    Text("Don't leave this screen until the processing has been completed")
-                        .font(.system(.subheadline))
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 35)
-                        .padding(.bottom)
-                    
-                    ProgressView()
-                    
-                    Spacer()
-                }
+                ProcessStateView()
             }
         }
         .onAppear { viewModel.uploadCapturedImages(capturedImages) }
@@ -60,6 +33,7 @@ struct PhotoProcessView: View {
 }
 
 #Preview {
-    PhotoProcessView(isCapturingComplete: .constant(true), capturedImages: .constant([.frontPreview1, .sidePreview1]))
+    PhotoProcessView(isCapturingComplete: .constant(true), capturedImages: .constant([UIImage(resource: .frontPreview1), UIImage(resource: .sidePreview1)]))
+        .environmentObject(SharedProfileData(height: 175, gender: .male, clothingType: .tShirt, user: .dummyUser))
 }
 

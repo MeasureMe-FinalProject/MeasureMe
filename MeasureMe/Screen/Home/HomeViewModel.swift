@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum ClothingType: CaseIterable {
+enum ClothingType: CaseIterable, Codable {
     case tShirt
     case LongPants
     case jacket
@@ -36,6 +36,19 @@ enum ClothingType: CaseIterable {
             "🧥"
         case .shortPants:
             "🩳"
+        }
+    }
+    
+    var codeName: String {
+        switch self {
+        case .tShirt:
+            "T_SHIRT"
+        case .LongPants:
+            "LONG_PANTS"
+        case .jacket:
+            "JACKET"
+        case .shortPants:
+            "SHORT_PANTS"
         }
     }
 }

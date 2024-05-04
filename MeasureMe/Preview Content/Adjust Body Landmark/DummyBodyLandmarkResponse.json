@@ -1,10 +1,10 @@
 {
   "front": {
-    "shoulder_left_coords": {
+    "shoulder_start_coords": {
       "x": 173,
       "y": 207
     },
-    "shoulder_right_coords": {
+    "shoulder_end_coords": {
       "x": 308,
       "y": 208
     },
@@ -28,19 +28,19 @@
       "x": 189,
       "y": 285
     },
-    "bust_left_coords": {
+    "bust_start_coords": {
       "x": 294,
       "y": 233
     },
-    "bust_right_coords": {
+    "bust_end_coords": {
       "x": 189,
       "y": 229
     },
-    "hip_left_coords": {
+    "hip_start_coords": {
       "x": 303,
       "y": 382
     },
-    "hip_right_coords": {
+    "hip_end_coords": {
       "x": 185,
       "y": 383
     },
@@ -66,11 +66,11 @@
     }
   },
   "side": {
-    "bust_left_coords": {
+    "bust_start_coords": {
       "x": 236,
       "y": 188
     },
-    "bust_right_coords": {
+    "bust_end_coords": {
       "x": 295,
       "y": 201
     },
@@ -82,11 +82,11 @@
       "x": 216,
       "y": 255
     },
-    "hip_left_coords": {
+    "hip_start_coords": {
       "x": 299,
       "y": 360
     },
-    "hip_right_coords": {
+    "hip_end_coords": {
       "x": 211,
       "y": 376
     },

@@ -28,7 +28,7 @@ class Camera: NSObject, AVCapturePhotoCaptureDelegate {
         }
     }
     
-    func checkCameraStatus() {
+    func checkCameraPermission() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { [weak self] isGranted in

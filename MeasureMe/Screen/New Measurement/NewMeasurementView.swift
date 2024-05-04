@@ -31,6 +31,7 @@ struct NewMeasurementView: View {
             }
         }
         .fullScreenCover(isPresented: $viewModel.isShowPhotoCaptureView) {
+//            PhotoProcessView(isCapturingComplete: $isShow, capturedImages: .constant([.frontPreview2, .sidePreview2]))
             PhotoCaptureView(isShow: $viewModel.isShowPhotoCaptureView)
         }
     }
@@ -189,7 +190,7 @@ struct NewMeasurementView: View {
             .shadow(color: .black.opacity(0.075), radius: 3, y: 4)
             .frame(height: 100)
             .overlay(alignment: .bottom) {
-                Text("History")
+                Text("New Measurement")
                     .font(.system(.body, weight: .semibold))
                     .frame(maxWidth: .infinity)
                     .padding(.bottom)
@@ -214,12 +215,14 @@ struct NewMeasurementView: View {
 
 #Preview {
     NewMeasurementView(isShow: .constant(true))
+        .environmentObject(SharedProfileData(user: User.dummyUser))
 }
 
 struct GenderCard: View {
     
     let gender: GenderType
     @Binding var selectedGender: GenderType?
+    @EnvironmentObject var sharedProfileData: SharedProfileData
     
     var isSelectedGender: Bool {
         selectedGender == gender
@@ -256,6 +259,7 @@ struct GenderCard: View {
             .padding([gender == GenderType.male ? .leading : .trailing, .bottom])
             .frame(width: 175, height: 200)
             .onTapGesture {
+                sharedProfileData.gender = gender
                 withAnimation {
                     selectedGender = gender
                 }
@@ -267,6 +271,7 @@ struct HeightSlider: View {
     @State private var rulerOffset: CGSize = CGSize(width: 0, height: -1660)
     @State private var previousTranslation: CGSize = .zero
     @Binding var height: Int
+    @EnvironmentObject var sharedProfileData: SharedProfileData
     
     var body: some View {
         ZStack {
@@ -319,11 +324,15 @@ struct HeightSlider: View {
                         rulerOffset.height = min(max(rulerOffset.height, -2000), 1)
                         
                         height = abs(Int(rulerOffset.height / 10))
+                        sharedProfileData.height = height
+                        print(sharedProfileData.height)
                     }
                 }
                 .onEnded{ _ in
                     previousTranslation = .zero
                     height = abs(Int(rulerOffset.height / 10))
+                    sharedProfileData.height = height
+                    print(sharedProfileData.height)
                 }
         )
     }

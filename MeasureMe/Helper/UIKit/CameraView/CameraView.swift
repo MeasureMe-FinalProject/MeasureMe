@@ -47,7 +47,7 @@ struct CameraView: UIViewControllerRepresentable {
         if isCapturingPhotoComplete {
             cameraViewController.camera.stopCaptureSession()
         } else {
-            cameraViewController.camera.checkCameraStatus()
+            cameraViewController.camera.checkCameraPermission()
         }
     }
 }

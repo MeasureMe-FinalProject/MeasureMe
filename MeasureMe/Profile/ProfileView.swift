@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
     var body: some View {
-        Text("Profile")
+        NavigationStack {
+            NavigationLink {
+                LoginView()
+                    .onAppear {UserDefaults.standard.removeObject(forKey: "user")}
+                    .toolbar(.hidden, for: .tabBar)
+                    .navigationBarBackButtonHidden()
+            } label: {
+                Text("Logout")
+            }
+        }
     }
 }
 

@@ -11,6 +11,9 @@ struct User: Codable {
     let id: Int
     let name: String
     let email: String
-    let mobile: String
     let password: String
+}
+
+extension User {
+    static var dummyUser: User = User(id: 1, name: "diki", email: "dikidwid0@gmail.com", password: "adadeh")
 }

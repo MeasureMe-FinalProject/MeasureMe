@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GenderType: CaseIterable {
+enum GenderType: CaseIterable, Codable {
     case male
     case female
     
@@ -26,6 +26,15 @@ enum GenderType: CaseIterable {
             "male-gender-vector"
         case .female:
             "female-gender-vector"
+        }
+    }
+    
+    var codeName: String {
+        switch self {
+        case .male:
+            "MALE"
+        case .female:
+            "FEMALE"
         }
     }
 }
