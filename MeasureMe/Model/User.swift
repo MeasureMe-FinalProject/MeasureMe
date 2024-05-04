@@ -15,5 +15,5 @@ struct User: Codable {
 }
 
 extension User {
-    static var dummyUser: User = User(id: 1, name: "diki", email: "dikidwid0@gmail.com", password: "adadeh")
+    static var dummyUser: User = User(id: 1, name: "Diki Dwi Diro", email: "dikidwid0@gmail.com", password: "adadeh")
 }

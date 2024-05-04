@@ -7,7 +7,12 @@
 
 import UIKit
 
-enum ClothingType: CaseIterable, Codable {
+enum ClothingType: CaseIterable, Codable, Identifiable {
+    var id: Self {
+
+          return self
+      }
+    
     case tShirt
     case LongPants
     case jacket
@@ -57,6 +62,7 @@ enum ClothingType: CaseIterable, Codable {
 final class HomeViewModel: ObservableObject {
     @Published var fullName: String = "Diki"
     @Published var isShowNewMeasurementView: Bool = false
+    @Published var selectedClothingType: String = ""
     
     let dummyRecentResults: [Result] = [
         Result(name: "Body Measurement", icon: "📐", date: .now),

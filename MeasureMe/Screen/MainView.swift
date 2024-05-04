@@ -30,7 +30,7 @@ struct MainView: View {
             
             ProfileView()
                 .tag(Tab.Profile)
-                .tabItem { Label("Profile", systemImage: "person.crop.circle.fill") }
+                .tabItem { Label("Profile", systemImage: "person.fill") }
         }
         .environmentObject(sharedProfileData)
         
