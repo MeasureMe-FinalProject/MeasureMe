@@ -33,10 +33,9 @@ struct MainView: View {
                 .tabItem { Label("Profile", systemImage: "person.fill") }
         }
         .environmentObject(sharedProfileData)
-        
     }
 }
 
 #Preview {
-    MainView(sharedProfileData: SharedProfileData(user: .dummyUser))
+    MainView(sharedProfileData: SharedProfileData(height: 163, gender: .male,user: .dummyUser))
 }
