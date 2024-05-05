@@ -18,7 +18,12 @@
 		3A11ECCE2BC3FCC0004140F7 /* MeasurementResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A11ECCD2BC3FCC0004140F7 /* MeasurementResultViewModel.swift */; };
 		3A11ECD12BC3FDE7004140F7 /* MeasurementDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A11ECD02BC3FDE7004140F7 /* MeasurementDetail.swift */; };
 		3A11ECD32BC3FE12004140F7 /* BodyPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A11ECD22BC3FE12004140F7 /* BodyPart.swift */; };
-		3A3929482BE518EC0038746C /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3929472BE518EC0038746C /* SwiftUIView.swift */; };
+		3A39294C2BE626F30038746C /* MountainShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A39294B2BE626F30038746C /* MountainShapeView.swift */; };
+		3A39294E2BE649AB0038746C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A39294D2BE649AB0038746C /* ProfileViewModel.swift */; };
+		3A3929512BE64DAF0038746C /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3929502BE64DAF0038746C /* EditProfileView.swift */; };
+		3A3929532BE64ED90038746C /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3929522BE64ED90038746C /* EditProfileViewModel.swift */; };
+		3A3929562BE674CB0038746C /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3929552BE674CB0038746C /* ChangePasswordView.swift */; };
+		3A3929582BE6795D0038746C /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3929572BE6795D0038746C /* ChangePasswordViewModel.swift */; };
 		3A54D9022B935DC800B22696 /* MeasureMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D9012B935DC800B22696 /* MeasureMeApp.swift */; };
 		3A54D9062B935DCA00B22696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A54D9052B935DCA00B22696 /* Assets.xcassets */; };
 		3A54D9092B935DCA00B22696 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A54D9082B935DCA00B22696 /* Preview Assets.xcassets */; };
@@ -77,7 +82,12 @@
 		3A11ECCD2BC3FCC0004140F7 /* MeasurementResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResultViewModel.swift; sourceTree = "<group>"; };
 		3A11ECD02BC3FDE7004140F7 /* MeasurementDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementDetail.swift; sourceTree = "<group>"; };
 		3A11ECD22BC3FE12004140F7 /* BodyPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPart.swift; sourceTree = "<group>"; };
-		3A3929472BE518EC0038746C /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		3A39294B2BE626F30038746C /* MountainShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountainShapeView.swift; sourceTree = "<group>"; };
+		3A39294D2BE649AB0038746C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		3A3929502BE64DAF0038746C /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		3A3929522BE64ED90038746C /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		3A3929552BE674CB0038746C /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		3A3929572BE6795D0038746C /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		3A54D8FE2B935DC800B22696 /* MeasureMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeasureMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A54D9012B935DC800B22696 /* MeasureMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureMeApp.swift; sourceTree = "<group>"; };
 		3A54D9052B935DCA00B22696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -158,10 +168,28 @@
 		3A11ECC82BC3C6F1004140F7 /* Measurement Result */ = {
 			isa = PBXGroup;
 			children = (
-				3A11ECC92BC3C71A004140F7 /* MeasurementResultView.swift */,
 				3A11ECCD2BC3FCC0004140F7 /* MeasurementResultViewModel.swift */,
+				3A11ECC92BC3C71A004140F7 /* MeasurementResultView.swift */,
 			);
 			path = "Measurement Result";
+			sourceTree = "<group>";
+		};
+		3A39294F2BE64D8B0038746C /* Edit Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3A3929522BE64ED90038746C /* EditProfileViewModel.swift */,
+				3A3929502BE64DAF0038746C /* EditProfileView.swift */,
+			);
+			path = "Edit Profile";
+			sourceTree = "<group>";
+		};
+		3A3929542BE674A50038746C /* Change Password */ = {
+			isa = PBXGroup;
+			children = (
+				3A3929572BE6795D0038746C /* ChangePasswordViewModel.swift */,
+				3A3929552BE674CB0038746C /* ChangePasswordView.swift */,
+			);
+			path = "Change Password";
 			sourceTree = "<group>";
 		};
 		3A54D8F52B935DC800B22696 = {
@@ -188,7 +216,6 @@
 				3AC21F942B936885008E87FF /* Helper */,
 				3A54D9182B935EF500B22696 /* Model */,
 				3A54D9162B935EE200B22696 /* Screen */,
-				3A54D9252B9360DD00B22696 /* Profile */,
 				3A54D9052B935DCA00B22696 /* Assets.xcassets */,
 				3A54D9072B935DCA00B22696 /* Preview Content */,
 			);
@@ -222,7 +249,9 @@
 				3A11ECC82BC3C6F1004140F7 /* Measurement Result */,
 				3AE41D322BD9CC9B00D7751E /* Measurement Result Detail */,
 				3A54D9242B9360D600B22696 /* History */,
-				3A3929472BE518EC0038746C /* SwiftUIView.swift */,
+				3A54D9252B9360DD00B22696 /* Profile */,
+				3A39294F2BE64D8B0038746C /* Edit Profile */,
+				3A3929542BE674A50038746C /* Change Password */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -266,8 +295,8 @@
 		3A54D9242B9360D600B22696 /* History */ = {
 			isa = PBXGroup;
 			children = (
-				3A54D9262B9360F400B22696 /* HistoryView.swift */,
 				3A8543292B9F20BA007D6449 /* HistoryViewModel.swift */,
+				3A54D9262B9360F400B22696 /* HistoryView.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -275,7 +304,9 @@
 		3A54D9252B9360DD00B22696 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				3A39294D2BE649AB0038746C /* ProfileViewModel.swift */,
 				3A54D9282B9360FA00B22696 /* ProfileView.swift */,
+				3A39294B2BE626F30038746C /* MountainShapeView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -435,7 +466,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					3A54D8FD2B935DC800B22696 = {
@@ -492,7 +523,9 @@
 				3A827CC62B9B0D4C0090836D /* RegisterViewModel.swift in Sources */,
 				3A54D91B2B935F0200B22696 /* OnBoardingView.swift in Sources */,
 				3AC21F9C2B9368A7008E87FF /* CameraViewController.swift in Sources */,
+				3A39294E2BE649AB0038746C /* ProfileViewModel.swift in Sources */,
 				3A54D9292B9360FA00B22696 /* ProfileView.swift in Sources */,
+				3A3929562BE674CB0038746C /* ChangePasswordView.swift in Sources */,
 				3AC21FA02B937BD6008E87FF /* PhotoProcessView.swift in Sources */,
 				3A11ECD32BC3FE12004140F7 /* BodyPart.swift in Sources */,
 				3AC21F9A2B9368A7008E87FF /* CameraView.swift in Sources */,
@@ -500,20 +533,23 @@
 				3AC21F8C2B93660E008E87FF /* NewMeasurementView.swift in Sources */,
 				3AC21FA22B937BE3008E87FF /* PhotoProcessViewModel.swift in Sources */,
 				3A795F182BD65C52007A630A /* SharedProfileData.swift in Sources */,
+				3A3929532BE64ED90038746C /* EditProfileViewModel.swift in Sources */,
 				3A0713A82B938BB2005D6535 /* AdjustBodyLandmarkView.swift in Sources */,
+				3A3929582BE6795D0038746C /* ChangePasswordViewModel.swift in Sources */,
 				3A0713A42B938AD4005D6535 /* HelpAdjustBodyLandmark.swift in Sources */,
 				3A7D0F762BD8677900D1E488 /* ProcessStateView.swift in Sources */,
 				3AE41D312BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift in Sources */,
 				3A795F112BD0DEB5007A630A /* MeasurementResultDetailViewModel.swift in Sources */,
-				3A3929482BE518EC0038746C /* SwiftUIView.swift in Sources */,
 				3AC21F8E2B936617008E87FF /* NewMeasurementViewModel.swift in Sources */,
 				3A11ECD12BC3FDE7004140F7 /* MeasurementDetail.swift in Sources */,
+				3A39294C2BE626F30038746C /* MountainShapeView.swift in Sources */,
 				3A795F132BD275BC007A630A /* AdjustBodyLandmark.swift in Sources */,
 				3A6BD2FB2B9DDB1300400BA4 /* Alert.swift in Sources */,
 				3AC21FAC2B937C8B008E87FF /* BodyLandmark.swift in Sources */,
 				3AC21FAA2B937C73008E87FF /* Data+Ext.swift in Sources */,
 				3A54D91C2B935F0200B22696 /* OnBoardingViewModel.swift in Sources */,
 				3A6BD2FD2B9DF16000400BA4 /* String+Ext.swift in Sources */,
+				3A3929512BE64DAF0038746C /* EditProfileView.swift in Sources */,
 				3AC21FA62B937C35008E87FF /* NetworkManager.swift in Sources */,
 				3A827CBD2B9AF5AC0090836D /* LoginView.swift in Sources */,
 				3A827CC32B9B0AFE0090836D /* LoginViewModel.swift in Sources */,

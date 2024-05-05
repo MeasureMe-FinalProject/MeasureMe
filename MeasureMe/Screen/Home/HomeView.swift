@@ -152,6 +152,7 @@ struct HomeView: View {
                     } label: {
                         createClothingType(of: clothing)
                     }
+                    .accessibilityIdentifier(clothing == .tShirt ? "tShirt" : "")
                 }
                 Spacer().frame(width: 20)
             }
@@ -175,7 +176,7 @@ struct HomeView: View {
         .padding([.horizontal, .bottom], 30)
     }
     
-    @ViewBuilder private func createClothingType(of clothing: ClothingType) -> some View {
+    @ViewBuilder func createClothingType(of clothing: ClothingType) -> some View {
         RoundedRectangle(cornerRadius: 12)
             .stroke(lineWidth: 2)
             .fill(.primary.opacity(0.1))
