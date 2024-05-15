@@ -99,17 +99,18 @@ struct AdjustBodyLandmarkView: View {
             .foregroundStyle(Color.primary.opacity(0.8))
             .padding([.horizontal])
         }
-        .blur(radius: viewModel.isShowHelpPopup ? 3 : 0)
         .overlay {
             if viewModel.isShowHelpPopup {
                 showHelpAdjustBodyLandmark()
             }
         }
+        .animation(.easeInOut, value: viewModel.isShowHelpPopup)
         .onAppear {
             viewModel.loadBlurredFaceImage(fromURLString: viewModel.bodyLandmarkResponse.frontPath)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 viewModel.convertBodyLandmarkCoordinates()
+                    viewModel.isShowHelpPopup = true
             }
         }
         .fullScreenCover(isPresented: $viewModel.isShowBodyLandmarkProcessView) {
@@ -143,7 +144,7 @@ struct AdjustBodyLandmarkView: View {
     
     @ViewBuilder private func showHelpAdjustBodyLandmark() -> some View {
         ZStack {
-            Color.black.opacity(0.3)
+            Color.black.opacity(0.6)
                 .ignoresSafeArea()
             
             ZStack {
@@ -240,56 +241,6 @@ struct AdjustBodyLandmarkView: View {
 
 #Preview {
     AdjustBodyLandmarkView(viewModel: AdjustBodyLandmarkViewModel(bodyLandmarkResponse: BodyLandmarkResponse.dummyBodyLandmarkResponse, capturedImages: [UIImage(resource: .frontPreview1), UIImage(resource: .sidePreview1)]))
-}
-
-struct DraggableLandmark: View {
-    
-    let bodyLandmark: BodyLandmark
-    var onChanged: ((CGSize, BodyLandmark) -> Void)?
-    @State private var dragAmount: CGSize = .zero
-    private var isTopBodyLandmark: Bool { bodyLandmark.landmark == .top }
-    private var isBottomBodyLandmark: Bool { bodyLandmark.landmark == .bot }
-    
-    var dragGesture: some Gesture {
-        DragGesture()
-            .onChanged { newValue in
-                dragAmount = newValue.translation
-                onChanged?(dragAmount, bodyLandmark)
-                print(dragAmount)
-            }
-            .onEnded { _ in
-                withAnimation {
-                    onChanged?(dragAmount, bodyLandmark)
-                    dragAmount = .zero
-                }
-            }
-    }
-    
-    var body: some View {
-        ZStack {
-            Text(bodyLandmark.landmark.name)
-                .font(.system(.caption2, weight: .semibold))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 5)
-                .padding(.vertical, 2.5)
-                .background {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(.blue)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(lineWidth: 1.5).fill(.white)
-                        }
-                }
-                .opacity(isTopBodyLandmark || isBottomBodyLandmark ? 1 : 0)
-                .offset(y: isTopBodyLandmark ? -15 : isBottomBodyLandmark ? 15 : 0)
-            
-            Circle()
-                .fill(.blue)
-                .frame(width: 10, height: 10)
-        }
-        .offset(dragAmount)
-        .gesture(dragGesture)
-    }
 }
 
 struct SizeCalculator: ViewModifier {

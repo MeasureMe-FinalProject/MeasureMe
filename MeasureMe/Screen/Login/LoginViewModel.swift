@@ -48,8 +48,6 @@ final class LoginViewModel: ObservableObject {
                     self.alertItem = AuthenticationAlert.invalidUser
                     self.isShowAlertError = true
                     print("error kocak")
-                    
-//                    print(response?.email)
                 }
                 return
             }

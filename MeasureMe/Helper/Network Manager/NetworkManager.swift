@@ -12,7 +12,7 @@ class NetworkManager {
     
     private init() {}
     
-    private let aiBaseURL = "http://192.168.1.103:8000"
+    private let aiBaseURL = "http://103.186.31.38:55678"
     private let authenticationBaseURL = "https://measureme.mutijayasejahtera.com"
     private let cacheImage = NSCache<NSString, UIImage>()
     
@@ -22,6 +22,8 @@ class NetworkManager {
         case processImage
         case getImage
         case measureResult
+        case recentMeasurementResults
+        case saveMeasurementResult
         
         var url: String {
             switch self {
@@ -35,8 +37,119 @@ class NetworkManager {
                 "/get_images/?file_path="
             case .measureResult:
                 "/measure_result"
+            case .recentMeasurementResults:
+                "/get_all_measurement.php"
+            case .saveMeasurementResult:
+                "/save_measure.php"
             }
         }
+    }
+    
+    func saveMeasurementResult(_ measurementResultResponse: MeasurementResultResponse, of user: User, with clothingType: ClothingType, completed: @escaping (StatusResponse?) -> Void ) {
+        
+        let measurementResult = measurementResultResponse.measurementResult
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy, HH:mm"
+        let currentDate = dateFormatter.string(from: Date())
+        
+        var requestBodyComponents = URLComponents()
+        requestBodyComponents.queryItems = [URLQueryItem(name: "id_user", value: String(user.id)),
+                                            URLQueryItem(name: "height", value: String(measurementResult.height)),
+                                            URLQueryItem(name: "size_recommendation", value: measurementResultResponse.sizeRecommendation),
+                                            URLQueryItem(name: "bust_circumference", value: String(measurementResult.bustCircumference)),
+                                            URLQueryItem(name: "waist_circumference", value: String(measurementResult.waistCircumference)),
+                                            URLQueryItem(name: "hip_circumference", value: String(measurementResult.hipCircumference)),
+                                            URLQueryItem(name: "shoulder_width", value: String(measurementResult.shoulderWidth)),
+                                            URLQueryItem(name: "sleeve_length", value: String(measurementResult.sleeveLength)),
+                                            URLQueryItem(name: "pants_length", value: String(measurementResult.pantsLength)),
+                                            URLQueryItem(name: "date", value: currentDate),
+                                            URLQueryItem(name: "type_clothes", value: clothingType.name),
+        ]
+        
+        let urlString = authenticationBaseURL + EndPoint.saveMeasurementResult.url
+        guard let url = URL(string: urlString) else { return }
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = requestBodyComponents.query?.data(using: .utf8)
+        
+        print(String(data: request.httpBody!, encoding: .utf8))
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error  {
+                print(error.localizedDescription)
+            }
+            
+            guard let data else {
+                print("No response data, server is unavailable right now. Please try again later")
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                print("Unknown response")
+                return
+            }
+            
+            print("Status Code: \(httpResponse.statusCode)")
+                        
+            do {
+                let decoder = JSONDecoder()
+                let statusResponse = try decoder.decode(StatusResponse.self, from: data)
+                completed(statusResponse)
+                return
+            } catch {
+                print("Error decoding: \(error.localizedDescription)")
+                completed(nil)
+                return
+            }
+        }
+        task.resume()
+    }
+    
+    func getRecentMeasurementResults(of user: User, completed: @escaping ([RecentMeasurementResult]?, HTTPURLResponse) -> Void) {
+        var requestBodyComponents = URLComponents()
+        requestBodyComponents.queryItems = [URLQueryItem(name: "id_user", value: String(user.id))]
+        
+        let urlString = authenticationBaseURL + EndPoint.recentMeasurementResults.url
+        guard let url = URL(string: urlString) else { return }
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = requestBodyComponents.query?.data(using: .utf8)
+                
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error  {
+                print(error.localizedDescription)
+            }
+            
+            guard let data else {
+                print("No response data, server is unavailable right now. Please try again later")
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                print("Unknown response")
+                return
+            }
+            
+            print("Status Code: \(httpResponse.statusCode)")
+                        
+            do {
+                let decoder = JSONDecoder()
+                let recentMeasurementResultResponse = try decoder.decode(RecentMeasurementResultResponse.self, from: data)
+                let measurementResults = recentMeasurementResultResponse.measurementResults
+                completed(measurementResults, httpResponse)
+                return
+            } catch {
+                print("Error decoding: \(error.localizedDescription)")
+                completed(nil, httpResponse)
+                return
+            }
+        }
+        task.resume()
     }
     
     func makeSignInRequest(email: String, password: String, completed: @escaping (User?) -> Void) {
@@ -50,6 +163,8 @@ class NetworkManager {
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpBody = requestBodyComponents.query?.data(using: .utf8)
+        
+        print(String(describing: String(data: request.httpBody!, encoding: .utf8)))
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error  {
@@ -72,10 +187,14 @@ class NetworkManager {
             
             do {
                 let decoder = JSONDecoder()
-                let loginResponse = try decoder.decode(User.self, from: data)
+                let loginResponse = try decoder.decode(LoginResponse.self, from: data)
                 print("Login response: \(loginResponse)")
+                
+                let user = User(id: loginResponse.user.id,
+                                name: loginResponse.user.name,
+                                email: loginResponse.user.email)
 
-                completed(loginResponse)
+                completed(user)
                 return
             } catch {
                 print("Error decoding: \(error.localizedDescription)")
@@ -87,7 +206,7 @@ class NetworkManager {
         task.resume()
     }
     
-    func makeSignUpRequest(name: String, email: String, password: String, completed: @escaping (RegisterResponse?) -> Void) {
+    func makeSignUpRequest(name: String, email: String, password: String, completed: @escaping (StatusResponse?, HTTPURLResponse?) -> Void) {
         var requestBodyComponents = URLComponents()
     
         requestBodyComponents.queryItems = [URLQueryItem(name: "name", value: name),
@@ -97,7 +216,7 @@ class NetworkManager {
         
         
         let urlString = authenticationBaseURL + EndPoint.signUp.url
-        guard let url = URL(string: urlString) else { return completed(nil) }
+        guard let url = URL(string: urlString) else { return completed(nil, nil) }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -127,12 +246,12 @@ class NetworkManager {
             do {
                 let decoder = JSONDecoder()
 #warning("I suggest to receive only the status code of the event, because we don't use any data from this response")
-                let registerResponse = try decoder.decode(RegisterResponse.self, from: data)
-                completed(registerResponse)
+                let registerResponse = try decoder.decode(StatusResponse.self, from: data)
+                completed(registerResponse, httpResponse)
                 return
             } catch {
                 print("Error decoding: \(error.localizedDescription)")
-                completed(nil)
+                completed(nil, httpResponse)
                 return
             }
             
@@ -145,7 +264,9 @@ class NetworkManager {
         let adjustedBodyLandmark: AdjustedBodyLandmarkResponse = AdjustedBodyLandmarkResponse(actualHeight: height,
                                                                                               gender: gender,
                                                                                               clothingType: clothingType,
-                                                                                              adjustedKeypoints: AdjustedBodyLandmarkResponse.AdjustedKeypoints(front: front, side: side))
+                                                                                              adjustedKeypoints: AdjustedBodyLandmarkResponse.AdjustedKeypoints(
+                                                                                                front: front,
+                                                                                                side: side))
         
         let data = try? JSONEncoder().encode(adjustedBodyLandmark)
 

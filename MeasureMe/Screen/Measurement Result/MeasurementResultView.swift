@@ -45,7 +45,7 @@ struct MeasurementResultView: View {
                 
                 createSeeMoreButton()
                 
-                createCloseButton()
+                createDoneButton()
             }
             .scrollIndicators(.hidden)
             .padding(.horizontal)
@@ -73,6 +73,8 @@ struct MeasurementResultView: View {
             DispatchQueue.main.async {
                 let image = measurementResultShareView.snapshot()
                 viewModel.measurementResultImage = Image(uiImage: image)
+                
+                viewModel.saveMeasurementResult(of: sharedProfileData.user, with: sharedProfileData.clothingType!)
             }
         }
     }
@@ -141,7 +143,7 @@ struct MeasurementResultView: View {
                     
                     Spacer()
                     
-                    Text("\(sharedProfileData.height!) cm")
+                    Text("\(sharedProfileData.height) cm")
                     
                 }
             }
@@ -164,9 +166,12 @@ struct MeasurementResultView: View {
         .frame(maxWidth: .infinity, alignment: .center)
     }
     
-    @ViewBuilder func createCloseButton() -> some View {
+    @ViewBuilder func createDoneButton() -> some View {
         Button {
-
+            NetworkManager.shared.getRecentMeasurementResults(of: sharedProfileData.user) { response, _ in
+                sharedProfileData.measurementResults = response
+            }
+            sharedProfileData.isMeasurementFinished = false
         } label: {
             Text("Done")
                 .foregroundStyle(.background)
@@ -183,5 +188,5 @@ struct MeasurementResultView: View {
 
 #Preview {
     MeasurementResultView(viewModel: MeasurementResultViewModel(measurementResultResponse: MeasurementResultResponse.dummyMeasurementResultResponse))
-        .environmentObject(SharedProfileData(height: 169, gender: .male, clothingType: .LongPants, user: .dummyUser))
+        .environmentObject(SharedProfileData(gender: .male, clothingType: .LongPants, user: .dummyUser))
 }

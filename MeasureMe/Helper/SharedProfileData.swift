@@ -8,16 +8,19 @@
 import Foundation
 
 final class SharedProfileData: ObservableObject {
-    @Published var height: Int?
+    @Published var height: Int = 166
     @Published var gender: GenderType?
     @Published var clothingType: ClothingType?
     
-    @Published var user: User
+    @Published var isMeasurementFinished: Bool = false
     
-    init(height: Int? = nil, gender: GenderType? = nil, clothingType: ClothingType? = nil, user: User) {
-        self.height = height
+    @Published var user: User
+    @Published var measurementResults: [RecentMeasurementResult]?
+    
+    init(gender: GenderType? = nil, clothingType: ClothingType? = nil, user: User, measurementResults: [RecentMeasurementResult]? = nil) {
         self.gender = gender
         self.clothingType = clothingType
         self.user = user
+        self.measurementResults = measurementResults
     }
 }

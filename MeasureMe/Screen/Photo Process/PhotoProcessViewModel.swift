@@ -26,7 +26,7 @@ final class PhotoProcessViewModel: ObservableObject {
                     }
                 }
                 print("success")
-            case 500:
+            case 422:
                 DispatchQueue.main.async {[self] in
                     withAnimation {
                         isShowUndetectedBodyView = true
@@ -36,7 +36,6 @@ final class PhotoProcessViewModel: ObservableObject {
             default:
                 print("Unknown http status code")
             }
-            
         }
     }
 }

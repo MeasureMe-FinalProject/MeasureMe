@@ -34,6 +34,6 @@ struct PhotoProcessView: View {
 
 #Preview {
     PhotoProcessView(isCapturingComplete: .constant(true), capturedImages: .constant([UIImage(resource: .frontPreview1), UIImage(resource: .sidePreview1)]))
-        .environmentObject(SharedProfileData(height: 175, gender: .male, clothingType: .tShirt, user: .dummyUser))
+        .environmentObject(SharedProfileData(gender: .male, clothingType: .tShirt, user: .dummyUser))
 }
 

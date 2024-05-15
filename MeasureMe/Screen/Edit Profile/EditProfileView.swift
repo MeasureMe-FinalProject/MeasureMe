@@ -52,8 +52,7 @@ struct EditProfileView: View {
         Button {
             let user = User(id: sharedProfileData.user.id,
                             name: viewModel.name,
-                            email: viewModel.email,
-                            password: sharedProfileData.user.password)
+                            email: viewModel.email)
             
             sharedProfileData.user = user
             viewModel.isShowSuccessAlert = true

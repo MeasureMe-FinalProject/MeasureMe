@@ -13,7 +13,6 @@ struct MeasurementResultResponse: Codable, Identifiable {
     let measurementResult: MeasurementResult
     let sizeRecommendation: String
     
-    
     enum CodingKeys: String, CodingKey {
         case measurementResult       = "measurement_result"
         case sizeRecommendation      = "size_recommendation"

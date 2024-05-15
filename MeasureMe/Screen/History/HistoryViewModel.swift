@@ -11,35 +11,64 @@ import SwiftUI
 final class HistoryViewModel: ObservableObject {
     
     @Published var isShowRemoveButton: Bool = false
+    @Published var recentMeasurementResults: [RecentMeasurementResult]?
+    @Published var measurementResultMonths: [String]?
+    @Published var isShowEmptyStateView: Bool = false
     
-    @Published var dummyRecentResults: [Result] = [
-        Result(name: "Body Measurement", icon: "📐", date: .now),
-        Result(name: "Body Measurement", icon: "📐", date: .now),
-        Result(name: "Size Recommendation", icon: "👕", date: .now),
-        Result(name: "Size Recommendation", icon: "🩳", date: .now + 2000000),
-        Result(name: "Size Recommendation", icon: "👖", date: .now + 4000000),
-        Result(name: "Size Recommendation", icon: "🧥", date: .now + 6000000),
-        Result(name: "Body Measurement", icon: "📐", date: .now + 6500000),
-        Result(name: "Size Recommendation", icon: "👕", date: .now + 6600000),
-        Result(name: "Size Recommendation", icon: "👖", date: .now + 10000000),
-        Result(name: "Size Recommendation", icon: "👕", date: .distantFuture),
-        Result(name: "Size Recommendation", icon: "🩳", date: .distantFuture)
-
-    ].sorted { $0.date.compare($1.date) == .orderedDescending }
+    init(measurementResults: [RecentMeasurementResult]?) {
+        if let measurementResults {
+            self.recentMeasurementResults = Array(measurementResults.sorted(by: { $0.id > $1.id }))
+            if let recentMeasurementResults {
+                self.measurementResultMonths = recentMeasurementResults.map({ getMonth(from: $0.date) })
+            }
+        }
+    }
     
-    var dateFormatter: DateFormatter {
+    func getMonth(from dateString: String) -> String {
+        // Convert String to Date
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM"
-        return dateFormatter
+        dateFormatter.dateFormat = "dd-MM-yyyy, HH:mm"
+
+        guard let date = dateFormatter.date(from: dateString) else { return ""}
+        
+        // Date to Month(String)
+        let dateToMonthFormatter = DateFormatter()
+        dateToMonthFormatter.dateFormat = "MMMM"
+        let month = dateToMonthFormatter.string(from: date)
+                
+        return month
     }
     
-    var measurementResultMonths: [String] {
-        dummyRecentResults.map { dateFormatter.string(from: $0.date)}
-    }
+//    func getRecentMeasurementResult(user: User) {
+//        NetworkManager.shared.getRecentMeasurementResults(of: user) { [self] response, httpURLResponse in
+//            switch httpURLResponse.statusCode {
+//            case 200:
+//                DispatchQueue.main.async { [self] in
+//                    guard let response else { return }
+//                    recentMeasurementResults = Array(response.sorted(by: { $0.id > $1.id }))
+//                    if let recentMeasurementResults = recentMeasurementResults {
+//                        measurementResultMonths = recentMeasurementResults.map({ self.getMonth(from: $0.date) })
+//                    }
+//                }
+//            case 404:
+//                DispatchQueue.main.async { [self] in
+//                    isShowEmptyStateView = true
+//                }
+//            default:
+//                break
+//            }
+//        }
+//    }
     
-    func remove(measurementResult: Result, from history: Binding<[Result]>) {
-        if let index = history.wrappedValue.firstIndex(of: measurementResult) {
-            history.wrappedValue.remove(at: index)
+    #warning("It needs an API for removing the measurementResult on DB")
+    func remove(measurementResult: RecentMeasurementResult) {
+        if let recentMeasurementResults {
+            if let index = recentMeasurementResults.firstIndex(of: measurementResult) {
+                self.recentMeasurementResults?.remove(at: index)
+                if recentMeasurementResults.count == 1 {
+                    self.measurementResultMonths?.removeAll()
+                }
+            }
         }
     }
 }

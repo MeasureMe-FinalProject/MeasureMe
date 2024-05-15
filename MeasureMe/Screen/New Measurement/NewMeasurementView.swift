@@ -24,21 +24,19 @@ struct NewMeasurementView: View {
                 createNextButton()
             }
         }
-//        .blur(radius: viewModel.isShowPrivacyMeassage ? 3 : 0)
         .overlay {
             if viewModel.isShowPrivacyMeassage {
                 showPrivacyMessagePopup()
             }
         }
         .fullScreenCover(isPresented: $viewModel.isShowPhotoCaptureView) {
-//            PhotoProcessView(isCapturingComplete: $isShow, capturedImages: .constant([.frontPreview2, .sidePreview2]))
             PhotoCaptureView(isShow: $viewModel.isShowPhotoCaptureView)
         }
     }
     
     @ViewBuilder private func showPrivacyMessagePopup() -> some View {
         ZStack {
-            Color.black.opacity(0.5)
+            Color.black.opacity(0.6)
                 .ignoresSafeArea()
             
             ZStack {

@@ -58,7 +58,7 @@ final class PhotoCaptureViewModel: ObservableObject {
     let countdownTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @Published var isPreparingComplete: Bool = false
     var prepareTimeRemaining: Int = 2
-    @Published var captureTimeRemaining: Int = 3
+    @Published var captureTimeRemaining: Int = 10 
     @Published var isCapturePhoto: Bool = false
     @Published var isCapturingPhotoComplete: Bool = false
     @Published var capturedImages: [UIImage] = []
@@ -151,7 +151,7 @@ final class PhotoCaptureViewModel: ObservableObject {
     private func resetCountdownTimer() {
         withAnimation {
             prepareTimeRemaining = 2
-            captureTimeRemaining = 3
+            captureTimeRemaining = 10
             isPreparingComplete = false
         }
     }

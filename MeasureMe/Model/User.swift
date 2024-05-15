@@ -11,9 +11,14 @@ struct User: Codable {
     let id: Int
     let name: String
     let email: String
-    let password: String
 }
 
 extension User {
-    static var dummyUser: User = User(id: 1, name: "Diki Dwi Diro", email: "dikidwid0@gmail.com", password: "adadeh")
+    static var dummyUser: User = User(id: 42, name: "Diki Dwi Diro", email: "dikidwid0@gmail.com")
+}
+
+struct LoginResponse: Codable {
+    let status: String
+    let message: String
+    let user: User
 }

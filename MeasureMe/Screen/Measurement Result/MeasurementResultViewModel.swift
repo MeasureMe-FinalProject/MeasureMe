@@ -15,6 +15,7 @@ final class MeasurementResultViewModel: ObservableObject {
     
     let measurementDetail: MeasurementDetail
     let sizeRecommendation: String
+    let measurementResultResponse: MeasurementResultResponse
 
     init(measurementResultResponse: MeasurementResultResponse) {
         let waist = measurementResultResponse.measurementResult.waistCircumference
@@ -31,6 +32,7 @@ final class MeasurementResultViewModel: ObservableObject {
                                                   bodyParts: BodyPart.generateAllBodyParts(waist: waist, bust: bust, arm: arm, shoulder: shoulder, hip: hip, inseam: inseam))
                 
         self.sizeRecommendation = sizeRecommendation
+        self.measurementResultResponse = measurementResultResponse
     }
     
     private let date: Date = Date()
@@ -44,5 +46,12 @@ final class MeasurementResultViewModel: ObservableObject {
     
     var formattedDate: String {
         dateFormatter.string(from: date)
+    }
+    
+    func saveMeasurementResult(of user: User, with clothingType: ClothingType) {
+        NetworkManager.shared.saveMeasurementResult(measurementResultResponse, of: user, with: clothingType) { response in
+            guard let response else { return }
+            print(response)
+        }
     }
 }

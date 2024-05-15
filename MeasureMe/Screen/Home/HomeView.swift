@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @StateObject var viewModel: HomeViewModel = HomeViewModel()
+    @ObservedObject var viewModel: HomeViewModel
     @EnvironmentObject var sharedProfileData: SharedProfileData
     
     var body: some View {
@@ -50,8 +50,8 @@ struct HomeView: View {
                 .scrollClipDisabled()
                 .scrollIndicators(.hidden)
             }
-            .fullScreenCover(isPresented: $viewModel.isShowNewMeasurementView)  {
-                NewMeasurementView(isShow: $viewModel.isShowNewMeasurementView)
+            .fullScreenCover(isPresented: $sharedProfileData.isMeasurementFinished)  {
+                NewMeasurementView(isShow: $sharedProfileData.isMeasurementFinished)
             }
         }
     }
@@ -77,14 +77,7 @@ struct HomeView: View {
             
             Spacer()
             
-//            Button {
-//                
-//            } label: {
-//                Image(systemName: "bell.badge")
-//                    .symbolRenderingMode(.multicolor)
-//                    .imageScale(.large)
-//            }
-//            
+
         }
         .foregroundStyle(.white)
         .padding(.horizontal, 30)
@@ -149,6 +142,7 @@ struct HomeView: View {
                     Button {
                         sharedProfileData.clothingType = clothing
                         viewModel.isShowNewMeasurementView = true
+                        sharedProfileData.isMeasurementFinished = true
                     } label: {
                         createClothingType(of: clothing)
                     }
@@ -164,12 +158,22 @@ struct HomeView: View {
     }
     
     @ViewBuilder private func createRecentMeasurementResults() -> some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(spacing: 20) {
             Text("Recent Measurement")
                 .font(.system(.title3, weight: .semibold))
+                .frame(maxWidth: .infinity, alignment: .leading)
             
-            ForEach(viewModel.dummyRecentResults) { result in
-                MeasurementResultList(result: result)
+            if let measurementResults = viewModel.recentMeasurementResults,
+               !measurementResults.isEmpty {
+                ForEach(measurementResults) { result in
+                    MeasurementResultListView(result: result)
+                }
+            } else {
+                Text("No recent measurement results")
+                    .font(.system(.body))
+                    .foregroundStyle(.secondary)
+                    .padding(.vertical)
+                    
             }
         }
         .frame(maxWidth: .infinity)
@@ -199,58 +203,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(viewModel: HomeViewModel(recentMeasurementResults: RecentMeasurementResult.dummyRecentMeasurementResult))
         .environmentObject(SharedProfileData(clothingType: .LongPants, user: User.dummyUser))
 }
 
-struct MeasurementResultList: View {
-    let result: Result
-    
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.dateFormat = "dd-MM-YYYY, HH:mm"
-        return formatter
-    }()
-    private var formattedDate: String {
-        dateFormatter.string(from: result.date)
-    }
-    
-    var body: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .stroke(lineWidth: 1)
-            .fill(.primary.opacity(0.20))
-            .background {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(.blue)
-                        .offset(y: 6)
-                    
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(.background)
-                }
-            }
-            .overlay {
-                HStack(spacing: 15) {
-                    Text(result.icon)
-                        .font(.system(size: 30))
-                    
-                    VStack(alignment: .leading) {
-                        Text(result.name)
-                            .font(.system(.subheadline))
-                        
-                        Text(formattedDate)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: "chevron.right")
-                }
-                .padding()
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 70)
-    }
-}

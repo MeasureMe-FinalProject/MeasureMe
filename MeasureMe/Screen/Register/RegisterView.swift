@@ -53,9 +53,8 @@ struct RegisterView: View {
                 viewModel.alertItem = nil
                 viewModel.isRegisterSuccess.toggle()
             }
-        } message: { alertItem in
-            Text("\(alertItem.message)")
-        }
+        } message: { alertItem in Text("\(alertItem.message)") }
+
     }
     
     @ViewBuilder private func createSignInButton() -> some View {

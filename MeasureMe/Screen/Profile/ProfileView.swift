@@ -168,21 +168,17 @@ struct ProfileView: View {
                         
                     }
                 }
+                HStack {
+                    Image(systemName: "ruler")
+                    Text("Height")
+                        .foregroundStyle(.secondary)
+                    
+                    Spacer()
+                    
+                    Text("\(sharedProfileData.height) cm")
                 
-                if let height = sharedProfileData.height {
-                    
-                    HStack {
-                        Image(systemName: "ruler")
-                        Text("Height")
-                            .foregroundStyle(.secondary)
-                        
-                        Spacer()
-                        
-                        Text("\(height) cm")
-                    }
-                    
-                }
             }
+        }
             .scrollDisabled(true)
             .listStyle(.plain)
             .frame(height: 150)
@@ -213,7 +209,7 @@ struct ProfileView: View {
                         Circle()
                             .stroke(lineWidth: 2).fill(.white)
                     }
-                    .shadow(color: .black, radius: 10)
+                    .shadow(color: .black.opacity(0.5), radius: 10)
             }
             .frame(width: 150, height: 150)
     }
@@ -267,5 +263,5 @@ struct ProfileView: View {
 
 #Preview {
     ProfileView()
-        .environmentObject(SharedProfileData(height: 166, gender: .male, user: .dummyUser))
+        .environmentObject(SharedProfileData(gender: .male, user: .dummyUser))
 }

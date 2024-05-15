@@ -20,11 +20,11 @@ struct MainView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            HomeView()
+            HomeView(viewModel: HomeViewModel(recentMeasurementResults: sharedProfileData.measurementResults))
                 .tag(Tab.Home)
                 .tabItem { Label("Home", systemImage: "house.fill") }
             
-            HistoryView()
+            HistoryView(viewModel: HistoryViewModel(measurementResults: sharedProfileData.measurementResults))
                 .tag(Tab.History)
                 .tabItem { Label("History", image: .pencilRulerIcon) }
             
@@ -32,10 +32,17 @@ struct MainView: View {
                 .tag(Tab.Profile)
                 .tabItem { Label("Profile", systemImage: "person.fill") }
         }
+        .onAppear {
+            DispatchQueue.main.async {
+                NetworkManager.shared.getRecentMeasurementResults(of: sharedProfileData.user) { response, _ in
+                    sharedProfileData.measurementResults = response
+                }
+            }
+        }
         .environmentObject(sharedProfileData)
     }
 }
 
 #Preview {
-    MainView(sharedProfileData: SharedProfileData(height: 163, gender: .male,user: .dummyUser))
+    MainView(sharedProfileData: SharedProfileData(gender: .male,user: .dummyUser))
 }

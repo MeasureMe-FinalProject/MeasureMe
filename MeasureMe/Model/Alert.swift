@@ -21,8 +21,10 @@ extension AuthenticationAlert {
     
     static let invalidUser = AuthenticationAlert(message: "We can't find the account. Please try again or create a new account.")
     
-    static let registeredEmail = AuthenticationAlert(message: "This email already exists. Please sign in with this email.")
+    static let invalidURL = AuthenticationAlert(message: "Oops! Interval server error.\nPlease try again later.")
     
-    static let successfullyRegister = AuthenticationAlert(message: "Congratulations!\nyour account successfully created.")
+    static let registeredEmail = AuthenticationAlert(message: "This email already exists!\nPlease sign in with this email.")
+    
+    static let successfullyRegister = AuthenticationAlert(message: "Congratulations!\nYour account successfully created.")
 }
 

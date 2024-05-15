@@ -21,7 +21,7 @@ struct BodyLandmarkProcessView: View {
             }
         }
         .animation(.easeInOut, value: viewModel.isShowMeasurementResultView)
-        .onAppear { viewModel.uploadAdjustedBodyLandmark(height: sharedProfileData.height!,
+        .onAppear { viewModel.uploadAdjustedBodyLandmark(height: sharedProfileData.height,
                                                          gender: sharedProfileData.gender!.codeName,
                                                          clothingType: sharedProfileData.clothingType!.codeName) }
     }
@@ -30,5 +30,5 @@ struct BodyLandmarkProcessView: View {
 
 #Preview {
     BodyLandmarkProcessView(viewModel: BodyLandmarkProcessViewModel(front: BodyLandmarkResponse.dummyBodyLandmarkResponse.front, side: BodyLandmarkResponse.dummyBodyLandmarkResponse.side))
-        .environmentObject(SharedProfileData(height: 160, gender: .male, clothingType: .LongPants, user: .dummyUser))
+        .environmentObject(SharedProfileData(gender: .male, clothingType: .LongPants, user: .dummyUser))
 }

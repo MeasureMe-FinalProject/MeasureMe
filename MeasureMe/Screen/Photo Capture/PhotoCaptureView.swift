@@ -46,6 +46,7 @@ struct PhotoCaptureView: View {
                 Image(viewModel.imageType.bodyPoseImage)
                     .resizable()
                     .renderingMode(.template)
+                    .foregroundStyle(.white)
                     .aspectRatio(contentMode: .fit)
                     .frame(maxHeight: 450)
                     .padding(.all, 30)
@@ -53,7 +54,7 @@ struct PhotoCaptureView: View {
                 Text("\(viewModel.captureTimeRemaining)")
                     .font(.system(size: 120, weight: .semibold, design: .rounded))
                     .foregroundStyle(.white)
-                    .opacity(viewModel.captureTimeRemaining == 3 ? 0 : 1)
+//                    .opacity(viewModel.captureTimeRemaining == 3 ? 0 : 1)
                     .opacity(viewModel.isCapturingPhotoComplete ? 0 : 1)
             } else {
                 AngleIndicatorBar(viewModel: viewModel)
@@ -103,45 +104,3 @@ struct PhotoCaptureView: View {
     PhotoCaptureView(isShow: .constant(true))
 }
 
-struct AngleIndicatorBar: View {
-    
-    @ObservedObject var viewModel: PhotoCaptureViewModel
-    var barGradientColor : RadialGradient {
-        RadialGradient(colors: [.red, .green],
-                       center: .center,
-                       startRadius: 36,
-                       endRadius: 22)
-    }
-    
-    var body: some View {
-        RoundedRectangle(cornerRadius: 15)
-            .fill(barGradientColor)
-            .frame(width: 24, height: 216)
-            .overlay {
-                ZStack {
-                    VStack(spacing: 20) {
-                        ForEach(0..<9) {_ in
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(.white)
-                                .frame(width: 16, height: 1.5)
-                        }
-                    }
-                    
-                    HStack {
-                        Image(systemName: "arrowtriangle.right.fill")
-                            .foregroundStyle(viewModel.isOnPosition ? .green : .red)
-                        
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(.primary)
-                            .frame(width: 18, height: 2)
-                        
-                        Image(systemName: "arrowtriangle.left.fill")
-                            .foregroundStyle(viewModel.isOnPosition ? .green : .red)
-                        
-                    }
-                    .offset(y: viewModel.yPositionIndicator)
-                }
-            }
-            .offset(x: viewModel.isOnPosition ? 150 : 0)
-    }
-}

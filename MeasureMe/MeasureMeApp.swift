@@ -17,8 +17,6 @@ struct MeasureMeApp: App {
             } else {
                 OnBoardingView()
             }
-            
-//            MainView(sharedProfileData: SharedProfileData(user: .dummyUser))
         }
     }
 }

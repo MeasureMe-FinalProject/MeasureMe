@@ -18,6 +18,11 @@
 		3A11ECCE2BC3FCC0004140F7 /* MeasurementResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A11ECCD2BC3FCC0004140F7 /* MeasurementResultViewModel.swift */; };
 		3A11ECD12BC3FDE7004140F7 /* MeasurementDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A11ECD02BC3FDE7004140F7 /* MeasurementDetail.swift */; };
 		3A11ECD32BC3FE12004140F7 /* BodyPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A11ECD22BC3FE12004140F7 /* BodyPart.swift */; };
+		3A38A3DE2BEB6C02008C1A2B /* MeasurementResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38A3DD2BEB6C02008C1A2B /* MeasurementResultListView.swift */; };
+		3A38A3E12BF210D9008C1A2B /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38A3E02BF210D9008C1A2B /* EmptyStateView.swift */; };
+		3A38A3E42BF2759F008C1A2B /* ClothingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38A3E32BF2759F008C1A2B /* ClothingType.swift */; };
+		3A38A3E82BF4A25E008C1A2B /* AngleIndicatorBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38A3E72BF4A25E008C1A2B /* AngleIndicatorBar.swift */; };
+		3A38A3EB2BF4A2FD008C1A2B /* DraggableLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38A3EA2BF4A2FD008C1A2B /* DraggableLandmark.swift */; };
 		3A39294C2BE626F30038746C /* MountainShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A39294B2BE626F30038746C /* MountainShapeView.swift */; };
 		3A39294E2BE649AB0038746C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A39294D2BE649AB0038746C /* ProfileViewModel.swift */; };
 		3A3929512BE64DAF0038746C /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3929502BE64DAF0038746C /* EditProfileView.swift */; };
@@ -82,6 +87,11 @@
 		3A11ECCD2BC3FCC0004140F7 /* MeasurementResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResultViewModel.swift; sourceTree = "<group>"; };
 		3A11ECD02BC3FDE7004140F7 /* MeasurementDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementDetail.swift; sourceTree = "<group>"; };
 		3A11ECD22BC3FE12004140F7 /* BodyPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPart.swift; sourceTree = "<group>"; };
+		3A38A3DD2BEB6C02008C1A2B /* MeasurementResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResultListView.swift; sourceTree = "<group>"; };
+		3A38A3E02BF210D9008C1A2B /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		3A38A3E32BF2759F008C1A2B /* ClothingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingType.swift; sourceTree = "<group>"; };
+		3A38A3E72BF4A25E008C1A2B /* AngleIndicatorBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleIndicatorBar.swift; sourceTree = "<group>"; };
+		3A38A3EA2BF4A2FD008C1A2B /* DraggableLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableLandmark.swift; sourceTree = "<group>"; };
 		3A39294B2BE626F30038746C /* MountainShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountainShapeView.swift; sourceTree = "<group>"; };
 		3A39294D2BE649AB0038746C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3A3929502BE64DAF0038746C /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
@@ -149,6 +159,7 @@
 		3A07139E2B938A11005D6535 /* Adjust Body Landmark */ = {
 			isa = PBXGroup;
 			children = (
+				3A38A3E92BF4A2EC008C1A2B /* Views */,
 				3A0713A92B938C16005D6535 /* AdjustBodyLandmarkViewModel.swift */,
 				3A0713A72B938BB2005D6535 /* AdjustBodyLandmarkView.swift */,
 			);
@@ -172,6 +183,37 @@
 				3A11ECC92BC3C71A004140F7 /* MeasurementResultView.swift */,
 			);
 			path = "Measurement Result";
+			sourceTree = "<group>";
+		};
+		3A38A3DF2BF210A9008C1A2B /* Empty History */ = {
+			isa = PBXGroup;
+			children = (
+				3A38A3E02BF210D9008C1A2B /* EmptyStateView.swift */,
+			);
+			path = "Empty History";
+			sourceTree = "<group>";
+		};
+		3A38A3E52BF4A0DB008C1A2B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3A38A3E62BF4A244008C1A2B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3A38A3E72BF4A25E008C1A2B /* AngleIndicatorBar.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3A38A3E92BF4A2EC008C1A2B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3A38A3EA2BF4A2FD008C1A2B /* DraggableLandmark.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		3A39294F2BE64D8B0038746C /* Edit Profile */ = {
@@ -243,7 +285,6 @@
 				3AC21F8A2B9365D3008E87FF /* New Measurement */,
 				3AC21F8F2B93684A008E87FF /* Photo Capture */,
 				3AC21F9E2B937BC1008E87FF /* Photo Process */,
-				3AC21FAE2B93817E008E87FF /* Undetected Body */,
 				3A07139E2B938A11005D6535 /* Adjust Body Landmark */,
 				3A7D0F712BD865C300D1E488 /* Adjusted Body Landmark Process */,
 				3A11ECC82BC3C6F1004140F7 /* Measurement Result */,
@@ -268,7 +309,6 @@
 		3A54D9182B935EF500B22696 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3A54D92A2B93611C00B22696 /* Result.swift */,
 				3A54D9112B935E1400B22696 /* OnBoarding.swift */,
 				3AC21FAB2B937C8B008E87FF /* BodyLandmark.swift */,
 				3A0713A32B938AD4005D6535 /* HelpAdjustBodyLandmark.swift */,
@@ -278,7 +318,9 @@
 				3A11ECD02BC3FDE7004140F7 /* MeasurementDetail.swift */,
 				3A11ECD22BC3FE12004140F7 /* BodyPart.swift */,
 				3A795F122BD275BC007A630A /* AdjustBodyLandmark.swift */,
+				3A54D92A2B93611C00B22696 /* Result.swift */,
 				3A795F142BD27A67007A630A /* MeasurementResult.swift */,
+				3A38A3E32BF2759F008C1A2B /* ClothingType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -295,6 +337,7 @@
 		3A54D9242B9360D600B22696 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				3A38A3DF2BF210A9008C1A2B /* Empty History */,
 				3A8543292B9F20BA007D6449 /* HistoryViewModel.swift */,
 				3A54D9262B9360F400B22696 /* HistoryView.swift */,
 			);
@@ -324,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				3A7D0F752BD8677900D1E488 /* ProcessStateView.swift */,
+				3A38A3DD2BEB6C02008C1A2B /* MeasurementResultListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -349,6 +393,7 @@
 		3AC21F8A2B9365D3008E87FF /* New Measurement */ = {
 			isa = PBXGroup;
 			children = (
+				3A38A3E52BF4A0DB008C1A2B /* Views */,
 				3AC21F8D2B936617008E87FF /* NewMeasurementViewModel.swift */,
 				3AC21F8B2B93660E008E87FF /* NewMeasurementView.swift */,
 			);
@@ -358,6 +403,7 @@
 		3AC21F8F2B93684A008E87FF /* Photo Capture */ = {
 			isa = PBXGroup;
 			children = (
+				3A38A3E62BF4A244008C1A2B /* Views */,
 				3AC21F922B936875008E87FF /* PhotoCaptureViewModel.swift */,
 				3AC21F902B936870008E87FF /* PhotoCaptureView.swift */,
 			);
@@ -396,6 +442,7 @@
 		3AC21F9E2B937BC1008E87FF /* Photo Process */ = {
 			isa = PBXGroup;
 			children = (
+				3AC21FAE2B93817E008E87FF /* Undetected Body */,
 				3AC21FA12B937BE2008E87FF /* PhotoProcessViewModel.swift */,
 				3AC21F9F2B937BD6008E87FF /* PhotoProcessView.swift */,
 			);
@@ -521,7 +568,9 @@
 				3AC21F912B936870008E87FF /* PhotoCaptureView.swift in Sources */,
 				3A795F152BD27A67007A630A /* MeasurementResult.swift in Sources */,
 				3A827CC62B9B0D4C0090836D /* RegisterViewModel.swift in Sources */,
+				3A38A3E42BF2759F008C1A2B /* ClothingType.swift in Sources */,
 				3A54D91B2B935F0200B22696 /* OnBoardingView.swift in Sources */,
+				3A38A3DE2BEB6C02008C1A2B /* MeasurementResultListView.swift in Sources */,
 				3AC21F9C2B9368A7008E87FF /* CameraViewController.swift in Sources */,
 				3A39294E2BE649AB0038746C /* ProfileViewModel.swift in Sources */,
 				3A54D9292B9360FA00B22696 /* ProfileView.swift in Sources */,
@@ -556,13 +605,16 @@
 				3A54D9232B9360B000B22696 /* HomeViewModel.swift in Sources */,
 				3AC21F932B936875008E87FF /* PhotoCaptureViewModel.swift in Sources */,
 				3AC21FB22B9381BB008E87FF /* UndetectedBodyView.swift in Sources */,
+				3A38A3E12BF210D9008C1A2B /* EmptyStateView.swift in Sources */,
 				3A54D9142B935E1400B22696 /* OnBoarding.swift in Sources */,
+				3A38A3E82BF4A25E008C1A2B /* AngleIndicatorBar.swift in Sources */,
 				3A0713AA2B938C16005D6535 /* AdjustBodyLandmarkViewModel.swift in Sources */,
 				3A11ECCE2BC3FCC0004140F7 /* MeasurementResultViewModel.swift in Sources */,
 				3A54D92B2B93611C00B22696 /* Result.swift in Sources */,
 				3A54D9212B9360AA00B22696 /* HomeView.swift in Sources */,
 				3A0713AF2B9399C6005D6535 /* Extensions.swift in Sources */,
 				3A54D91E2B93606D00B22696 /* MainView.swift in Sources */,
+				3A38A3EB2BF4A2FD008C1A2B /* DraggableLandmark.swift in Sources */,
 				3A54D9022B935DC800B22696 /* MeasureMeApp.swift in Sources */,
 				3A7D0F732BD8672700D1E488 /* BodyLandmarkProcessView.swift in Sources */,
 				3A11ECCA2BC3C71A004140F7 /* MeasurementResultView.swift in Sources */,
