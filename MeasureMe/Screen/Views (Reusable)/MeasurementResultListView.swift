@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MeasurementResultListView: View {
-    let result: RecentMeasurementResult
+    let result: MeasurementResult
     
     var icon: String {
         switch result.clothingType.capitalized {
@@ -32,7 +32,7 @@ struct MeasurementResultListView: View {
             .background {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.blue)
+                        .fill(.appPrimary)
                         .offset(y: 6)
                     
                     RoundedRectangle(cornerRadius: 10)
@@ -66,5 +66,17 @@ struct MeasurementResultListView: View {
 
 
 #Preview {
-    MeasurementResultListView(result: RecentMeasurementResult.dummyRecentMeasurementResult[0])
+    MeasurementResultListView(result:MeasurementResult(id: 1,
+                                                       idUser: 23,
+                                                       date: "01-09-2024, 20:30",
+                                                       clothingType: "Short Pants",
+                                                       gender: "Male",
+                                                       sizeRecommendation: "S",
+                                                       height: 163,
+                                                       bustCircumference: 160,
+                                                       waistCircumference: 20,
+                                                       hipCircumference: 20,
+                                                       shoulderWidth: 30,
+                                                       sleeveLength: 40,
+                                                       pantsLength: 40))
 }

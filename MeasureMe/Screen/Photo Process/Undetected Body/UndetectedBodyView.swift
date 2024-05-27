@@ -55,7 +55,7 @@ struct UndetectedBodyView: View {
                 .foregroundStyle(.background)
                 .font(.system(.subheadline, weight: .semibold))
                 .frame(maxWidth: .infinity, maxHeight: 44)
-                .background(Color.blue)
+                .background(Color.appPrimary)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .padding()

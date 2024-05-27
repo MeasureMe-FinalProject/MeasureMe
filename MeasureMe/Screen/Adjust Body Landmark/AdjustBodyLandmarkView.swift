@@ -33,7 +33,7 @@ struct AdjustBodyLandmarkView: View {
                                 .font(.footnote)
                                 .fontWeight(.medium)
                         }
-                        .foregroundStyle(imageType.name == viewModel.currentImage.name ? .blue : .secondary)
+                        .foregroundStyle(imageType.name == viewModel.currentImage.name ? .appPrimary : .secondary)
                     }
                     
                     if imageType == .frontImage {
@@ -108,7 +108,7 @@ struct AdjustBodyLandmarkView: View {
         .onAppear {
             viewModel.loadBlurredFaceImage(fromURLString: viewModel.bodyLandmarkResponse.frontPath)
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                 viewModel.convertBodyLandmarkCoordinates()
                     viewModel.isShowHelpPopup = true
             }
@@ -170,7 +170,7 @@ struct AdjustBodyLandmarkView: View {
                                 HStack {
                                     ForEach(0..<3) { index in
                                         RoundedRectangle(cornerRadius: 10)
-                                            .fill( index == viewModel.currentHelpPageIndex ? .blue : .gray )
+                                            .fill( index == viewModel.currentHelpPageIndex ? .appPrimary : .gray )
                                             .frame(width: 15, height: 3)
                                     }
                                 }
@@ -258,7 +258,7 @@ struct SizeCalculator: ViewModifier {
                                 size = proxy.frame(in: .local)
                             }
                         }
-                        .onChange(of: image) {
+                        .onChange(of: image) { newValue in
                             DispatchQueue.main.asyncAfter(deadline: .now()) {
                                 size = proxy.frame(in: .local)
                             }

@@ -11,6 +11,7 @@ struct MeasurementResultView: View {
     
     @ObservedObject var viewModel: MeasurementResultViewModel
     @EnvironmentObject var sharedProfileData: SharedProfileData
+    @Environment(\.dismiss) var dismiss
     
     var measurementResultShareView: some View {
             VStack {
@@ -49,6 +50,10 @@ struct MeasurementResultView: View {
             }
             .scrollIndicators(.hidden)
             .padding(.horizontal)
+            .onDisappear {
+                viewModel.updateMeasurementResults(measurementResults: $sharedProfileData.measurementResults,
+                                                   of: sharedProfileData.user)
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     if let image = viewModel.measurementResultImage {
@@ -65,6 +70,7 @@ struct MeasurementResultView: View {
                     .padding()
                     .ignoresSafeArea()
                     .presentationDragIndicator(.visible)
+                    .clipShape(RoundedRectangle(cornerRadius: 25))
                     .presentationCornerRadius(25)
                     .presentationDetents([.height(580)])
             
@@ -74,17 +80,16 @@ struct MeasurementResultView: View {
                 let image = measurementResultShareView.snapshot()
                 viewModel.measurementResultImage = Image(uiImage: image)
                 
-                viewModel.saveMeasurementResult(of: sharedProfileData.user, with: sharedProfileData.clothingType!)
             }
         }
     }
     
     @ViewBuilder func createDateAndMeasurementName() -> some View {
         VStack(spacing: 5) {
-            Text("My Measure")
+            Text("Measurement Result")
                 .font(.system(.title3, weight: .semibold))
             
-            Text(viewModel.formattedDate)
+            Text(viewModel.measurementResult.date)
                 .font(.system(.caption))
                 .foregroundStyle(.secondary)
         }
@@ -92,11 +97,11 @@ struct MeasurementResultView: View {
     
     @ViewBuilder func createRecommendedClothingSize() -> some View {
         VStack(alignment: .center, spacing: 5) {
-            Text(sharedProfileData.clothingType!.icon)
+            Text(viewModel.measurementResultIcon)
                 .font(.system(size: 160))
                 .padding(.top)
             
-            Text(sharedProfileData.clothingType!.name)
+            Text(viewModel.measurementResult.clothingType)
                 .font(.system(.title, weight: .bold))
 
             Text("Your Recommended Size")
@@ -106,15 +111,15 @@ struct MeasurementResultView: View {
             
             Text(viewModel.sizeRecommendation)
                 .font(.system(.largeTitle, weight: .heavy))
-                .foregroundStyle(.background)
+                .foregroundStyle(.white)
                 .padding(.horizontal)
                 .padding(.vertical, 10)
-                .background(.blue)
+                .background(.appPrimary)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 .padding(.bottom)
             
         }
-        .shadow(radius: 10)
+        .shadow(color: .primary.opacity(0.3),radius: 10)
         .frame(maxWidth: .infinity, alignment: .center)
         .padding(.vertical)
     }
@@ -133,7 +138,8 @@ struct MeasurementResultView: View {
                     
                     Spacer()
                     
-                    Text(sharedProfileData.gender!.name)
+                    #warning("Change this to after backend updated")
+                    Text(viewModel.measurementResult.gender)
                     
                 }
                 
@@ -143,7 +149,7 @@ struct MeasurementResultView: View {
                     
                     Spacer()
                     
-                    Text("\(sharedProfileData.height) cm")
+                    Text("\(Int(viewModel.measurementResult.height)) cm")
                     
                 }
             }
@@ -168,17 +174,14 @@ struct MeasurementResultView: View {
     
     @ViewBuilder func createDoneButton() -> some View {
         Button {
-            NetworkManager.shared.getRecentMeasurementResults(of: sharedProfileData.user) { response, _ in
-                sharedProfileData.measurementResults = response
-            }
-            sharedProfileData.isMeasurementFinished = false
+            viewModel.doneButtonTapped(dismiss: dismiss, isMeasurementFinished: $sharedProfileData.isMeasurementFinished)
         } label: {
             Text("Done")
-                .foregroundStyle(.background)
+                .foregroundStyle(.white)
                 .font(.system(.subheadline, weight: .semibold))
                 .frame(height: 44)
                 .frame(maxWidth: .infinity, maxHeight: 44)
-                .background(Color.blue)
+                .background(Color.appPrimary)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .padding(.horizontal)
@@ -187,6 +190,6 @@ struct MeasurementResultView: View {
 }
 
 #Preview {
-    MeasurementResultView(viewModel: MeasurementResultViewModel(measurementResultResponse: MeasurementResultResponse.dummyMeasurementResultResponse))
-        .environmentObject(SharedProfileData(gender: .male, clothingType: .LongPants, user: .dummyUser))
+    MeasurementResultView(viewModel: MeasurementResultViewModel(measurementResult: .dummyRecentMeasurementResult![0]))
+        
 }

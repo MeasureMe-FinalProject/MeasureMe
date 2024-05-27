@@ -38,7 +38,7 @@ struct OnBoardingView: View {
         HStack {
             ForEach(0 ..< 3)  { circleIndex in
                 Circle()
-                    .fill(circleIndex == viewModel.currentPage ? .blue : .blue.opacity(0.20))
+                    .fill(circleIndex == viewModel.currentPage ? .appPrimary : .appPrimary.opacity(0.20))
                     .frame(width: 7.5, height: 7.5)
             }
         }
@@ -87,10 +87,10 @@ struct OnBoardingView: View {
             
             HStack(alignment: .center) {
                 Text(onBoardingPage.headingOne)
-                    .foregroundStyle(viewModel.isFirstPage ? Color.blue : .primary)
+                    .foregroundStyle(viewModel.isFirstPage ? Color.appPrimary : .primary)
                 
                 Text(onBoardingPage.headingTwo)
-                    .foregroundStyle(viewModel.isFirstPage ? .primary : Color.blue)
+                    .foregroundStyle(viewModel.isFirstPage ? .primary : Color.appPrimary)
                 
             }
             .font(.system(.title, weight: .semibold))

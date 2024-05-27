@@ -38,17 +38,25 @@ struct LoginView: View {
             .fullScreenCover(isPresented: $viewModel.isShowRegisterView) {
                 RegisterView(isShow: $viewModel.isShowRegisterView)
             }
-            .alert("Invalid Form", isPresented: $viewModel.isShowAlertError, presenting: viewModel.alertItem) { alertItem in
-                Button("OK") {
-                    viewModel.alertItem = nil
-                    viewModel.isShowAlertError.toggle()
+            .alert("Sign In Message", isPresented: $viewModel.isShowAlertError, presenting: viewModel.alertItem) { alertItem in
+                Button("OK", role: .cancel) { viewModel.alertItem = nil }
+            } message: {
+                alertItem in Text("\(alertItem.message)")
+            }
+            .alert("Forgot Password", isPresented: $viewModel.isShowForgotPasswordTextField) {
+                TextField("Email", text: $viewModel.forgotPassword)
+                    .textInputAutocapitalization(.never)
+                    .keyboardType(.emailAddress)
+                Button("Submit") { viewModel.forgotPasswordTapped() }
+                Button("Cancel", role: .cancel) { viewModel.forgotPassword = "" }
+            } message: {
+                Text("Please enter your email")
+            }
+            .fullScreenCover(isPresented: $viewModel.isLoginSuccess) {
+                if let user = viewModel.userInformation {
+                    MainView(sharedProfileData: SharedProfileData(user: user))
                 }
-            } message: { alertItem in Text("\(alertItem.message)") }
-                .fullScreenCover(isPresented: $viewModel.isLoginSuccess) {
-                    if let user = viewModel.userInformation {
-                        MainView(sharedProfileData: SharedProfileData(user: user))
-                    }
-                }
+            }
         }
     }
     
@@ -65,7 +73,7 @@ struct LoginView: View {
             } label: {
                 Text(" Sign up")
                     .font(.system(.footnote))
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(.appPrimary)
             }
         }
     }
@@ -74,14 +82,14 @@ struct LoginView: View {
         Button {
             viewModel.signInButtonTapped()
         } label: {
-            Text("Sign in")
+            Text("Sign In")
                 .font(.system(.body, weight: .semibold))
                 .foregroundStyle(.background)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical)
                 .background {
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(.blue)
+                        .fill(.appPrimary)
                 }
         }
         .padding()
@@ -89,7 +97,7 @@ struct LoginView: View {
     
     @ViewBuilder private func createForgotPasswordButton() -> some View {
         Button {
-            
+            viewModel.isShowForgotPasswordTextField.toggle()
         } label: {
             Text("Forgot password?")
                 .font(.system(.caption, weight: .semibold))

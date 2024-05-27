@@ -23,12 +23,18 @@
 		3A38A3E42BF2759F008C1A2B /* ClothingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38A3E32BF2759F008C1A2B /* ClothingType.swift */; };
 		3A38A3E82BF4A25E008C1A2B /* AngleIndicatorBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38A3E72BF4A25E008C1A2B /* AngleIndicatorBar.swift */; };
 		3A38A3EB2BF4A2FD008C1A2B /* DraggableLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38A3EA2BF4A2FD008C1A2B /* DraggableLandmark.swift */; };
+		3A38A3F52BF4AAAE008C1A2B /* ARMeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38A3EF2BF4AAAD008C1A2B /* ARMeasurementViewModel.swift */; };
+		3A38A3F62BF4AAAE008C1A2B /* ARSCNViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38A3F02BF4AAAD008C1A2B /* ARSCNViewVC.swift */; };
+		3A38A3F72BF4AAAE008C1A2B /* ARViewVCRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38A3F12BF4AAAD008C1A2B /* ARViewVCRepresentable.swift */; };
+		3A38A3F82BF4AAAE008C1A2B /* ARMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38A3F22BF4AAAD008C1A2B /* ARMeasurementView.swift */; };
 		3A39294C2BE626F30038746C /* MountainShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A39294B2BE626F30038746C /* MountainShapeView.swift */; };
 		3A39294E2BE649AB0038746C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A39294D2BE649AB0038746C /* ProfileViewModel.swift */; };
 		3A3929512BE64DAF0038746C /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3929502BE64DAF0038746C /* EditProfileView.swift */; };
 		3A3929532BE64ED90038746C /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3929522BE64ED90038746C /* EditProfileViewModel.swift */; };
 		3A3929562BE674CB0038746C /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3929552BE674CB0038746C /* ChangePasswordView.swift */; };
 		3A3929582BE6795D0038746C /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3929572BE6795D0038746C /* ChangePasswordViewModel.swift */; };
+		3A3E2E172BF7718200CBB665 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3E2E162BF7718200CBB665 /* ContentView.swift */; };
+		3A3E2E1A2BF775A900CBB665 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3E2E192BF775A900CBB665 /* SplashScreenView.swift */; };
 		3A54D9022B935DC800B22696 /* MeasureMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D9012B935DC800B22696 /* MeasureMeApp.swift */; };
 		3A54D9062B935DCA00B22696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A54D9052B935DCA00B22696 /* Assets.xcassets */; };
 		3A54D9092B935DCA00B22696 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A54D9082B935DCA00B22696 /* Preview Assets.xcassets */; };
@@ -40,14 +46,14 @@
 		3A54D9232B9360B000B22696 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D9222B9360B000B22696 /* HomeViewModel.swift */; };
 		3A54D9272B9360F400B22696 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D9262B9360F400B22696 /* HistoryView.swift */; };
 		3A54D9292B9360FA00B22696 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D9282B9360FA00B22696 /* ProfileView.swift */; };
-		3A54D92B2B93611C00B22696 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D92A2B93611C00B22696 /* Result.swift */; };
+		3A54D92B2B93611C00B22696 /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54D92A2B93611C00B22696 /* MeasurementResult.swift */; };
 		3A6BD2F72B9D611400400BA4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2F62B9D611400400BA4 /* User.swift */; };
-		3A6BD2F92B9D612400400BA4 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2F82B9D612400400BA4 /* Register.swift */; };
-		3A6BD2FB2B9DDB1300400BA4 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2FA2B9DDB1300400BA4 /* Alert.swift */; };
+		3A6BD2F92B9D612400400BA4 /* StatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2F82B9D612400400BA4 /* StatusResponse.swift */; };
+		3A6BD2FB2B9DDB1300400BA4 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2FA2B9DDB1300400BA4 /* AlertItem.swift */; };
 		3A6BD2FD2B9DF16000400BA4 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BD2FC2B9DF16000400BA4 /* String+Ext.swift */; };
 		3A795F112BD0DEB5007A630A /* MeasurementResultDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A795F102BD0DEB5007A630A /* MeasurementResultDetailViewModel.swift */; };
-		3A795F132BD275BC007A630A /* AdjustBodyLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A795F122BD275BC007A630A /* AdjustBodyLandmark.swift */; };
-		3A795F152BD27A67007A630A /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A795F142BD27A67007A630A /* MeasurementResult.swift */; };
+		3A795F132BD275BC007A630A /* AdjustedBodyLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A795F122BD275BC007A630A /* AdjustedBodyLandmark.swift */; };
+		3A795F152BD27A67007A630A /* RecentMeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A795F142BD27A67007A630A /* RecentMeasurementResult.swift */; };
 		3A795F182BD65C52007A630A /* SharedProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A795F172BD65C52007A630A /* SharedProfileData.swift */; };
 		3A7D0F732BD8672700D1E488 /* BodyLandmarkProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D0F722BD8672700D1E488 /* BodyLandmarkProcessView.swift */; };
 		3A7D0F762BD8677900D1E488 /* ProcessStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D0F752BD8677900D1E488 /* ProcessStateView.swift */; };
@@ -71,6 +77,8 @@
 		3AC21FAA2B937C73008E87FF /* Data+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21FA92B937C73008E87FF /* Data+Ext.swift */; };
 		3AC21FAC2B937C8B008E87FF /* BodyLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21FAB2B937C8B008E87FF /* BodyLandmark.swift */; };
 		3AC21FB22B9381BB008E87FF /* UndetectedBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21FB12B9381BB008E87FF /* UndetectedBodyView.swift */; };
+		3AD20D8B2C021464004D977C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD20D8A2C021464004D977C /* Login.swift */; };
+		3AD20D8D2C024415004D977C /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD20D8C2C024415004D977C /* ForgotPassword.swift */; };
 		3AE41D312BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE41D302BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,12 +100,18 @@
 		3A38A3E32BF2759F008C1A2B /* ClothingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingType.swift; sourceTree = "<group>"; };
 		3A38A3E72BF4A25E008C1A2B /* AngleIndicatorBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleIndicatorBar.swift; sourceTree = "<group>"; };
 		3A38A3EA2BF4A2FD008C1A2B /* DraggableLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableLandmark.swift; sourceTree = "<group>"; };
+		3A38A3EF2BF4AAAD008C1A2B /* ARMeasurementViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARMeasurementViewModel.swift; sourceTree = "<group>"; };
+		3A38A3F02BF4AAAD008C1A2B /* ARSCNViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSCNViewVC.swift; sourceTree = "<group>"; };
+		3A38A3F12BF4AAAD008C1A2B /* ARViewVCRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewVCRepresentable.swift; sourceTree = "<group>"; };
+		3A38A3F22BF4AAAD008C1A2B /* ARMeasurementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARMeasurementView.swift; sourceTree = "<group>"; };
 		3A39294B2BE626F30038746C /* MountainShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountainShapeView.swift; sourceTree = "<group>"; };
 		3A39294D2BE649AB0038746C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3A3929502BE64DAF0038746C /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		3A3929522BE64ED90038746C /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		3A3929552BE674CB0038746C /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		3A3929572BE6795D0038746C /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		3A3E2E162BF7718200CBB665 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3A3E2E192BF775A900CBB665 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		3A54D8FE2B935DC800B22696 /* MeasureMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeasureMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A54D9012B935DC800B22696 /* MeasureMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureMeApp.swift; sourceTree = "<group>"; };
 		3A54D9052B935DCA00B22696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,14 +124,14 @@
 		3A54D9222B9360B000B22696 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		3A54D9262B9360F400B22696 /* HistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		3A54D9282B9360FA00B22696 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		3A54D92A2B93611C00B22696 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		3A54D92A2B93611C00B22696 /* MeasurementResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementResult.swift; sourceTree = "<group>"; };
 		3A6BD2F62B9D611400400BA4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		3A6BD2F82B9D612400400BA4 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
-		3A6BD2FA2B9DDB1300400BA4 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		3A6BD2F82B9D612400400BA4 /* StatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusResponse.swift; sourceTree = "<group>"; };
+		3A6BD2FA2B9DDB1300400BA4 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		3A6BD2FC2B9DF16000400BA4 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		3A795F102BD0DEB5007A630A /* MeasurementResultDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResultDetailViewModel.swift; sourceTree = "<group>"; };
-		3A795F122BD275BC007A630A /* AdjustBodyLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustBodyLandmark.swift; sourceTree = "<group>"; };
-		3A795F142BD27A67007A630A /* MeasurementResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResult.swift; sourceTree = "<group>"; };
+		3A795F122BD275BC007A630A /* AdjustedBodyLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustedBodyLandmark.swift; sourceTree = "<group>"; };
+		3A795F142BD27A67007A630A /* RecentMeasurementResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMeasurementResult.swift; sourceTree = "<group>"; };
 		3A795F162BD287FD007A630A /* DummyAdjustedBodyLandmark.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DummyAdjustedBodyLandmark.json; sourceTree = "<group>"; };
 		3A795F172BD65C52007A630A /* SharedProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedProfileData.swift; sourceTree = "<group>"; };
 		3A7D0F722BD8672700D1E488 /* BodyLandmarkProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyLandmarkProcessView.swift; sourceTree = "<group>"; };
@@ -142,6 +156,8 @@
 		3AC21FA92B937C73008E87FF /* Data+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Ext.swift"; sourceTree = "<group>"; };
 		3AC21FAB2B937C8B008E87FF /* BodyLandmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyLandmark.swift; sourceTree = "<group>"; };
 		3AC21FB12B9381BB008E87FF /* UndetectedBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndetectedBodyView.swift; sourceTree = "<group>"; };
+		3AD20D8A2C021464004D977C /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		3AD20D8C2C024415004D977C /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		3AE41D302BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyLandmarkProcessViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,6 +232,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3A38A3ED2BF4AA89008C1A2B /* AR Ruler */ = {
+			isa = PBXGroup;
+			children = (
+				3A38A3F22BF4AAAD008C1A2B /* ARMeasurementView.swift */,
+				3A38A3EF2BF4AAAD008C1A2B /* ARMeasurementViewModel.swift */,
+				3A38A3F02BF4AAAD008C1A2B /* ARSCNViewVC.swift */,
+				3A38A3F12BF4AAAD008C1A2B /* ARViewVCRepresentable.swift */,
+			);
+			path = "AR Ruler";
+			sourceTree = "<group>";
+		};
 		3A39294F2BE64D8B0038746C /* Edit Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +259,14 @@
 				3A3929552BE674CB0038746C /* ChangePasswordView.swift */,
 			);
 			path = "Change Password";
+			sourceTree = "<group>";
+		};
+		3A3E2E182BF771AE00CBB665 /* Splash Screen */ = {
+			isa = PBXGroup;
+			children = (
+				3A3E2E192BF775A900CBB665 /* SplashScreenView.swift */,
+			);
+			path = "Splash Screen";
 			sourceTree = "<group>";
 		};
 		3A54D8F52B935DC800B22696 = {
@@ -255,6 +290,7 @@
 			children = (
 				3A0EFE582B94137A009DC4BB /* Info.plist */,
 				3A54D9012B935DC800B22696 /* MeasureMeApp.swift */,
+				3A3E2E162BF7718200CBB665 /* ContentView.swift */,
 				3AC21F942B936885008E87FF /* Helper */,
 				3A54D9182B935EF500B22696 /* Model */,
 				3A54D9162B935EE200B22696 /* Screen */,
@@ -276,8 +312,9 @@
 		3A54D9162B935EE200B22696 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				3A7D0F742BD8676900D1E488 /* Views */,
+				3A7D0F742BD8676900D1E488 /* Views (Reusable) */,
 				3A54D91D2B93606D00B22696 /* MainView.swift */,
+				3A3E2E182BF771AE00CBB665 /* Splash Screen */,
 				3A54D9172B935EE900B22696 /* OnBoarding */,
 				3A827CC42B9B0D330090836D /* Register */,
 				3A827CBE2B9AF5BC0090836D /* Login */,
@@ -286,13 +323,14 @@
 				3AC21F8F2B93684A008E87FF /* Photo Capture */,
 				3AC21F9E2B937BC1008E87FF /* Photo Process */,
 				3A07139E2B938A11005D6535 /* Adjust Body Landmark */,
-				3A7D0F712BD865C300D1E488 /* Adjusted Body Landmark Process */,
+				3A7D0F712BD865C300D1E488 /* Body Landmark Process */,
 				3A11ECC82BC3C6F1004140F7 /* Measurement Result */,
 				3AE41D322BD9CC9B00D7751E /* Measurement Result Detail */,
 				3A54D9242B9360D600B22696 /* History */,
 				3A54D9252B9360DD00B22696 /* Profile */,
 				3A39294F2BE64D8B0038746C /* Edit Profile */,
 				3A3929542BE674A50038746C /* Change Password */,
+				3A38A3ED2BF4AA89008C1A2B /* AR Ruler */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -310,17 +348,19 @@
 			isa = PBXGroup;
 			children = (
 				3A54D9112B935E1400B22696 /* OnBoarding.swift */,
+				3AD20D8A2C021464004D977C /* Login.swift */,
+				3A6BD2F62B9D611400400BA4 /* User.swift */,
+				3A6BD2F82B9D612400400BA4 /* StatusResponse.swift */,
 				3AC21FAB2B937C8B008E87FF /* BodyLandmark.swift */,
 				3A0713A32B938AD4005D6535 /* HelpAdjustBodyLandmark.swift */,
-				3A6BD2F62B9D611400400BA4 /* User.swift */,
-				3A6BD2F82B9D612400400BA4 /* Register.swift */,
-				3A6BD2FA2B9DDB1300400BA4 /* Alert.swift */,
+				3A6BD2FA2B9DDB1300400BA4 /* AlertItem.swift */,
 				3A11ECD02BC3FDE7004140F7 /* MeasurementDetail.swift */,
 				3A11ECD22BC3FE12004140F7 /* BodyPart.swift */,
-				3A795F122BD275BC007A630A /* AdjustBodyLandmark.swift */,
-				3A54D92A2B93611C00B22696 /* Result.swift */,
-				3A795F142BD27A67007A630A /* MeasurementResult.swift */,
+				3A795F122BD275BC007A630A /* AdjustedBodyLandmark.swift */,
+				3A54D92A2B93611C00B22696 /* MeasurementResult.swift */,
+				3A795F142BD27A67007A630A /* RecentMeasurementResult.swift */,
 				3A38A3E32BF2759F008C1A2B /* ClothingType.swift */,
+				3AD20D8C2C024415004D977C /* ForgotPassword.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -354,22 +394,22 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		3A7D0F712BD865C300D1E488 /* Adjusted Body Landmark Process */ = {
+		3A7D0F712BD865C300D1E488 /* Body Landmark Process */ = {
 			isa = PBXGroup;
 			children = (
 				3A7D0F722BD8672700D1E488 /* BodyLandmarkProcessView.swift */,
 				3AE41D302BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift */,
 			);
-			path = "Adjusted Body Landmark Process";
+			path = "Body Landmark Process";
 			sourceTree = "<group>";
 		};
-		3A7D0F742BD8676900D1E488 /* Views */ = {
+		3A7D0F742BD8676900D1E488 /* Views (Reusable) */ = {
 			isa = PBXGroup;
 			children = (
 				3A7D0F752BD8677900D1E488 /* ProcessStateView.swift */,
 				3A38A3DD2BEB6C02008C1A2B /* MeasurementResultListView.swift */,
 			);
-			path = Views;
+			path = "Views (Reusable)";
 			sourceTree = "<group>";
 		};
 		3A827CBE2B9AF5BC0090836D /* Login */ = {
@@ -563,10 +603,10 @@
 				3A11ECCC2BC3E944004140F7 /* MeasurementResultDetailView.swift in Sources */,
 				3A827CC02B9B06140090836D /* RegisterView.swift in Sources */,
 				3A85432C2BA02F7B007D6449 /* Sequence+Ext.swift in Sources */,
-				3A6BD2F92B9D612400400BA4 /* Register.swift in Sources */,
+				3A6BD2F92B9D612400400BA4 /* StatusResponse.swift in Sources */,
 				3A85432A2B9F20BA007D6449 /* HistoryViewModel.swift in Sources */,
 				3AC21F912B936870008E87FF /* PhotoCaptureView.swift in Sources */,
-				3A795F152BD27A67007A630A /* MeasurementResult.swift in Sources */,
+				3A795F152BD27A67007A630A /* RecentMeasurementResult.swift in Sources */,
 				3A827CC62B9B0D4C0090836D /* RegisterViewModel.swift in Sources */,
 				3A38A3E42BF2759F008C1A2B /* ClothingType.swift in Sources */,
 				3A54D91B2B935F0200B22696 /* OnBoardingView.swift in Sources */,
@@ -577,6 +617,7 @@
 				3A3929562BE674CB0038746C /* ChangePasswordView.swift in Sources */,
 				3AC21FA02B937BD6008E87FF /* PhotoProcessView.swift in Sources */,
 				3A11ECD32BC3FE12004140F7 /* BodyPart.swift in Sources */,
+				3A38A3F72BF4AAAE008C1A2B /* ARViewVCRepresentable.swift in Sources */,
 				3AC21F9A2B9368A7008E87FF /* CameraView.swift in Sources */,
 				3A54D9272B9360F400B22696 /* HistoryView.swift in Sources */,
 				3AC21F8C2B93660E008E87FF /* NewMeasurementView.swift in Sources */,
@@ -584,16 +625,20 @@
 				3A795F182BD65C52007A630A /* SharedProfileData.swift in Sources */,
 				3A3929532BE64ED90038746C /* EditProfileViewModel.swift in Sources */,
 				3A0713A82B938BB2005D6535 /* AdjustBodyLandmarkView.swift in Sources */,
+				3A38A3F52BF4AAAE008C1A2B /* ARMeasurementViewModel.swift in Sources */,
 				3A3929582BE6795D0038746C /* ChangePasswordViewModel.swift in Sources */,
 				3A0713A42B938AD4005D6535 /* HelpAdjustBodyLandmark.swift in Sources */,
 				3A7D0F762BD8677900D1E488 /* ProcessStateView.swift in Sources */,
 				3AE41D312BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift in Sources */,
 				3A795F112BD0DEB5007A630A /* MeasurementResultDetailViewModel.swift in Sources */,
 				3AC21F8E2B936617008E87FF /* NewMeasurementViewModel.swift in Sources */,
+				3A38A3F82BF4AAAE008C1A2B /* ARMeasurementView.swift in Sources */,
 				3A11ECD12BC3FDE7004140F7 /* MeasurementDetail.swift in Sources */,
 				3A39294C2BE626F30038746C /* MountainShapeView.swift in Sources */,
-				3A795F132BD275BC007A630A /* AdjustBodyLandmark.swift in Sources */,
-				3A6BD2FB2B9DDB1300400BA4 /* Alert.swift in Sources */,
+				3A795F132BD275BC007A630A /* AdjustedBodyLandmark.swift in Sources */,
+				3AD20D8D2C024415004D977C /* ForgotPassword.swift in Sources */,
+				3A3E2E172BF7718200CBB665 /* ContentView.swift in Sources */,
+				3A6BD2FB2B9DDB1300400BA4 /* AlertItem.swift in Sources */,
 				3AC21FAC2B937C8B008E87FF /* BodyLandmark.swift in Sources */,
 				3AC21FAA2B937C73008E87FF /* Data+Ext.swift in Sources */,
 				3A54D91C2B935F0200B22696 /* OnBoardingViewModel.swift in Sources */,
@@ -604,16 +649,19 @@
 				3A827CC32B9B0AFE0090836D /* LoginViewModel.swift in Sources */,
 				3A54D9232B9360B000B22696 /* HomeViewModel.swift in Sources */,
 				3AC21F932B936875008E87FF /* PhotoCaptureViewModel.swift in Sources */,
+				3A3E2E1A2BF775A900CBB665 /* SplashScreenView.swift in Sources */,
 				3AC21FB22B9381BB008E87FF /* UndetectedBodyView.swift in Sources */,
 				3A38A3E12BF210D9008C1A2B /* EmptyStateView.swift in Sources */,
 				3A54D9142B935E1400B22696 /* OnBoarding.swift in Sources */,
 				3A38A3E82BF4A25E008C1A2B /* AngleIndicatorBar.swift in Sources */,
 				3A0713AA2B938C16005D6535 /* AdjustBodyLandmarkViewModel.swift in Sources */,
+				3A38A3F62BF4AAAE008C1A2B /* ARSCNViewVC.swift in Sources */,
 				3A11ECCE2BC3FCC0004140F7 /* MeasurementResultViewModel.swift in Sources */,
-				3A54D92B2B93611C00B22696 /* Result.swift in Sources */,
+				3A54D92B2B93611C00B22696 /* MeasurementResult.swift in Sources */,
 				3A54D9212B9360AA00B22696 /* HomeView.swift in Sources */,
 				3A0713AF2B9399C6005D6535 /* Extensions.swift in Sources */,
 				3A54D91E2B93606D00B22696 /* MainView.swift in Sources */,
+				3AD20D8B2C021464004D977C /* Login.swift in Sources */,
 				3A38A3EB2BF4A2FD008C1A2B /* DraggableLandmark.swift in Sources */,
 				3A54D9022B935DC800B22696 /* MeasureMeApp.swift in Sources */,
 				3A7D0F732BD8672700D1E488 /* BodyLandmarkProcessView.swift in Sources */,
@@ -765,6 +813,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -799,6 +848,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

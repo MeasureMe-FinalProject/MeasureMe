@@ -1,5 +1,5 @@
 //
-//  AdjustBodyLandmark.swift
+//  AdjustedBodyLandmark.swift
 //  MeasureMe
 //
 //  Created by Diki Dwi Diro on 19/04/24.

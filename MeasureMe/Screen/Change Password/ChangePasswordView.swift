@@ -10,6 +10,7 @@ import SwiftUI
 struct ChangePasswordView: View {
     
     @StateObject var viewModel: ChangePasswordViewModel = ChangePasswordViewModel()
+    @EnvironmentObject var sharedProfileData: SharedProfileData
     @FocusState var isCurrentPasswordFieldFocused: Bool
     @FocusState var isNewPasswordFieldFocused: Bool
     @FocusState var isConfirmationPasswordFocused: Bool
@@ -17,9 +18,9 @@ struct ChangePasswordView: View {
     var body: some View {
         VStack {
             VStack {
-                createTextField(title: "Current Password",
-                                placeholder: "Current password",
-                                value: $viewModel.currentPassword,
+                createTextField(title: "Old Password",
+                                placeholder: "Old password",
+                                value: $viewModel.oldPassword,
                                 isFieldFocused: $isCurrentPasswordFieldFocused)
                 
                 createTextField(title: "New Password",
@@ -36,22 +37,27 @@ struct ChangePasswordView: View {
             
             Spacer()
             
-            createSaveButton()
+            createConfirmButton()
         }
         .padding(.vertical)
         .navigationTitle("Change Password")
+        .alert("Change Password", isPresented: $viewModel
+            .isShowAlertMessage, presenting: viewModel.alertItem) { _ in
+                Button("OK", role: .cancel) { viewModel.alertItem = nil }
+        } message: { alertItem in
+            Text(alertItem.message)
+        }
     }
     
-    @ViewBuilder private func createSaveButton() -> some View {
+    @ViewBuilder private func createConfirmButton() -> some View {
         Button {
-            withAnimation {
-            }
+            viewModel.changePassword(of: sharedProfileData.user, with: viewModel.confirmationPassword)
         } label: {
-            Text("Save")
-                .foregroundStyle(.background)
+            Text("Confirm")
+                .foregroundStyle(.white)
                 .font(.system(.subheadline, weight: .semibold))
                 .frame(maxWidth: .infinity, maxHeight: 44)
-                .background(Color.blue)
+                .background(Color.appPrimary)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .padding(.horizontal)
@@ -66,11 +72,11 @@ struct ChangePasswordView: View {
                         placeholder: placeholder,
                         value: value,
                         isFieldFocused: isFieldFocused)
-        .textInputAutocapitalization(.words)
-        .padding(.top)
+        .textInputAutocapitalization(.never)
     }
 }
 
 #Preview {
     ChangePasswordView()
+        .environmentObject(SharedProfileData(user: .dummyUser))
 }

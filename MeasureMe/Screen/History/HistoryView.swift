@@ -9,20 +9,29 @@ import SwiftUI
 
 struct HistoryView: View {
     
-    @ObservedObject var viewModel: HistoryViewModel
+    @StateObject var viewModel: HistoryViewModel = HistoryViewModel()
     @EnvironmentObject var sharedProfileData: SharedProfileData
     
     var body: some View {
         ZStack(alignment: .top) {
-            if let measurementResultMonths = viewModel.measurementResultMonths,
-               let recentMeasurementResults = viewModel.recentMeasurementResults,
-               !measurementResultMonths.isEmpty && !recentMeasurementResults.isEmpty {
-                createMeasurementResultList(measurementResultMonths: measurementResultMonths,
-                                            recentMeasurementResults: recentMeasurementResults)
+            if let measurementResults = sharedProfileData.getAllMeasurementResults() {
+                createMeasurementResultList(measurementResultMonths: measurementResults.months,
+                                            recentMeasurementResults: measurementResults.results)
             } else {
                createEmptyStateView()
             }
             createNavigationBar()
+        }
+        .alert("Delete Measurement", isPresented: $viewModel.isShowAlertMessage, presenting: viewModel.alertItem) { alertItem in
+            Button("OK") {
+                viewModel.alertItem = nil
+                viewModel.isShowAlertMessage.toggle()
+            }
+        } message: { alertItem in
+            Text("\(alertItem.message)")
+        }
+        .fullScreenCover(item: $viewModel.selectedMeasurementResult) { measurementResult in
+            MeasurementResultView(viewModel: MeasurementResultViewModel(measurementResult: measurementResult))
         }
     }
     
@@ -32,27 +41,24 @@ struct HistoryView: View {
     }
     
     @ViewBuilder private func createMeasurementResultList(measurementResultMonths: [String], 
-                                                          recentMeasurementResults: [RecentMeasurementResult]) -> some View {
+                                                          recentMeasurementResults: [MeasurementResult]) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 ForEach(measurementResultMonths.uniqued(), id: \.self) { month in
                     Text("\(month)")
                         .font(.system(.title3, weight: .bold))
-                        .onAppear {
-                            print(month)
-                        }
                     
                     ForEach(recentMeasurementResults) { result in
-                        if month == viewModel.getMonth(from: result.date) {
+                        if month == sharedProfileData.getMonth(from: result.date) {
                             HStack {
                                 if viewModel.isShowRemoveButton {
                                     createRemoveButton(result: result)
                                 }
                                 
                                 MeasurementResultListView(result: result)
-                                    .onAppear(perform: {
-                                        print(month)
-                                    })
+                                    .onTapGesture {
+                                        viewModel.selectedMeasurementResult = result
+                                    }
                             }
                         }
                     }
@@ -64,13 +70,11 @@ struct HistoryView: View {
         }
     }
     
-    @ViewBuilder private func createRemoveButton(result: RecentMeasurementResult) -> some View {
+    @ViewBuilder private func createRemoveButton(result: MeasurementResult) -> some View {
         Button {
-#warning("It has to be one source of truth")
+            #warning("It has to be one source of truth")
             withAnimation {
-                if let _ = viewModel.recentMeasurementResults {
-                    viewModel.remove(measurementResult: result)
-                }
+                sharedProfileData.remove(measurementResult: result, completed: viewModel.showPopUpAlert)
             }
         } label: {
             Image(systemName: "minus.circle.fill")
@@ -92,30 +96,27 @@ struct HistoryView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.bottom)
                     .overlay(alignment: .trailing) {
-                        if let measurementResultMonths = viewModel.measurementResultMonths,
-                           let recentMeasurementResults = viewModel.recentMeasurementResults,
-                           !measurementResultMonths.isEmpty && !recentMeasurementResults.isEmpty {
-                            Button {
-                                withAnimation {
-                                    viewModel.isShowRemoveButton.toggle()
-                                }
-                            } label: {
-                                Image(systemName: "trash")
-                                    .font(.system(.headline, weight: .semibold))
-                                    .foregroundStyle(.red)
+                        Button {
+                            withAnimation {
+                                viewModel.isShowRemoveButton.toggle()
                             }
-                            .padding(.trailing, 30)
-                            .padding(.bottom)
+                        } label: {
+                            Image(systemName: "trash")
+                                .font(.system(.headline, weight: .semibold))
+                                .foregroundStyle(.red)
                         }
+                        .padding(.trailing, 30)
+                        .padding(.bottom)
+                        .opacity(sharedProfileData.measurementResults != nil ? 1 : 0)
                     }
             }
             .ignoresSafeArea()
             .frame(maxHeight: .infinity, alignment: .top)
-            
+        
     }
 }
 
 #Preview {
-    HistoryView(viewModel: HistoryViewModel(measurementResults: RecentMeasurementResult.dummyRecentMeasurementResult))
-        .environmentObject(SharedProfileData(user: .dummyUser))
+    HistoryView()
+        .environmentObject(SharedProfileData(user: .dummyUser, measurementResults: MeasurementResult.dummyRecentMeasurementResult))
 }

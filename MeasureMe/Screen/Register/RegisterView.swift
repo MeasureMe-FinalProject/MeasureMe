@@ -68,7 +68,7 @@ struct RegisterView: View {
             } label: {
                 Text(" Sign in")
                     .font(.system(.footnote))
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(.appPrimary)
             }
         }
     }
@@ -84,7 +84,7 @@ struct RegisterView: View {
                 .padding(.vertical)
                 .background {
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(.blue)
+                        .fill(.appPrimary)
                 }
         }
         .padding()
@@ -179,7 +179,7 @@ struct CustomTextField: View {
                 Text(title)
             }
             .font(.system(.caption, weight: .semibold))
-            .foregroundStyle(isFieldFocused.wrappedValue ? .blue : .secondary)
+            .foregroundStyle(isFieldFocused.wrappedValue ? Color.appPrimary : .secondary)
             
             if isSecureTextField {
                 SecureField(placeholder, text: $value)
@@ -190,8 +190,8 @@ struct CustomTextField: View {
                     .background {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(lineWidth: 1)
-                            .fill(isFieldFocused.wrappedValue ? .blue : .secondary)
-                            .shadow(color: isFieldFocused.wrappedValue ? .blue.opacity(0.4) : .white, radius: 5)
+                            .fill(isFieldFocused.wrappedValue ? Color.appPrimary : .secondary)
+                            .shadow(color: isFieldFocused.wrappedValue ? .appPrimary.opacity(0.4) : .white, radius: 5)
                     }
                     .autocorrectionDisabled()
             } else {
@@ -203,8 +203,8 @@ struct CustomTextField: View {
                     .background {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(lineWidth: 1)
-                            .fill(isFieldFocused.wrappedValue ? .blue : .secondary)
-                            .shadow(color: isFieldFocused.wrappedValue ? .blue.opacity(0.4) : .white, radius: 5)
+                            .fill(isFieldFocused.wrappedValue ? .appPrimary : .secondary)
+                            .shadow(color: isFieldFocused.wrappedValue ? .appPrimary.opacity(0.4) : .white, radius: 5)
                         
                     }
                     .autocorrectionDisabled()

@@ -132,14 +132,14 @@ struct Side: Codable {
     let bot        : Coordinate
 
     enum CodingKeys: String, CodingKey {
-        case top        = "top_coords"
-        case bot        = "bot_coords"
         case bustStart  = "bust_start_coords"
         case bustEnd    = "bust_end_coords"
         case waistStart = "waist_start_coords"
         case waistEnd   = "waist_end_coords"
         case hipStart   = "hip_start_coords"
         case hipEnd     = "hip_end_coords"
+        case top        = "top_coords"
+        case bot        = "bot_coords"
     }
 }
 
@@ -147,14 +147,14 @@ struct Side: Codable {
 extension Side {
     var allBodyLandmarks: [BodyLandmark] {
         return  [
-            BodyLandmark(landmark: .top, coordinate: top.cgPoint),
-            BodyLandmark(landmark: .bot, coordinate: bot.cgPoint),
             BodyLandmark(landmark: .bustStart, coordinate: bustStart.cgPoint),
             BodyLandmark(landmark: .bustEnd, coordinate: bustEnd.cgPoint),
             BodyLandmark(landmark: .waistStart, coordinate: waistStart.cgPoint),
             BodyLandmark(landmark: .waistEnd, coordinate: waistEnd.cgPoint),
             BodyLandmark(landmark: .hipStart, coordinate: hipStart.cgPoint),
-            BodyLandmark(landmark: .hipEnd, coordinate: hipEnd.cgPoint)
+            BodyLandmark(landmark: .hipEnd, coordinate: hipEnd.cgPoint),
+            BodyLandmark(landmark: .top, coordinate: top.cgPoint),
+            BodyLandmark(landmark: .bot, coordinate: bot.cgPoint),
         ]
     }
 }

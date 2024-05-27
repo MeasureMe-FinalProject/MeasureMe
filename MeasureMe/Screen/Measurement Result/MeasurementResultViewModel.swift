@@ -15,43 +15,51 @@ final class MeasurementResultViewModel: ObservableObject {
     
     let measurementDetail: MeasurementDetail
     let sizeRecommendation: String
-    let measurementResultResponse: MeasurementResultResponse
+    let measurementResult: MeasurementResult
+    
+    var measurementResultIcon: String {
+        switch measurementResult.clothingType {
+        case "T-Shirt":
+            "👕"
+        case "Long Pants":
+            "👖"
+        case "Jacket":
+            "🧥"
+        case "Short Pants":
+            "🩳"
+        default:
+            ""
+        }
+    }
 
-    init(measurementResultResponse: MeasurementResultResponse) {
-        let waist = measurementResultResponse.measurementResult.waistCircumference
-        let bust = measurementResultResponse.measurementResult.bustCircumference
-        let arm = measurementResultResponse.measurementResult.sleeveLength
-        let shoulder = measurementResultResponse.measurementResult.shoulderWidth
-        let hip = measurementResultResponse.measurementResult.hipCircumference
-        let inseam = measurementResultResponse.measurementResult.pantsLength
-        let sizeRecommendation = measurementResultResponse.sizeRecommendation
-
+    init(measurementResult: MeasurementResult) {
+        let waist = measurementResult.waistCircumference
+        let bust = measurementResult.bustCircumference
+        let arm = measurementResult.sleeveLength
+        let shoulder = measurementResult.shoulderWidth
+        let hip = measurementResult.hipCircumference
+        let inseam = measurementResult.pantsLength
+        let sizeRecommendation = measurementResult.sizeRecommendation
         self.measurementDetail = MeasurementDetail(name: "All Body Part",
                                                   icon: "general-body-icon",
                                                   image: "general-body",
                                                   bodyParts: BodyPart.generateAllBodyParts(waist: waist, bust: bust, arm: arm, shoulder: shoulder, hip: hip, inseam: inseam))
                 
         self.sizeRecommendation = sizeRecommendation
-        self.measurementResultResponse = measurementResultResponse
+        self.measurementResult = measurementResult
     }
     
-    private let date: Date = Date()
-    
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.dateFormat = "HH:mm - dd-MM-YYYY"
-        return formatter
-    }()
-    
-    var formattedDate: String {
-        dateFormatter.string(from: date)
-    }
-    
-    func saveMeasurementResult(of user: User, with clothingType: ClothingType) {
-        NetworkManager.shared.saveMeasurementResult(measurementResultResponse, of: user, with: clothingType) { response in
-            guard let response else { return }
-            print(response)
+    func updateMeasurementResults(measurementResults: Binding<[MeasurementResult]?>, of user: User) {
+        NetworkManager.shared.getRecentMeasurementResults(of: user) { updatedMeasurementResults, _ in
+            guard let updatedMeasurementResults else { return }
+            DispatchQueue.main.async {
+                measurementResults.wrappedValue = updatedMeasurementResults
+            }
         }
+    }
+    
+    func doneButtonTapped(dismiss: DismissAction, isMeasurementFinished: Binding<Bool>) {
+        isMeasurementFinished.wrappedValue = false
+        dismiss()
     }
 }

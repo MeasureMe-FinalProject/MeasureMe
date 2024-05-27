@@ -13,25 +13,25 @@ final class RegisterViewModel: ObservableObject {
     @Published var phoneNumber: String = ""
     @Published var password: String = ""
     @Published var isHidePassword: Bool = true
-    @Published var alertItem: AuthenticationAlert?
+    @Published var alertItem: AlertItem?
     @Published var isShowAlertError: Bool = false
     @Published var isRegisterSuccess: Bool = false
     
     var isValidForm: Bool {
         guard !name.isEmpty && !email.isEmpty && !password.isEmpty else {
-            alertItem = AuthenticationAlert.invalidForm
+            alertItem = AlertItem.invalidForm
             isShowAlertError = true
             return false
         }
         
         guard email.isValidEmail else {
-            alertItem = AuthenticationAlert.invalidEmail
+            alertItem = AlertItem.invalidEmail
             isShowAlertError = true
             return false
         }
         
         guard password.isValidPassword else {
-            alertItem = AuthenticationAlert.invalidPassword
+            alertItem = AlertItem.invalidPassword
             isShowAlertError = true
             return false
         }
@@ -46,7 +46,7 @@ final class RegisterViewModel: ObservableObject {
                                                 email: email,
                                                 password: password) { response, httpURLResponse  in
             guard let httpURLResponse else {
-                self.alertItem = AuthenticationAlert.invalidURL
+                self.alertItem = AlertItem.invalidURL
                 print("there is an error with URL")
                 return
             }
@@ -54,19 +54,16 @@ final class RegisterViewModel: ObservableObject {
             switch httpURLResponse.statusCode {
             case 201:
                 DispatchQueue.main.async {
-                    self.alertItem = AuthenticationAlert.successfullyRegister
+                    self.alertItem = .successRegister
                     self.isRegisterSuccess = true
                 }
                 
             case 409:
                 DispatchQueue.main.async {
-//                    guard let _ = response else {
                         DispatchQueue.main.async {
-                            self.alertItem = AuthenticationAlert.registeredEmail
+                            self.alertItem = AlertItem.registeredEmail
                             self.isShowAlertError = true
                         }
-//                        returpn
-//                    }
                 }
                 
             default:

@@ -1,5 +1,5 @@
 //
-//  Register.swift
+//  StatusResponse.swift
 //  MeasureMe
 //
 //  Created by Diki Dwi Diro on 10/03/24.

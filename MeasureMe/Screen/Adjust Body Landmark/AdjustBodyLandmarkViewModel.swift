@@ -132,6 +132,8 @@ final class AdjustBodyLandmarkViewModel: ObservableObject {
             let convertedCoordinates = convertToContainerCoordinate(bodyLandmark.coordinate, of: image, to: containerImage)
             return BodyLandmark(landmark: bodyLandmark.landmark, coordinate: convertedCoordinates)
         }
+        
+//        print(frontBodyLandmarks)
     }
     
     func handleOnChanged(draggedValue: CGSize, of bodyLandmark: BodyLandmark) {
@@ -182,12 +184,14 @@ final class AdjustBodyLandmarkViewModel: ObservableObject {
         case .frontImage:
             currentImage = .sideImage
             loadBlurredFaceImage(fromURLString: bodyLandmarkResponse.sidePath)
+            
         case .sideImage:
-            let frontBodyLandmarks = bodyLandmarkResponse.front.allBodyLandmarks.map { bodyLandmark in
+            let frontBodyLandmarks = frontBodyLandmarks.map { bodyLandmark in
                 let convertedCoordinates = convertToImageCoordinate(bodyLandmark.coordinate, of: containerImage, to: image)
                 return BodyLandmark(landmark: bodyLandmark.landmark, coordinate: convertedCoordinates)
             }
-            let sideBodyLandmarks = bodyLandmarkResponse.side.allBodyLandmarks.map { bodyLandmark in
+            
+            let sideBodyLandmarks = sideBodyLandmarks.map { bodyLandmark in
                 let convertedCoordinates = convertToImageCoordinate(bodyLandmark.coordinate, of: containerImage, to: image)
                 return BodyLandmark(landmark: bodyLandmark.landmark, coordinate: convertedCoordinates)
             }
@@ -259,8 +263,11 @@ extension AdjustBodyLandmarkViewModel {
     private func createFrontObject(from bodyLandmarks: [BodyLandmark]) -> Front? {
         var coordinates: [Coordinate] = []
         for landmark in bodyLandmarks {
+                        
             coordinates.append(Coordinate(x: Double(landmark.coordinate.x), y: Double(landmark.coordinate.y)))
         }
+        
+        
         
         return Front(
             shoulderStart: coordinates[0],
@@ -297,10 +304,6 @@ extension AdjustBodyLandmarkViewModel {
                     top: coordinates[6],
                     bot: coordinates[7])
     }
-    
-//    private func uploadAdjustedBodylandmarks() {
-//
-//    }
 }
 
 extension CGPoint {

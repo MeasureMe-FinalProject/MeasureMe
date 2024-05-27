@@ -11,12 +11,7 @@ import SwiftUI
 struct MeasureMeApp: App {
     var body: some Scene {
         WindowGroup {
-            if let data = UserDefaults.standard.data(forKey: "user"),
-               let user = try? JSONDecoder().decode(User.self, from: data) {
-                MainView(sharedProfileData: SharedProfileData(user: user))
-            } else {
-                OnBoardingView()
-            }
+            ContentView()
         }
     }
 }

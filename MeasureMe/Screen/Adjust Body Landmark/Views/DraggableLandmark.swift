@@ -39,7 +39,7 @@ struct DraggableLandmark: View {
                 .padding(.vertical, 2.5)
                 .background {
                     RoundedRectangle(cornerRadius: 5)
-                        .fill(.blue)
+                        .fill(.appPrimary)
                         .overlay {
                             RoundedRectangle(cornerRadius: 5)
                                 .stroke(lineWidth: 1.5).fill(.white)
@@ -49,7 +49,7 @@ struct DraggableLandmark: View {
                 .offset(y: isTopBodyLandmark ? -15 : isBottomBodyLandmark ? 15 : 0)
             
             Circle()
-                .fill(.blue)
+                .fill(.appPrimary)
                 .frame(width: 10, height: 10)
         }
         .offset(dragAmount)

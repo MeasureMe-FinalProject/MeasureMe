@@ -34,6 +34,8 @@ class CameraViewController: UIViewController {
     }
     
     private func startPhotoCaptureSession() {
+        UIApplication.shared.isIdleTimerDisabled = true
+        
         previewLayer = AVCaptureVideoPreviewLayer(session: camera.captureSession)
         camera.checkCameraPermission()
 

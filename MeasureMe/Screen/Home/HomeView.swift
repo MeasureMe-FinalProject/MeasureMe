@@ -9,61 +9,62 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject var viewModel: HomeViewModel
+    @StateObject var viewModel: HomeViewModel = HomeViewModel()
     @EnvironmentObject var sharedProfileData: SharedProfileData
     
     var body: some View {
-        ZStack {
-            Color.white
-                .ignoresSafeArea()
+        VStack {
+            Image(.headerLogo)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 45)
+                .padding(.vertical, 5)
+                .padding(.bottom, 10)
             
-            VStack {
-                Image(.headerLogo)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 45)
-                    .padding(.vertical, 5)
-                    .padding(.bottom, 10)
-                
-                ScrollView {
-                    VStack {
-                        createNavBarButtons()
-                        
-                        createSizeRecommendationOptions()
-                    }
-                    .padding(.top, 12)
-                    .padding(.bottom, 60)
-                    .background(RoundedRectangle(cornerRadius: 32).fill(.blue))
+            ScrollView {
+                VStack {
+                    createNavBarButtons()
                     
-                    RoundedRectangle(cornerRadius: 24)
-                        .fill(.white)
-                        .overlay(alignment: .top) {
-                            VStack {
-                                createStartMeasurementButton()
-                                createRecentMeasurementResults()
-                            }
-                        }
-                        .frame(height: 450)
-                        .offset(y: -65)
+                    createSizeRecommendationOptions()
                 }
-                .scrollBounceBehavior(.automatic)
-                .scrollClipDisabled()
-                .scrollIndicators(.hidden)
+                .padding(.top, 12)
+                .padding(.bottom, 60)
+                .background(RoundedRectangle(cornerRadius: 32).fill(.appPrimary))
+                
+                RoundedRectangle(cornerRadius: 24)
+                    .fill(.background)
+                    .overlay(alignment: .top) {
+                        VStack {
+                            createARRulerButton()
+                            createRecentMeasurementResults()
+                        }
+                    }
+                    .frame(height: 450)
+                    .offset(y: -65)
             }
-            .fullScreenCover(isPresented: $sharedProfileData.isMeasurementFinished)  {
-                NewMeasurementView(isShow: $sharedProfileData.isMeasurementFinished)
-            }
+            .scrollBounceBehavior(.automatic)
+            .scrollClipDisabled()
+            .scrollIndicators(.hidden)
+        }
+        .fullScreenCover(isPresented: $sharedProfileData.isMeasurementFinished)  {
+            NewMeasurementView(isShow: $sharedProfileData.isMeasurementFinished)
+        }
+        .fullScreenCover(isPresented: $viewModel.isShowARRuler)  {
+            ARMeasurementView()
+        }
+        .fullScreenCover(item: $viewModel.selectedMeasurementResult) { measurementResult in
+            MeasurementResultView(viewModel: MeasurementResultViewModel(measurementResult: measurementResult))
         }
     }
     
     @ViewBuilder private func createNavBarButtons() -> some View {
         HStack(alignment: .center, spacing: 15) {
-            Image("profile-image")
+            Image("default-profile-image")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .background {
                     RoundedRectangle(cornerRadius: 70)
-                        .fill(.black)
+                        .fill(.white)
                 }
                 .frame(width: 40, height: 40)
             
@@ -84,12 +85,12 @@ struct HomeView: View {
         .padding(.vertical)
     }
     
-    @ViewBuilder private func createStartMeasurementButton()-> some View {
+    @ViewBuilder private func createARRulerButton()-> some View {
         RoundedRectangle(cornerRadius: 12)
             .stroke(lineWidth: 0.75)
-            .fill(.blue)
-            .background(RoundedRectangle(cornerRadius: 12).fill(.white))
-            .shadow(color: .blue.opacity(0.2), radius: 10)
+            .fill(.appPrimary)
+            .background(RoundedRectangle(cornerRadius: 12).fill(.background))
+            .shadow(color: .primary.opacity(0.25), radius: 10)
             .overlay {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("AR Ruler 📐")
@@ -101,14 +102,14 @@ struct HomeView: View {
                         .padding(.bottom, 5)
                     
                     Button {
-                        viewModel.isShowNewMeasurementView.toggle()
+                        viewModel.isShowARRuler.toggle()
                     } label: {
                         Text("Start Measure")
-                            .foregroundStyle(.background)
+                            .foregroundStyle(.white)
                             .font(.system(.subheadline, weight: .semibold))
                             .padding()
                             .frame(maxWidth: .infinity, maxHeight: 44)
-                            .background(Color.blue)
+                            .background(Color.appPrimary)
                             .clipShape(RoundedRectangle(cornerRadius: 7.5))
                     }
                 }
@@ -146,7 +147,6 @@ struct HomeView: View {
                     } label: {
                         createClothingType(of: clothing)
                     }
-                    .accessibilityIdentifier(clothing == .tShirt ? "tShirt" : "")
                 }
                 Spacer().frame(width: 20)
             }
@@ -163,10 +163,13 @@ struct HomeView: View {
                 .font(.system(.title3, weight: .semibold))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            if let measurementResults = viewModel.recentMeasurementResults,
-               !measurementResults.isEmpty {
+            if let measurementResults = sharedProfileData.getLastThreeMeasurementResults()
+              /* ,!measurementResults.isEmpty*/ {
                 ForEach(measurementResults) { result in
                     MeasurementResultListView(result: result)
+                        .onTapGesture {
+                            viewModel.selectedMeasurementResult = result
+                        }
                 }
             } else {
                 Text("No recent measurement results")
@@ -203,7 +206,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(viewModel: HomeViewModel(recentMeasurementResults: RecentMeasurementResult.dummyRecentMeasurementResult))
-        .environmentObject(SharedProfileData(clothingType: .LongPants, user: User.dummyUser))
+    HomeView()
+        .environmentObject(SharedProfileData(user: .dummyUser, measurementResults: MeasurementResult.dummyRecentMeasurementResult))
 }
 

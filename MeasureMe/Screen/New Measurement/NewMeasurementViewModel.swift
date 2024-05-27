@@ -41,9 +41,10 @@ enum GenderType: CaseIterable, Codable {
 
 final class NewMeasurementViewModel: ObservableObject {
     @Published var selectedGender: GenderType?
-    @Published var height: Int = 166
+    @Published var height: Int = 0
     @Published var isShowPrivacyMeassage: Bool = false
     @Published var isShowPhotoCaptureView: Bool = false
+    @Published var isShowMessageAlert: Bool = false
     
     var paddingHeightImageVector: CGFloat {
         if height <= 0 {
@@ -61,5 +62,9 @@ final class NewMeasurementViewModel: ObservableObject {
         } else {
             return 0
         }
+    }
+    
+    func isValidToCreateNewMeasurement() -> Bool {
+        selectedGender != nil && height != 0 ? true : false
     }
 }

@@ -29,6 +29,11 @@ struct NewMeasurementView: View {
                 showPrivacyMessagePopup()
             }
         }
+        .alert("Empty Field", isPresented: $viewModel.isShowMessageAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Please input your gender and \nbody height properly")
+        }
         .fullScreenCover(isPresented: $viewModel.isShowPhotoCaptureView) {
             PhotoCaptureView(isShow: $viewModel.isShowPhotoCaptureView)
         }
@@ -56,13 +61,13 @@ struct NewMeasurementView: View {
                             .padding()
                             
                             VStack {
-                                Text("We respect your pricacy")
+                                Text("We respect your privacy")
                                     .font(.system(.headline))
                                     .foregroundStyle(.primary)
                                     .padding(.bottom, 5)
                                     .padding(.top)
                                 
-                                Text("Your face will be blurred after the photos are captured 🔒")
+                                Text("Your face will be blurred while the photos are being process 🔒")
                                     .font(.system(.subheadline))
                                     .foregroundStyle(.secondary)
                                     .multilineTextAlignment(.center)
@@ -100,6 +105,11 @@ struct NewMeasurementView: View {
     
     @ViewBuilder private func createNextButton() -> some View {
         Button {
+
+            guard viewModel.isValidToCreateNewMeasurement() else { 
+                viewModel.isShowMessageAlert = true
+                return
+            }
             withAnimation {
                 viewModel.isShowPrivacyMeassage.toggle()
             }
@@ -108,7 +118,7 @@ struct NewMeasurementView: View {
                 .foregroundStyle(.background)
                 .font(.system(.subheadline, weight: .semibold))
                 .frame(maxWidth: .infinity, maxHeight: 44)
-                .background(Color.blue)
+                .background(Color.appPrimary)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .padding(.horizontal)
@@ -229,22 +239,22 @@ struct GenderCard: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 14)
             .stroke(lineWidth: isSelectedGender ? 2 : 1)
-            .fill(isSelectedGender ? .blue : .primary.opacity(0.2))
-            .shadow(color: isSelectedGender ? .blue.opacity(0.3) : .blue.opacity(0), radius: 0)
+            .fill(isSelectedGender ? .appPrimary : .primary.opacity(0.2))
+            .shadow(color: isSelectedGender ? .appPrimary.opacity(0.3) : .appPrimary.opacity(0), radius: 0)
             .background {
                 ZStack {
                     RoundedRectangle(cornerRadius: 14)
                         .fill(.white)
                         .shadow(color: isSelectedGender ?
-                            .blue.opacity(0.3) : .white, radius: 5)
+                            .appPrimary.opacity(0.3) : .white, radius: 5)
                     
                     RoundedRectangle(cornerRadius: 14)
-                        .fill(isSelectedGender ? .blue.opacity(0.1) : Color(uiColor: .systemBackground))
+                        .fill(isSelectedGender ? .appPrimary.opacity(0.1) : Color(uiColor: .systemBackground))
                     
                     VStack {
                         Text(gender.name)
                             .font(.system(.subheadline, weight: .semibold))
-                            .foregroundStyle(isSelectedGender ? .blue : .secondary)
+                            .foregroundStyle(isSelectedGender ? .appPrimary : .secondary)
                             .padding(.top)
                         
                         Image(gender.imageName)
@@ -266,7 +276,7 @@ struct GenderCard: View {
 }
 
 struct HeightSlider: View {
-    @State private var rulerOffset: CGSize = CGSize(width: 0, height: -1660)
+    @State private var rulerOffset: CGSize = CGSize(width: 0, height: 0)
     @State private var previousTranslation: CGSize = .zero
     @Binding var height: Int
     @EnvironmentObject var sharedProfileData: SharedProfileData
@@ -322,15 +332,17 @@ struct HeightSlider: View {
                         rulerOffset.height = min(max(rulerOffset.height, -2000), 1)
                         
                         height = abs(Int(rulerOffset.height / 10))
-                        sharedProfileData.height = height
-                        print(sharedProfileData.height)
+                        DispatchQueue.main.async {
+                            sharedProfileData.height = height
+                        }
                     }
                 }
                 .onEnded{ _ in
                     previousTranslation = .zero
                     height = abs(Int(rulerOffset.height / 10))
-                    sharedProfileData.height = height
-                    print(sharedProfileData.height)
+                    DispatchQueue.main.async {
+                        sharedProfileData.height = height
+                    }
                 }
         )
     }
@@ -338,13 +350,13 @@ struct HeightSlider: View {
     @ViewBuilder private func createPointer() -> some View {
         ZStack(alignment: .trailing) {
             RoundedRectangle(cornerRadius: 10)
-                .fill(.blue)
+                .fill(.appPrimary)
                 .frame(width: 50, height: 2)
             
             Image(systemName: "arrowtriangle.left.fill")
-                .foregroundStyle(.blue)
+                .foregroundStyle(.appPrimary)
                 .offset(x: 2)
         }
-        .shadow(color: .blue.opacity(0.5), radius: 10)
+        .shadow(color: .appPrimary.opacity(0.5), radius: 10)
     }
 }

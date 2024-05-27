@@ -15,20 +15,24 @@ struct BodyLandmarkProcessView: View {
     var body: some View {
         ZStack {
             if viewModel.isShowMeasurementResultView {
-                MeasurementResultView(viewModel: MeasurementResultViewModel(measurementResultResponse: viewModel.measurementResultResponse!))
+                MeasurementResultView(viewModel: MeasurementResultViewModel(measurementResult: viewModel.measurementResult!))
             } else {
                 ProcessStateView()
             }
         }
         .animation(.easeInOut, value: viewModel.isShowMeasurementResultView)
-        .onAppear { viewModel.uploadAdjustedBodyLandmark(height: sharedProfileData.height,
-                                                         gender: sharedProfileData.gender!.codeName,
-                                                         clothingType: sharedProfileData.clothingType!.codeName) }
+        .onAppear { 
+            viewModel.uploadAdjustedBodyLandmark(of: sharedProfileData.user, height: sharedProfileData.height,
+                                                         gender: sharedProfileData.gender!,
+                                                         clothingType: sharedProfileData.clothingType!)
+            
+//            viewModel.getLastMeasurementResults(of: sharedProfileData.user, measurementResults: $sharedProfileData.measurementResults)
+        }
     }
     
 }
 
 #Preview {
     BodyLandmarkProcessView(viewModel: BodyLandmarkProcessViewModel(front: BodyLandmarkResponse.dummyBodyLandmarkResponse.front, side: BodyLandmarkResponse.dummyBodyLandmarkResponse.side))
-        .environmentObject(SharedProfileData(gender: .male, clothingType: .LongPants, user: .dummyUser))
+        .environmentObject(SharedProfileData(gender: .male, clothingType: .jacket, user: .dummyUser))
 }

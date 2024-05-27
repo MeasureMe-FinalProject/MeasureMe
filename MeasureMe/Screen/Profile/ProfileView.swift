@@ -27,12 +27,12 @@ struct ProfileView: View {
                         
                         createShowMoreInformation()
                         
-                        createShowMoreButton()
+//                        createShowMoreButton()
                     }
                     .padding(.top, 180)
                     .padding(.horizontal)
                 }
-                .background(.blue)
+                .background(.appPrimary)
                 .overlay { createNavigationTitle() }
                 .alert(isPresented: $viewModel.isShowLogOutAlert) { createAlert() }
                 .navigationDestination(isPresented: $viewModel.isShowLoginView) {
@@ -48,7 +48,7 @@ struct ProfileView: View {
     private func createAlert() -> Alert {
         Alert(title: Text("Logout"),
               message: Text("Are you sure you want to logout?"),
-              primaryButton: .default(Text("Cancel")),
+              primaryButton: .cancel(),
               secondaryButton: .destructive(Text("Logout")) {
             
             viewModel.isShowLoginView = true
@@ -70,7 +70,7 @@ struct ProfileView: View {
     }
     
     @ViewBuilder private func createShowMoreInformation() -> some View {
-        if viewModel.isShowMoreInformation {
+//        if viewModel.isShowMoreInformation {
             VStack (alignment: .leading) {
                 Text("Account")
                     .font(.system(.title3, weight: .semibold))
@@ -132,30 +132,18 @@ struct ProfileView: View {
                 .frame(maxHeight: .infinity)
                 .frame(height: 150)
             }
-        }
+//        }
     }
 
     
     @ViewBuilder private func createPersonalInformation() -> some View {
-        VStack (alignment: .leading) {
-            Text("Personal Info")
-                .font(.system(.title3, weight: .semibold))
-                .padding(.horizontal)
-
-            List {
-                HStack {
-                    Image(systemName: "calendar")
-                    
-                    Text("Date of Birth")
-                        .foregroundStyle(.secondary)
-                    
-                    Spacer()
-                    
-                    Text("1 September 2003")
-                    
-                }
+        if let gender = sharedProfileData.gender?.name {
+            VStack (alignment: .leading) {
+                Text("Personal Info")
+                    .font(.system(.title3, weight: .semibold))
+                    .padding(.horizontal)
                 
-                if let gender = sharedProfileData.gender?.name {
+                List {
                     HStack {
                         Image(systemName: "figure.dress.line.vertical.figure")
                         
@@ -167,21 +155,22 @@ struct ProfileView: View {
                         Text(gender)
                         
                     }
+                    
+                    HStack {
+                        Image(systemName: "ruler")
+                        Text("Height")
+                            .foregroundStyle(.secondary)
+                        
+                        Spacer()
+                        
+                        Text("\(sharedProfileData.height) cm")
+                        
+                    }
                 }
-                HStack {
-                    Image(systemName: "ruler")
-                    Text("Height")
-                        .foregroundStyle(.secondary)
-                    
-                    Spacer()
-                    
-                    Text("\(sharedProfileData.height) cm")
-                
+                .scrollDisabled(true)
+                .listStyle(.plain)
+                .frame(height: 110)
             }
-        }
-            .scrollDisabled(true)
-            .listStyle(.plain)
-            .frame(height: 150)
         }
     }
     
@@ -199,18 +188,20 @@ struct ProfileView: View {
     }
     
     @ViewBuilder private func createProfileImage() -> some View {
-        Image("profile-image")
+        Image("default-profile-image")
             .resizable()
             .aspectRatio(contentMode: .fit)
             .background {
                 Circle()
-                    .fill(.black)
+                    .fill(.white)
                     .overlay {
                         Circle()
                             .stroke(lineWidth: 2).fill(.white)
                     }
                     .shadow(color: .black.opacity(0.5), radius: 10)
             }
+            .clipShape(Circle())
+            .shadow(color: .black.opacity(0.5), radius: 10)
             .frame(width: 150, height: 150)
     }
     
@@ -251,17 +242,18 @@ struct ProfileView: View {
     }
     
     @ViewBuilder private func createBackground() -> some View {
-        Color.blue
+        Color.appPrimary
             .ignoresSafeArea(edges: .top)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         
         MountainShape()
-            .fill(Color.white)
+            .fill(.background)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+//            .offset(y: sharedProfileData.gender == nil ? UIScreen.main.bounds.height / 11 : 0)
     }
 }
 
 #Preview {
     ProfileView()
-        .environmentObject(SharedProfileData(gender: .male, user: .dummyUser))
+        .environmentObject(SharedProfileData(gender: .male,user: .dummyUser))
 }

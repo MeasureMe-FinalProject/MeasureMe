@@ -34,7 +34,7 @@ struct MeasurementResultDetailView: View {
                 LazyVGrid(columns: twoGridColumns) {
                     ForEach(measurementDetail.bodyParts) { bodyPart in
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(.blue.opacity(0.1))
+                            .fill(.appPrimary.opacity(0.1))
                             .frame(width: 150, height: 110)
                             .shadow(radius: 10)
                             .overlay(alignment: .leading) {

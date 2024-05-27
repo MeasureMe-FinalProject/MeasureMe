@@ -20,22 +20,22 @@ struct MainView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            HomeView(viewModel: HomeViewModel(recentMeasurementResults: sharedProfileData.measurementResults))
+            HomeView()
                 .tag(Tab.Home)
                 .tabItem { Label("Home", systemImage: "house.fill") }
             
-            HistoryView(viewModel: HistoryViewModel(measurementResults: sharedProfileData.measurementResults))
+            HistoryView()
                 .tag(Tab.History)
-                .tabItem { Label("History", image: .pencilRulerIcon) }
+                .tabItem { Label("History", image: "pencil-ruler-icon") }
             
             ProfileView()
                 .tag(Tab.Profile)
                 .tabItem { Label("Profile", systemImage: "person.fill") }
         }
         .onAppear {
-            DispatchQueue.main.async {
-                NetworkManager.shared.getRecentMeasurementResults(of: sharedProfileData.user) { response, _ in
-                    sharedProfileData.measurementResults = response
+            NetworkManager.shared.getRecentMeasurementResults(of: sharedProfileData.user) { measurementResult, _ in
+                DispatchQueue.main.async {
+                    sharedProfileData.measurementResults = measurementResult
                 }
             }
         }
