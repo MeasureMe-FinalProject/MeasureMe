@@ -21,11 +21,13 @@ class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startPhotoCaptureSession()
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         stopPhotoCaptureSession()
+        UIApplication.shared.isIdleTimerDisabled = false
     }
         
     func takePhoto() {
@@ -34,8 +36,6 @@ class CameraViewController: UIViewController {
     }
     
     private func startPhotoCaptureSession() {
-        UIApplication.shared.isIdleTimerDisabled = true
-        
         previewLayer = AVCaptureVideoPreviewLayer(session: camera.captureSession)
         camera.checkCameraPermission()
 

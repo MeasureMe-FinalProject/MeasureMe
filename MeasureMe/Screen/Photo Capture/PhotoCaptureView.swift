@@ -90,7 +90,7 @@ struct PhotoCaptureView: View {
         .onReceive(viewModel.countdownTimer) { _ in
             viewModel.startCountingdownTimer()
         }
-        .onChange(of: viewModel.capturedImages) {
+        .onChange(of: viewModel.capturedImages) { _ in
             print(viewModel.capturedImages.count)
         }
         .animation(.interpolatingSpring, value: viewModel.isOnPosition)

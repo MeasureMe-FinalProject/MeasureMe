@@ -21,30 +21,55 @@ struct HomeView: View {
                 .padding(.vertical, 5)
                 .padding(.bottom, 10)
             
-            ScrollView {
-                VStack {
-                    createNavBarButtons()
-                    
-                    createSizeRecommendationOptions()
-                }
-                .padding(.top, 12)
-                .padding(.bottom, 60)
-                .background(RoundedRectangle(cornerRadius: 32).fill(.appPrimary))
-                
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(.background)
-                    .overlay(alignment: .top) {
-                        VStack {
-                            createARRulerButton()
-                            createRecentMeasurementResults()
-                        }
+            if #available(iOS 17, *) {
+                ScrollView {
+                    VStack {
+                        createNavBarButtons()
+                        
+                        createSizeRecommendationOptions()
                     }
-                    .frame(height: 450)
-                    .offset(y: -65)
+                    .padding(.top, 12)
+                    .padding(.bottom, 60)
+                    .background(RoundedRectangle(cornerRadius: 32).fill(.appPrimary))
+                    
+                    RoundedRectangle(cornerRadius: 24)
+                        .fill(.background)
+                        .overlay(alignment: .top) {
+                            VStack {
+                                createARRulerButton()
+                                createRecentMeasurementResults()
+                            }
+                        }
+                        .frame(height: 450)
+                        .offset(y: -65)
+                }
+                .scrollBounceBehavior(.automatic)
+                .scrollClipDisabled()
+                .scrollIndicators(.hidden)
+            } else {
+                ScrollView {
+                    VStack {
+                        createNavBarButtons()
+                        
+                        createSizeRecommendationOptions()
+                    }
+                    .padding(.top, 12)
+                    .padding(.bottom, 60)
+                    .background(RoundedRectangle(cornerRadius: 32).fill(.appPrimary))
+                    
+                    RoundedRectangle(cornerRadius: 24)
+                        .fill(.background)
+                        .overlay(alignment: .top) {
+                            VStack {
+                                createARRulerButton()
+                                createRecentMeasurementResults()
+                            }
+                        }
+                        .frame(height: 450)
+                        .offset(y: -65)
+                }
+                .scrollIndicators(.hidden)
             }
-            .scrollBounceBehavior(.automatic)
-            .scrollClipDisabled()
-            .scrollIndicators(.hidden)
         }
         .fullScreenCover(isPresented: $sharedProfileData.isMeasurementFinished)  {
             NewMeasurementView(isShow: $sharedProfileData.isMeasurementFinished)
@@ -136,25 +161,46 @@ struct HomeView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 30)
         
-        ScrollView(.horizontal) {
-            HStack(spacing: 12.5) {
-                Spacer().frame(width: 20)
-                ForEach(ClothingType.allCases, id: \.self) { clothing in
-                    Button {
-                        sharedProfileData.clothingType = clothing
-                        viewModel.isShowNewMeasurementView = true
-                        sharedProfileData.isMeasurementFinished = true
-                    } label: {
-                        createClothingType(of: clothing)
+        if #available(iOS 17.0, *) {
+            ScrollView(.horizontal) {
+                HStack(spacing: 12.5) {
+                    Spacer().frame(width: 20)
+                    ForEach(ClothingType.allCases, id: \.self) { clothing in
+                        Button {
+                            sharedProfileData.clothingType = clothing
+                            viewModel.isShowNewMeasurementView = true
+                            sharedProfileData.isMeasurementFinished = true
+                        } label: {
+                            createClothingType(of: clothing)
+                        }
                     }
+                    Spacer().frame(width: 20)
                 }
-                Spacer().frame(width: 20)
             }
+            .scrollClipDisabled()
+            .scrollIndicators(.hidden)
+            .frame(maxWidth: .infinity)
+            .padding(.bottom)
+        } else {
+            ScrollView(.horizontal) {
+                HStack(spacing: 12.5) {
+                    Spacer().frame(width: 20)
+                    ForEach(ClothingType.allCases, id: \.self) { clothing in
+                        Button {
+                            sharedProfileData.clothingType = clothing
+                            viewModel.isShowNewMeasurementView = true
+                            sharedProfileData.isMeasurementFinished = true
+                        } label: {
+                            createClothingType(of: clothing)
+                        }
+                    }
+                    Spacer().frame(width: 20)
+                }
+            }
+            .scrollIndicators(.hidden)
+            .frame(maxWidth: .infinity)
+            .padding(.bottom)
         }
-        .scrollClipDisabled()
-        .scrollIndicators(.hidden)
-        .frame(maxWidth: .infinity)
-        .padding(.bottom)
     }
     
     @ViewBuilder private func createRecentMeasurementResults() -> some View {

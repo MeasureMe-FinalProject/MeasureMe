@@ -35,7 +35,7 @@ struct RegisterView: View {
             
             createSignInButton()
         }
-        .onChange(of: viewModel.isRegisterSuccess) {
+        .onChange(of: viewModel.isRegisterSuccess) { _ in
             isShow = viewModel.isRegisterSuccess
         }
         .padding()

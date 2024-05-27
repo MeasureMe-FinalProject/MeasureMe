@@ -66,13 +66,20 @@ struct MeasurementResultView: View {
             }
         }
         .sheet(isPresented: $viewModel.isShowMeasurementDetailView) {
+            if #available(iOS 16.4, *) {
                 MeasurementResultDetailView(measurementDetail: viewModel.measurementDetail)
                     .padding()
                     .ignoresSafeArea()
                     .presentationDragIndicator(.visible)
-                    .clipShape(RoundedRectangle(cornerRadius: 25))
                     .presentationCornerRadius(25)
                     .presentationDetents([.height(580)])
+            } else {
+                MeasurementResultDetailView(measurementDetail: viewModel.measurementDetail)
+                    .padding()
+                    .ignoresSafeArea()
+                    .presentationDragIndicator(.visible)
+                    .presentationDetents([.height(580)])
+            }
             
         }
         .onAppear {
@@ -138,7 +145,6 @@ struct MeasurementResultView: View {
                     
                     Spacer()
                     
-                    #warning("Change this to after backend updated")
                     Text(viewModel.measurementResult.gender)
                     
                 }

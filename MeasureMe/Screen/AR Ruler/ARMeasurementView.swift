@@ -78,6 +78,7 @@ struct TopBarOverlayButtons: View {
             HStack {
                 Button {
                     viewModel.clearButtonTapped()
+                    Haptics.shared.play(.medium)
                 } label: {
                     Label(
                         title: {
@@ -99,7 +100,7 @@ struct TopBarOverlayButtons: View {
                     }
                     .padding(.horizontal)
                 }
-                .sensoryFeedback(.selection, trigger: viewModel.isClearButtonTapped)
+//                .sensoryFeedback(.selection, trigger: viewModel.isClearButtonTapped)
                 .opacity(withAnimation { viewModel.isPlusButtonTapped ? 0.5 : 1 })
                 .disabled(viewModel.isPlusButtonTapped)
                 
@@ -155,6 +156,7 @@ struct PlusButton: View {
     var body: some View {
         Button {
             viewModel.isPlusButtonTapped.toggle()
+            Haptics.shared.play(.heavy)
         } label: {
             Image(systemName: "plus")
                 .font(.system(.largeTitle, design: .rounded))
@@ -166,7 +168,7 @@ struct PlusButton: View {
                         .fill(Material.ultraThin)
                 }
         }
-        .sensoryFeedback(.impact(weight: .heavy), trigger: viewModel.isPlusButtonTapped)
+//        .sensoryFeedback(.impact(weight: .heavy), trigger: viewModel.isPlusButtonTapped)
         .shadow(radius: 2)
         .disabled(viewModel.shouldButtonDisabled)
         .opacity(viewModel.shouldButtonDisabled ? 0.5 : 1)

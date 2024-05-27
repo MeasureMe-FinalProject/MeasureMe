@@ -76,10 +76,10 @@ final class AdjustBodyLandmarkViewModel: ObservableObject {
             .onEnded { [self] _ in
                 initialPosition = .zero
             }
-            .exclusively(before: MagnifyGesture()
+            .exclusively(before: MagnificationGesture()
                 .onChanged { [self] value in
                     withAnimation {
-                        currentZoom = value.magnification - 1
+                        currentZoom = value - 1
                     }
                 }
                 .onEnded { [self] value in

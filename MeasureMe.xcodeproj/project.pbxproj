@@ -79,6 +79,7 @@
 		3AC21FB22B9381BB008E87FF /* UndetectedBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC21FB12B9381BB008E87FF /* UndetectedBodyView.swift */; };
 		3AD20D8B2C021464004D977C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD20D8A2C021464004D977C /* Login.swift */; };
 		3AD20D8D2C024415004D977C /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD20D8C2C024415004D977C /* ForgotPassword.swift */; };
+		3AE013F52C04594E000D19E8 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE013F42C04594E000D19E8 /* Haptics.swift */; };
 		3AE41D312BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE41D302BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +159,7 @@
 		3AC21FB12B9381BB008E87FF /* UndetectedBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndetectedBodyView.swift; sourceTree = "<group>"; };
 		3AD20D8A2C021464004D977C /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		3AD20D8C2C024415004D977C /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
+		3AE013F42C04594E000D19E8 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		3AE41D302BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyLandmarkProcessViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -464,6 +466,7 @@
 		3AC21F952B93688B008E87FF /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				3AE013F32C045945000D19E8 /* Haptic */,
 				3AC21F962B93689E008E87FF /* CameraView */,
 			);
 			path = UIKit;
@@ -515,6 +518,14 @@
 				3AC21FB12B9381BB008E87FF /* UndetectedBodyView.swift */,
 			);
 			path = "Undetected Body";
+			sourceTree = "<group>";
+		};
+		3AE013F32C045945000D19E8 /* Haptic */ = {
+			isa = PBXGroup;
+			children = (
+				3AE013F42C04594E000D19E8 /* Haptics.swift */,
+			);
+			path = Haptic;
 			sourceTree = "<group>";
 		};
 		3AE41D322BD9CC9B00D7751E /* Measurement Result Detail */ = {
@@ -630,6 +641,7 @@
 				3A0713A42B938AD4005D6535 /* HelpAdjustBodyLandmark.swift in Sources */,
 				3A7D0F762BD8677900D1E488 /* ProcessStateView.swift in Sources */,
 				3AE41D312BD9C49900D7751E /* BodyLandmarkProcessViewModel.swift in Sources */,
+				3AE013F52C04594E000D19E8 /* Haptics.swift in Sources */,
 				3A795F112BD0DEB5007A630A /* MeasurementResultDetailViewModel.swift in Sources */,
 				3AC21F8E2B936617008E87FF /* NewMeasurementViewModel.swift in Sources */,
 				3A38A3F82BF4AAAE008C1A2B /* ARMeasurementView.swift in Sources */,
@@ -805,7 +817,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeasureMe/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MeasureMe;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app need your camera permission to capturing the photos. To protect user privacy, your face will be blurred after the image being captured.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -813,7 +825,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -840,7 +852,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeasureMe/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MeasureMe;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app need your camera permission to capturing the photos. To protect user privacy, your face will be blurred after the image being captured.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -848,7 +860,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

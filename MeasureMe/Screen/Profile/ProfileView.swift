@@ -122,7 +122,7 @@ struct ProfileView: View {
                             
                             Image(systemName: "chevron.right")
                                 .font(.system(.subheadline, weight: .medium))
-                                .foregroundStyle(.placeholder)
+                                .foregroundStyle(.secondary.opacity(0.5))
                             
                         }
                     }
