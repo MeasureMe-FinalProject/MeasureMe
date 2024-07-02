@@ -54,7 +54,7 @@ struct PhotoCaptureView: View {
                 Text("\(viewModel.captureTimeRemaining)")
                     .font(.system(size: 120, weight: .semibold, design: .rounded))
                     .foregroundStyle(.white)
-//                    .opacity(viewModel.captureTimeRemaining == 3 ? 0 : 1)
+                    .opacity(viewModel.captureTimeRemaining == 10 ? 0 : 1)
                     .opacity(viewModel.isCapturingPhotoComplete ? 0 : 1)
             } else {
                 AngleIndicatorBar(viewModel: viewModel)

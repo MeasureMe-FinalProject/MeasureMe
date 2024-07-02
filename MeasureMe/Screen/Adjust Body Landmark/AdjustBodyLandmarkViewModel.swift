@@ -227,12 +227,12 @@ extension AdjustBodyLandmarkViewModel {
         let imageRect = contentClippingRect(for: sourceImage, in: containerImage)
         let scale = scale(for: sourceImage, in: containerImage)
         
-        let screenCoordinate: CGPoint = CGPoint (
+        let containerCoordinate: CGPoint = CGPoint (
             x: (coordinate.x / scale) + imageRect.origin.x,
             y: (coordinate.y / scale) + imageRect.origin.y
         )
         
-        return screenCoordinate
+        return containerCoordinate
     }
     
     private func convertToImageCoordinate(_ coordinate: CGPoint, of containerImage: CGRect, to sourceImage: UIImage) -> CGPoint {

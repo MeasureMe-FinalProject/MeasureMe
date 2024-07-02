@@ -127,7 +127,7 @@ final class PhotoCaptureViewModel: ObservableObject {
                 resetCountdownTimer()
             }
         }
-        captureTimeRemaining = 3
+        captureTimeRemaining = 10
     }
     
     private func startCaptureCountdown() {

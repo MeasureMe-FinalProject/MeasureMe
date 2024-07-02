@@ -107,11 +107,9 @@ struct AdjustBodyLandmarkView: View {
         .animation(.easeInOut, value: viewModel.isShowHelpPopup)
         .onAppear {
             viewModel.loadBlurredFaceImage(fromURLString: viewModel.bodyLandmarkResponse.frontPath)
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                viewModel.convertBodyLandmarkCoordinates()
-                    viewModel.isShowHelpPopup = true
-            }
+        }
+        .onChange(of: viewModel.image) { _ in
+            viewModel.convertBodyLandmarkCoordinates()
         }
         .fullScreenCover(isPresented: $viewModel.isShowBodyLandmarkProcessView) {
             if let front = viewModel.frontBodyLandmarksObject,
